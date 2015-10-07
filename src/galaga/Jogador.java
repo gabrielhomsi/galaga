@@ -1,6 +1,6 @@
 package galaga;
 
-public class Player {
+public class Jogador {
     int pontuacao;
     int vidas;
     int potenciaTiro = 1;
