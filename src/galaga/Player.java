@@ -4,11 +4,12 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 
-public class Jogador {
+public class Player {
     int pontuacao;
     int vidas;
     int potenciaTiro = 1;
-    Coordenada posicao;
+    int speed = 5;//tem que ser mais rápido que o mais rápido inimigo (3)
+    Coordinate posicao;
 
     public static void main(String[] args) throws Exception {
 
@@ -22,7 +23,7 @@ public class Jogador {
         Registry registry = LocateRegistry.getRegistry(host);
         InterfaceRMI stub = (InterfaceRMI) registry.lookup("InterfaceRMI");
 
-        ArrayList<Coordenada> listaPosicao = stub.atualizaCenario();
+        ArrayList<Coordinate> listaPosicao = stub.atualizaCenario();
 
         for (int i = 0; i < listaPosicao.size(); i++) {
             System.out.println("posição " + i + ": [" + listaPosicao.get(i).x + ", " + listaPosicao.get(i).y + "]");
@@ -35,11 +36,11 @@ public class Jogador {
 
     }
 
-    void ataque(Coordenada posicao) {
+    void ataque(Coordinate posicao) {
 
     }
 
-    void move(Coordenada posicao, Coordenada desloc) {
+    void move(Coordinate posicao, Coordinate desloc) {
 
     }
 

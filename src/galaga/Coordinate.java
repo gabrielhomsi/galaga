@@ -1,6 +1,6 @@
 package galaga;
 
-public class Coordenada {
+public class Coordinate {
 
     int x;
     int y;
