@@ -1,4 +1,4 @@
-package galaga;
+package galaga.server;
 
 public class EnemyType1 extends Enemy {
 
@@ -14,7 +14,7 @@ public class EnemyType1 extends Enemy {
 
     @Override
     void move() {
-        //f(x)=ax³+bx²+cx+d.
+        //f(x)=axï¿½+bxï¿½+cx+d.
     }
 
     @Override

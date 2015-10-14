@@ -1,14 +1,14 @@
-package galaga;
+package galaga.server;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 
-public class Player {
+public class Main {
     int pontuacao;
     int vidas;
     int potenciaTiro = 1;
-    int speed = 5;//tem que ser mais rápido que o mais rápido inimigo (3)
+    int speed = 5;//tem que ser mais rï¿½pido que o mais rï¿½pido inimigo (3)
     Coordinate posicao;
 
     public static void main(String[] args) throws Exception {
@@ -26,7 +26,7 @@ public class Player {
         ArrayList<Coordinate> listaPosicao = stub.atualizaCenario();
 
         for (int i = 0; i < listaPosicao.size(); i++) {
-            System.out.println("posição " + i + ": [" + listaPosicao.get(i).x + ", " + listaPosicao.get(i).y + "]");
+            System.out.println("posiï¿½ï¿½o " + i + ": [" + listaPosicao.get(i).x + ", " + listaPosicao.get(i).y + "]");
         }
 
 

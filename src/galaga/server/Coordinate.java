@@ -1,4 +1,4 @@
-package galaga;
+package galaga.server;
 
 public class Coordinate {
 

@@ -1,4 +1,4 @@
-package galaga;
+package galaga.client;
 
 import javax.swing.*;
 

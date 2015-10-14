@@ -1,4 +1,4 @@
-package galaga;
+package galaga.server;
 
 //import java.util.Arrays;
 
@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class Stage implements InterfaceRMI {
 
-    static ArrayList<Player> players = new ArrayList<Player>();
+    static ArrayList<Main> players = new ArrayList<Main>();
     static ArrayList<Enemy> enemies = new ArrayList<Enemy>();
     int nInimigos;//Numero total de enemies
     int nLinhas;//Numero de linhas de enemies
@@ -36,7 +36,7 @@ public class Stage implements InterfaceRMI {
     }
 
     public static int getClosestPlayer(Coordinate point) {
-        int closestPlayer = 0;//jogador mais próximo
+        int closestPlayer = 0;//jogador mais prï¿½ximo
         int distance = 2000000000;//Distancia setada para o "infinito"
         int aux;
         for (int i = 0; i < players.size(); i++) {
@@ -51,9 +51,9 @@ public class Stage implements InterfaceRMI {
 
     @Override
     public ArrayList<Coordinate> atualizaCenario() throws RemoteException {
-        //Enviar o Objeto tod o ou somente a posição?
+        //Enviar o Objeto tod o ou somente a posiï¿½ï¿½o?
         ArrayList<Coordinate> listaPosicao = new ArrayList<Coordinate>();
-        for (Player player : players) {
+        for (Main player : players) {
             listaPosicao.add(player.posicao);
         }
 //        for (int i = 0; i < players.size(); i++) {

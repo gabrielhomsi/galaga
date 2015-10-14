@@ -1,4 +1,4 @@
-package galaga;
+package galaga.server;
 
 //classe do livro, comentado = tirado do livro
 public class FrameRate {
@@ -37,5 +37,5 @@ public class FrameRate {
         timeF = System.currentTimeMillis();
         return (timeF - timeI);
     }
-    //fim funções de temporização
+    //fim funï¿½ï¿½es de temporizaï¿½ï¿½o
 }
