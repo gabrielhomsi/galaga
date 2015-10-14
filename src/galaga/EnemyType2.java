@@ -14,12 +14,12 @@ public class EnemyType2 extends Enemy {
 
     @Override
     void move() {
-        
+
 
     }
 
     @Override
-    void ataque(/*Coordinate posicao*/) {
+    void attack(/*Coordinate posicao*/) {
         int target = Stage.getClosestPlayer(this.position);
         while (Stage.players.get(target).posicao.x != this.position.x) {
             move();

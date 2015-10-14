@@ -19,7 +19,7 @@ public class Enemy {
 
     }
 
-    void ataque(/*Coordinate position*/) {
+    void attack(/*Coordinate position*/) {
 
     }
 

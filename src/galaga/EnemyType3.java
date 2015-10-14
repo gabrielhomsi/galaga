@@ -17,7 +17,7 @@ public class EnemyType3 extends Enemy {
     }
 
     @Override
-    void ataque(/*Coordinate posicao*/) {
+    void attack(/*Coordinate posicao*/) {
 
     }
 }
