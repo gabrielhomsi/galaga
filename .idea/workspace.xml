@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <list default="true" id="4169fe22-fc47-4ed7-946d-e07259f3bf82" name="Default" comment="Classe de testes simples do Java2D criada. Texto sendo escrito na tela como teste do Java 2D." />
 =======
+=======
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
     <list default="true" id="4169fe22-fc47-4ed7-946d-e07259f3bf82" name="Default" comment="Implementação inicial dos métodos, mudança dos nomes das classes e variáveis">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -32,12 +35,15 @@
         <entry file="file://$PROJECT_DIR$/src/galaga/Main.java">
           <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+<<<<<<< HEAD
             <state vertical-scroll-proportion="0.25157234">
               <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
 =======
+=======
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
             <state vertical-scroll-proportion="0.0">
               <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
               <folding>
@@ -114,6 +120,29 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.50511247">
               <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+<<<<<<< HEAD
+=======
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Stage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/galaga/Stage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="13" column="53" selection-start-line="13" selection-start-column="53" selection-end-line="13" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/galaga/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="73" selection-start-line="10" selection-start-column="73" selection-end-line="10" selection-end-column="73" />
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
               <folding />
             </state>
           </provider>
@@ -183,9 +212,12 @@
         <option value="$PROJECT_DIR$/src/galaga/Jogador.java" />
         <option value="$PROJECT_DIR$/src/galaga/Cenario.java" />
 <<<<<<< HEAD
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/galaga/Jogador.java" />
         <option value="$PROJECT_DIR$/src/galaga/Main.java" />
 =======
+=======
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
         <option value="$PROJECT_DIR$/src/galaga/Player.java" />
         <option value="$PROJECT_DIR$/src/galaga/Stage.java" />
         <option value="$PROJECT_DIR$/src/galaga/EnemyType1.java" />
@@ -195,6 +227,9 @@
         <option value="$PROJECT_DIR$/src/galaga/Main.java" />
         <option value="$PROJECT_DIR$/src/galaga/Enemy.java" />
         <option value="$PROJECT_DIR$/src/galaga/FrameRate.java" />
+<<<<<<< HEAD
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
+=======
 >>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
       </list>
     </option>
@@ -211,13 +246,19 @@
   </component>
   <component name="ProjectFrameBounds">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <option name="width" value="1280" />
     <option name="height" value="800" />
 =======
+=======
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1456" />
     <option name="height" value="876" />
+<<<<<<< HEAD
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
+=======
 >>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -244,7 +285,12 @@
     </navigator>
     <panes>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <pane id="Scope" />
+=======
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
 =======
       <pane id="PackagesPane" />
       <pane id="Scratches" />
@@ -314,8 +360,12 @@
         </subPane>
       </pane>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <pane id="PackagesPane" />
       <pane id="Scratches" />
+=======
+      <pane id="Scope" />
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
 =======
       <pane id="Scope" />
 >>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
@@ -601,6 +651,7 @@
   </component>
   <component name="ToolWindowManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="false" />
     <layout>
@@ -622,6 +673,8 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23828125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934928" sideWeight="0.4875" order="2" side_tool="false" content_ui="tabs" />
 =======
+=======
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
     <editor active="false" />
     <layout>
@@ -639,6 +692,9 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+<<<<<<< HEAD
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
+=======
 >>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33333334" sideWeight="0.47152779" order="7" side_tool="false" content_ui="tabs" />
@@ -649,6 +705,11 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32845744" sideWeight="0.6775568" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294271" sideWeight="0.47777778" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
 =======
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294271" sideWeight="0.47777778" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -750,6 +811,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/galaga/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -775,6 +837,18 @@
             <element signature="imports" expanded="true" />
           </folding>
 =======
+=======
+    <entry file="file://$PROJECT_DIR$/src/galaga/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <marker date="1444847970042" expanded="true" signature="24:38" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
     <entry file="file://$PROJECT_DIR$/src/galaga/InterfaceRMI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -798,8 +872,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
 <<<<<<< HEAD
+<<<<<<< HEAD
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
 =======
+=======
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
           <caret line="43" column="5" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
           <folding />
 >>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
@@ -810,8 +887,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
 <<<<<<< HEAD
+<<<<<<< HEAD
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
 =======
+=======
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
             <marker date="1444847970042" expanded="true" signature="24:38" placeholder="..." />
@@ -824,8 +904,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
 <<<<<<< HEAD
+<<<<<<< HEAD
           <caret line="13" column="57" selection-start-line="13" selection-start-column="57" selection-end-line="13" selection-end-column="57" />
 =======
+=======
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
           <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -838,8 +921,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
 <<<<<<< HEAD
+<<<<<<< HEAD
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
 =======
+=======
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
           <caret line="67" column="5" selection-start-line="67" selection-start-column="5" selection-end-line="67" selection-end-column="5" />
           <folding />
         </state>
@@ -881,6 +967,16 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/src/galaga/Coordinate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
     <entry file="file://$PROJECT_DIR$/src/galaga/Enemy.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -888,6 +984,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/galaga/Stage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="57" selection-start-line="13" selection-start-column="57" selection-end-line="13" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/src/galaga/EnemyType1.java">
+=======
     <entry file="file://$PROJECT_DIR$/src/galaga/Stage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -905,6 +1012,27 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/galaga/EnemyType2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/galaga/EnemyType3.java">
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/src/galaga/EnemyType2.java">
+=======
+    <entry file="file://$PROJECT_DIR$/src/galaga/EnemyType4.java">
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
@@ -936,6 +1064,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+          <folding />
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
 =======
           <folding />
 >>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
@@ -1042,8 +1174,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
 <<<<<<< HEAD
+<<<<<<< HEAD
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
 =======
+=======
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
           <caret line="10" column="73" selection-start-line="10" selection-start-column="73" selection-end-line="10" selection-end-column="73" />
           <folding />
 >>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
@@ -1054,8 +1189,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
 <<<<<<< HEAD
+<<<<<<< HEAD
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
 =======
+=======
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
           <caret line="13" column="53" selection-start-line="13" selection-start-column="53" selection-end-line="13" selection-end-column="53" />
           <folding />
 >>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
@@ -1065,9 +1203,12 @@
     <entry file="file://$PROJECT_DIR$/src/galaga/Main.java">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.08144797">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
 =======
+=======
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
         <state vertical-scroll-proportion="0.0">
           <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
           <folding>
@@ -1080,9 +1221,12 @@
     <entry file="file://$PROJECT_DIR$/src/galaga/InterfaceRMI.java">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.040723983">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
 =======
+=======
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
           <folding>
@@ -1103,8 +1247,14 @@
     <entry file="file://$PROJECT_DIR$/src/galaga/EnemyType1.java">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.3529412">
           <caret line="13" column="57" selection-start-line="13" selection-start-column="57" selection-end-line="13" selection-end-column="57" />
+=======
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding />
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
 =======
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
@@ -1116,8 +1266,14 @@
     <entry file="file://$PROJECT_DIR$/src/galaga/EnemyType2.java">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.5">
           <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+=======
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
+          <folding />
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
 =======
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
@@ -1128,6 +1284,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/galaga/EnemyType3.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
         <state vertical-scroll-proportion="0.0770878">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
@@ -1156,6 +1313,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/galaga/FrameRate.java">
       <provider selected="true" editor-type-id="text-editor">
+=======
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/galaga/EnemyType4.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="41" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/galaga/FrameRate.java">
+      <provider selected="true" editor-type-id="text-editor">
+>>>>>>> 6e97d86610fe1e59f82b88e2a26fad1f6a8c4dd6
         <state vertical-scroll-proportion="0.50511247">
           <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
           <folding />
