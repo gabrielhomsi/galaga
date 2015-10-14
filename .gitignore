@@ -1,6 +1,2 @@
-.idea/dictionaries
-.idea/dataSources.ids
-.idea/dataSources.xml
-.idea/sqlDataSources.xml
-.idea/dynamic.xml
-.idea/uiDesigner.xml
+.idea/workspace.xml
+.idea/tasks.xml
