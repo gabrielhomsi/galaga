@@ -14,9 +14,8 @@ public class Enemy {
 //        this.life = life;
     }
 
-
     void move() {
-
+        //move
     }
 
     void attack(/*Coordinate position*/) {
