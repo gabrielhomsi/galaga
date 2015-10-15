@@ -1,24 +1,26 @@
 package galaga.client;
 
 import galaga.shared.RemoteInterface;
+import galaga.shared.Scene;
 
 import javax.swing.*;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 public class Main extends JFrame {
+    private RemoteInterface stub;
+
     Main() {
         try {
-            String host = "127.0.0.1";
-            Registry registry = LocateRegistry.getRegistry(host);
-            RemoteInterface stub = (RemoteInterface) registry.lookup("RemoteInterface");
-            String response = stub.sayHello();
+            this.initializeRemoteInterface();
 
-            this.add(new Teste(response));
+            Scene scene = this.stub.getScene();
+
+            this.add(new Panel(scene));
             this.setTitle("Galaga");
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.pack();
-            this.setSize(800, 600);
+            this.setSize(scene.getFrameWidth(), scene.getFrameHeight());
             this.setVisible(true);
         } catch (Exception e) {
             System.err.println("Client exception: " + e.toString());
@@ -28,6 +30,16 @@ public class Main extends JFrame {
 
     public static void main(String[] args) {
         new Main();
+    }
+
+    public void initializeRemoteInterface() {
+        try {
+            String host = "127.0.0.1";
+            Registry registry = LocateRegistry.getRegistry(host);
+            this.stub = (RemoteInterface) registry.lookup("RemoteInterface");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 

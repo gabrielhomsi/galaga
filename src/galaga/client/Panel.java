@@ -1,18 +1,20 @@
 package galaga.client;
 
+import galaga.shared.Scene;
+
 import javax.swing.*;
 import java.awt.*;
 
-class Teste extends JPanel {
-    private String mensagem;
+class Panel extends JPanel {
+    private Scene scene;
 
-    public Teste(String mensagem) {
-        this.mensagem = mensagem;
+    public Panel(Scene scene) {
+        this.scene = scene;
     }
 
     private void doDrawing(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
-        g2D.drawString(this.mensagem, 100, 100);
+        g2D.drawString(this.scene.getTextMessage(), this.scene.getTextPositionX(), this.scene.getTextPositionY());
     }
 
     @Override

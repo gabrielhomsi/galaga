@@ -5,6 +5,5 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public interface RemoteInterface extends Remote {
-    //ArrayList<Coordinate> atualizaCenario() throws RemoteException;
-    String sayHello() throws RemoteException;
+    Scene getScene() throws RemoteException;
 }

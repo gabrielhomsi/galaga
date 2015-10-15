@@ -3,6 +3,7 @@ package galaga.server;
 //import java.util.Arrays;
 
 import galaga.shared.RemoteInterface;
+import galaga.shared.Scene;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -109,5 +110,10 @@ public class Stage implements RemoteInterface {
     @Override
     public String sayHello() throws RemoteException {
         return "Stage: sayHello";
+    }
+
+    @Override
+    public Scene getScene() throws RemoteException {
+        return null;
     }
 }
