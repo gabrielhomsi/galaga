@@ -2,6 +2,8 @@ package galaga.server;
 
 //import java.util.Arrays;
 
+import galaga.shared.RemoteInterface;
+
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;

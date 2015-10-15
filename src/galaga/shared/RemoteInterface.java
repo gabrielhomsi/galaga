@@ -1,4 +1,4 @@
-package galaga.server;
+package galaga.shared;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

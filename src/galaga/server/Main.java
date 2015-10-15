@@ -1,15 +1,11 @@
 package galaga.server;
 
+import galaga.shared.RemoteInterface;
+
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-/*
-    Antes de executar o servidor, rode o seguinte comando:
-    rmiregistry -J-Djava.rmi.server.codebase=file:/home/gabriel/galaga/out/production/galaga/
-    Adapte o caminho para o equivalente na sua maquina
- */
 
 public class Main implements RemoteInterface {
     int pontuacao;
@@ -51,7 +47,7 @@ public class Main implements RemoteInterface {
 
     @Override
     public String sayHello() throws RemoteException {
-        return "Hello, Galaga!";
+        return "Hello, Galaga! (mensagem proveniente de um RMI)";
     }
 //
 //    void atualizaCenario() {
