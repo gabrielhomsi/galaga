@@ -9,7 +9,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Stage implements InterfaceRMI {
+public class Stage implements RemoteInterface {
 
     static ArrayList<Main> players = new ArrayList<Main>();
     static ArrayList<Enemy> enemies = new ArrayList<Enemy>();
@@ -23,9 +23,9 @@ public class Stage implements InterfaceRMI {
 
     public static void main(String[] args) throws Exception {
         Stage cena = new Stage();
-        InterfaceRMI stub = (InterfaceRMI) UnicastRemoteObject.exportObject(cena, 0);
+        RemoteInterface stub = (RemoteInterface) UnicastRemoteObject.exportObject(cena, 0);
         Registry registry = LocateRegistry.getRegistry();
-        registry.bind("InterfaceRMI", stub);
+        registry.bind("RemoteInterface", stub);
         System.out.println("Stage Ready!");
     }
 
@@ -49,7 +49,6 @@ public class Stage implements InterfaceRMI {
         return closestPlayer;
     }
 
-    @Override
     public ArrayList<Coordinate> atualizaCenario() throws RemoteException {
         //Enviar o Objeto tod o ou somente a posi��o?
         ArrayList<Coordinate> listaPosicao = new ArrayList<Coordinate>();
@@ -105,4 +104,8 @@ public class Stage implements InterfaceRMI {
         return enemyList;
     }
 
+    @Override
+    public String sayHello() throws RemoteException {
+        return "Stage: sayHello";
+    }
 }
