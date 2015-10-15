@@ -22,10 +22,25 @@ public class Main extends JFrame {
             this.pack();
             this.setSize(scene.getFrameWidth(), scene.getFrameHeight());
             this.setVisible(true);
+
+            // public void run(){
+            running = true;
+            long initialTime = System.currentTimeMillis();
+            long lastTime = initialTime;
+
+            while (running){
+                lastTime = System.currentTimeMillis();
+                if((lastTime - initialTime)/1000 >= 1){
+                    scene.updateTextMessage();
+                    this.paintComponents(this.getGraphics());
+                    //System.out.println(scene.getTextMessage());
+                }
+            }
         } catch (Exception e) {
             System.err.println("Client exception: " + e.toString());
             e.printStackTrace();
         }
+
     }
 
     public static void main(String[] args) {
@@ -41,7 +56,11 @@ public class Main extends JFrame {
             e.printStackTrace();
         }
     }
-}
+
+    private boolean running = false;
+
+
+    }
 
 /*
 

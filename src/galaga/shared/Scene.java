@@ -8,11 +8,13 @@ public class Scene implements Serializable {
 
     private int textPositionX = 100;
     private int textPositionY = 200;
-    private String textMessage = "Hello, Galaga (texto provieniente de um RMI)";
+    private String textMessage =  "Hello, Galaga (texto provieniente de um RMI)";
 
     public Scene() {
 
     }
+
+    public void updateTextMessage(){this.textMessage = Timer.getCurrentDate();}
 
     public int getFrameWidth() {
         return frameWidth;
