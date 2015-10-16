@@ -8,34 +8,19 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 public class Main extends JFrame {
+    public boolean running = false;
+    Scene scene;
     private RemoteInterface stub;
-
     Main() {
         try {
             this.initializeRemoteInterface();
-
-            Scene scene = this.stub.getScene();
-
+            scene = this.stub.getScene();
             this.add(new Panel(scene));
             this.setTitle("Galaga");
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.pack();
             this.setSize(scene.getFrameWidth(), scene.getFrameHeight());
             this.setVisible(true);
-
-            // public void run(){
-            running = true;
-            long initialTime = System.currentTimeMillis();
-            long lastTime = initialTime;
-
-            while (running){
-                lastTime = System.currentTimeMillis();
-                if((lastTime - initialTime)/1000 >= 1){
-                    scene.updateTextMessage();
-                    this.paintComponents(this.getGraphics());
-                    //System.out.println(scene.getTextMessage());
-                }
-            }
         } catch (Exception e) {
             System.err.println("Client exception: " + e.toString());
             e.printStackTrace();
@@ -44,7 +29,29 @@ public class Main extends JFrame {
     }
 
     public static void main(String[] args) {
-        new Main();
+        Main main = new Main();
+        //Thread para rodar o temporizador
+        new Thread("RefreshScreen") {
+            public void run() {
+                main.running = true;
+                long initialTime = System.currentTimeMillis();
+                long lastTime;
+                while (main.running) {
+                    lastTime = System.currentTimeMillis();
+                    if ((lastTime - initialTime) / 1000 >= 1) {
+                        initialTime = lastTime;
+                        main.scene.updateTextMessage();
+                        main.repaint();
+                        //System.out.println(main.scene.getTextMessage());
+                        try {
+                            Thread.sleep(800);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }.start();
     }
 
     public void initializeRemoteInterface() {
@@ -57,10 +64,8 @@ public class Main extends JFrame {
         }
     }
 
-    private boolean running = false;
 
-
-    }
+}
 
 /*
 
