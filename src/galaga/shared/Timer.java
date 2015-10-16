@@ -12,6 +12,13 @@ public class Timer {
     private long timeF = 0;
     //private long currentDate;
 
+    public static String getCurrentDate() {
+        //Padrão
+        //http://docs.oracle.com/javase/1.5.0/docs/api/java/text/SimpleDateFormat.html
+        return new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss:SS").format(new Date(System
+                .currentTimeMillis()));
+    }
+
     public void timerStart() {
         timeI = System.currentTimeMillis();
     }
@@ -24,13 +31,6 @@ public class Timer {
     public long getTimeTemporized(){
         //pega o tempo atual e subtrai com o tempo inicial startado no timerStart()
         return (timerStop() - timeI)/1000;//returna tempo em segundos
-    }
-
-    public static String getCurrentDate(){
-        //Padrão
-        //http://docs.oracle.com/javase/1.5.0/docs/api/java/text/SimpleDateFormat.html
-        return new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss").format( new Date( System
-                .currentTimeMillis()));
     }
 
 

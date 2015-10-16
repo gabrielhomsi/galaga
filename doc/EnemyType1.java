@@ -2,7 +2,7 @@ package galaga.server;
 
 public class EnemyType1 extends Enemy {
 
-    public EnemyType1() {//Inimigo vermelho
+    public EnemyType1() {//Inimigo vermelho, segue player
         this.type = 1;
         this.life = 1;
         this.speed = 1;
@@ -15,6 +15,8 @@ public class EnemyType1 extends Enemy {
     @Override
     void move() {
         //f(x)=ax�+bx�+cx+d.
+        super.move();
+
     }
 
     @Override

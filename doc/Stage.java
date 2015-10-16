@@ -5,6 +5,7 @@ package galaga.server;
 import galaga.shared.RemoteInterface;
 import galaga.shared.Scene;
 
+import java.lang.Integer;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -40,7 +41,7 @@ public class Stage implements RemoteInterface {
 
     public static int getClosestPlayer(Coordinate point) {
         int closestPlayer = 0;//jogador mais pr�ximo
-        int distance = 2000000000;//Distancia setada para o "infinito"
+        int distance = Integer.MAX_VALUE;//Distancia setada para o "infinito"
         int aux;
         for (int i = 0; i < players.size(); i++) {
             aux = getDistanceBetween2Points(point, players.get(i).posicao);
@@ -51,6 +52,10 @@ public class Stage implements RemoteInterface {
         }
         return closestPlayer;
     }
+
+
+
+
 
     public ArrayList<Coordinate> atualizaCenario() throws RemoteException {
         //Enviar o Objeto tod o ou somente a posi��o?

@@ -8,7 +8,7 @@ public class Scene implements Serializable {
 
     private int textPositionX = 100;
     private int textPositionY = 200;
-    private String textMessage =  "Hello, Galaga (texto provieniente de um RMI)";
+    private String textMessage = "Hello, Galaga (texto provieniente de um RMI) + [" + getTextPositionX() + ", " + getTextPositionY() + "]";
 
     public Scene() {
 

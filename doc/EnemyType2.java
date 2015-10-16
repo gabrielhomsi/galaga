@@ -14,7 +14,10 @@ public class EnemyType2 extends Enemy {
 
     @Override
     void move() {
-
+        super.move();
+        if(playerInRange()){
+            attack();
+        }
 
     }
 

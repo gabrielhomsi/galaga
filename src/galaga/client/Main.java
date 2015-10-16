@@ -30,7 +30,7 @@ public class Main extends JFrame {
 
     public static void main(String[] args) {
         Main main = new Main();
-        //Thread para rodar o temporizador
+        //Thread para rodar o temporizador, que renderiza a tela
         new Thread("RefreshScreen") {
             public void run() {
                 main.running = true;
@@ -38,16 +38,16 @@ public class Main extends JFrame {
                 long lastTime;
                 while (main.running) {
                     lastTime = System.currentTimeMillis();
-                    if ((lastTime - initialTime) / 1000 >= 1) {
-                        initialTime = lastTime;
+                    if ((lastTime - initialTime) >= 33) {
+                        initialTime += 33;
                         main.scene.updateTextMessage();
                         main.repaint();
                         //System.out.println(main.scene.getTextMessage());
-                        try {
-                            Thread.sleep(800);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+//                        try {
+//                            Thread.sleep(800);
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
                     }
                 }
             }

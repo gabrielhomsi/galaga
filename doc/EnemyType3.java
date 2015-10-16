@@ -2,7 +2,7 @@ package galaga.server;
 
 public class EnemyType3 extends Enemy {
 
-    public EnemyType3() {//bicho azul
+    public EnemyType3() {//bicho azul, captura
         this.type = 3;
         this.life = 2;
         this.speed = 2;
@@ -14,10 +14,13 @@ public class EnemyType3 extends Enemy {
     @Override
     void move() {
         //f(x)=ax�+bx�+cx+d.
+        super.move();
+
     }
 
     @Override
     void attack(/*Coordinate posicao*/) {
-
+        //atira projetil
+        //temporizador para atirar
     }
 }
