@@ -8,53 +8,57 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 public class Main extends JFrame {
-    public boolean running = false;
-    Scene scene;
+    private boolean isGameRunning = false;
+
     private RemoteInterface stub;
-    Main() {
+    private Scene scene;
+
+    public Main() {
         try {
             this.initializeRemoteInterface();
+
             scene = this.stub.getScene();
+
             this.add(new Panel(scene));
             this.setTitle("Galaga");
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.pack();
             this.setSize(scene.getFrameWidth(), scene.getFrameHeight());
             this.setVisible(true);
+
+            this.startGameLoop();
         } catch (Exception e) {
             System.err.println("Client exception: " + e.toString());
             e.printStackTrace();
         }
-
     }
 
     public static void main(String[] args) {
         Main main = new Main();
-        //Thread para rodar o temporizador, que renderiza a tela
+    }
+
+    private void startGameLoop() {
+        Main main = this;
+
         new Thread("RefreshScreen") {
             public void run() {
-                main.running = true;
-                long initialTime = System.currentTimeMillis();
-                long lastTime;
-                while (main.running) {
-                    lastTime = System.currentTimeMillis();
-                    if ((lastTime - initialTime) >= 33) {
-                        initialTime += 33;
-                        main.scene.updateTextMessage();
+                main.setIsGameRunning(true);
+
+                long start = System.currentTimeMillis();
+
+                while (main.getIsGameRunning()) {
+                    long now = System.currentTimeMillis();
+
+                    if (now - start >= 100) {
+                        start += 100;
                         main.repaint();
-                        //System.out.println(main.scene.getTextMessage());
-//                        try {
-//                            Thread.sleep(800);
-//                        } catch (InterruptedException e) {
-//                            e.printStackTrace();
-//                        }
                     }
                 }
             }
         }.start();
     }
 
-    public void initializeRemoteInterface() {
+    private void initializeRemoteInterface() {
         try {
             String host = "127.0.0.1";
             Registry registry = LocateRegistry.getRegistry(host);
@@ -65,22 +69,11 @@ public class Main extends JFrame {
     }
 
 
-}
+    public boolean getIsGameRunning() {
+        return isGameRunning;
+    }
 
-/*
-
-public void run() {
-    running = true;
-    initialize();
-    long curTime = System.nanoTime();
-    long lastTime = curTime;
-    double nsPerFrame;
-    while( running ) {
-        curTime = System.nanoTime();
-        nsPerFrame = curTime - lastTime;
-        gameLoop( nsPerFrame / 1.0E9 );
-        lastTime = curTime;
+    public void setIsGameRunning(boolean isGameRunning) {
+        this.isGameRunning = isGameRunning;
     }
 }
-
- */
