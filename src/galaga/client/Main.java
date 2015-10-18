@@ -50,8 +50,8 @@ public class Main extends JFrame {
                     long now = System.currentTimeMillis();
 
                     if (now - start >= 100) {
-                        start += 100;
                         main.repaint();
+                        start = System.currentTimeMillis();
                     }
                 }
             }

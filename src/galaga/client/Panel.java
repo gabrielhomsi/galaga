@@ -21,35 +21,24 @@ class Panel extends JPanel implements ActionListener {
     }
 
     private void initPanel() {
-
-        addKeyListener(new TAdapter());
-        setFocusable(true);
-        setBackground(Color.WHITE);
-
-        timer = new Timer(DELAY, this);
-        timer.start();
+        this.addKeyListener(new TAdapter());
+        this.setFocusable(true);
+        this.setBackground(Color.WHITE);
     }
 
-
-    private void doDrawing(Graphics g) {
-        Graphics2D g2D = (Graphics2D) g;
+    @Override
+    public void paint(Graphics graphics) {
+        Graphics2D graphics2D = (Graphics2D) graphics;
 
         ImageIcon imageIcon = new ImageIcon("assets/playerShip1_Blue.png");
         Image image = imageIcon.getImage();
 
-        g2D.drawImage(image, scene.getCraft().getX(), scene.getCraft().getY(), this);
-    }
-
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        doDrawing(g);
+        graphics2D.drawImage(image, scene.getCraft().getX(), scene.getCraft().getY(), this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        scene.getCraft().move();
-        repaint();
+        this.repaint();
     }
 
     private class TAdapter extends KeyAdapter {
