@@ -14,11 +14,11 @@ import javax.swing.Timer;
 import javax.swing.JPanel;
 
 
-class Panel extends JPanel implements ActionListener{
+class Panel extends JPanel implements ActionListener {
+    private final int DELAY = 10;
     private Scene scene;
     private Timer timer;
     private Craft craft;
-    private final int DELAY = 10;
 
 
     public Panel(Scene scene) {
