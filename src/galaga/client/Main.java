@@ -4,28 +4,20 @@ import galaga.shared.RemoteInterface;
 import galaga.shared.Scene;
 
 import javax.swing.*;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 public class Main extends JFrame {
+    private RemoteInterface remoteInterface;
     private boolean isGameRunning = false;
-
-    private RemoteInterface stub;
     private Scene scene;
 
     public Main() {
         try {
             this.initializeRemoteInterface();
-
-            scene = this.stub.getScene();
-
-            this.add(new Panel(scene));
-            this.setTitle("Galaga");
-            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            this.pack();
-            this.setSize(scene.getFrameWidth(), scene.getFrameHeight());
-            this.setVisible(true);
-
+            this.retrieveFreshScene();
+            this.buildPanel();
             this.startGameLoop();
         } catch (Exception e) {
             System.err.println("Client exception: " + e.toString());
@@ -35,6 +27,23 @@ public class Main extends JFrame {
 
     public static void main(String[] args) {
         Main main = new Main();
+    }
+
+    protected RemoteInterface getRemoteInterface() {
+        return this.remoteInterface;
+    }
+
+    protected Scene getScene() {
+        return this.scene;
+    }
+
+    private void buildPanel() {
+        this.add(new Panel(this));
+        this.setTitle("Galaga");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.pack();
+        this.setSize(scene.getFrameWidth(), scene.getFrameHeight());
+        this.setVisible(true);
     }
 
     private void startGameLoop() {
@@ -49,7 +58,8 @@ public class Main extends JFrame {
                 while (main.getIsGameRunning()) {
                     long now = System.currentTimeMillis();
 
-                    if (now - start >= 100) {
+                    if (now - start >= 33) {
+                        main.retrieveFreshScene();
                         main.repaint();
                         start = System.currentTimeMillis();
                     }
@@ -58,11 +68,19 @@ public class Main extends JFrame {
         }.start();
     }
 
+    private void retrieveFreshScene() {
+        try {
+            this.scene = this.remoteInterface.getScene();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void initializeRemoteInterface() {
         try {
             String host = "127.0.0.1";
             Registry registry = LocateRegistry.getRegistry(host);
-            this.stub = (RemoteInterface) registry.lookup("RemoteInterface");
+            this.remoteInterface = (RemoteInterface) registry.lookup("RemoteInterface");
         } catch (Exception e) {
             e.printStackTrace();
         }

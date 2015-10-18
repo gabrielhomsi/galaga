@@ -48,7 +48,7 @@ public class Main implements RemoteInterface {
                 while (main.getIsGameRunning()) {
                     long now = System.currentTimeMillis();
 
-                    if (now - start >= 100) {
+                    if (now - start >= 33) {
                         double dt = (now - start) / 1000.0;
 
                         main.update(dt);
@@ -60,7 +60,7 @@ public class Main implements RemoteInterface {
         }.start();
     }
 
-    public void update(double  dt) {
+    public void update(double dt) {
         LinkedList<GameObject> gameObjects = this.scene.getGameObjects();
 
         for (GameObject gameObject : gameObjects) {
@@ -71,6 +71,16 @@ public class Main implements RemoteInterface {
     @Override
     public Scene getScene() throws RemoteException {
         return this.scene;
+    }
+
+    @Override
+    public void keyCodePressed(int keyCode) throws RemoteException {
+        this.scene.getCraft().keyCodePressed(keyCode);
+    }
+
+    @Override
+    public void keyCodeReleased(int keyCode) throws RemoteException {
+        this.scene.getCraft().keyCodeReleased(keyCode);
     }
 
     public boolean getIsGameRunning() {
