@@ -1,6 +1,8 @@
 package galaga.shared;
 
 import java.io.Serializable;
+import java.awt.*;
+import javax.swing.*;
 
 public class Scene implements Serializable {
     private int frameWidth = 800;
@@ -35,4 +37,5 @@ public class Scene implements Serializable {
     public String getTextMessage() {
         return textMessage;
     }
+
 }

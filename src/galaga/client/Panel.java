@@ -14,7 +14,8 @@ class Panel extends JPanel {
 
     private void doDrawing(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
-        g2D.drawString(this.scene.getTextMessage(), this.scene.getTextPositionX(), this.scene.getTextPositionY());
+        //g2D.drawString(this.scene.getTextMessage(), this.scene.getTextPositionX(), this.scene.getTextPositionY());
+        g2D.drawImage(this.scene.loadImage(), 100, 200, null);
     }
 
     @Override
