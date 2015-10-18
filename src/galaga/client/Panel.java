@@ -1,25 +1,19 @@
 package galaga.client;
 
-import com.sun.xml.internal.bind.v2.runtime.RuntimeUtil;
 import galaga.shared.Scene;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import javax.swing.Timer;
-import javax.swing.JPanel;
 
 
 class Panel extends JPanel implements ActionListener {
     private final int DELAY = 10;
     private Scene scene;
     private Timer timer;
-    private Craft craft;
-
 
     public Panel(Scene scene) {
         this.scene = scene;
@@ -32,8 +26,6 @@ class Panel extends JPanel implements ActionListener {
         setFocusable(true);
         setBackground(Color.WHITE);
 
-        craft = new Craft();
-
         timer = new Timer(DELAY, this);
         timer.start();
     }
@@ -41,32 +33,34 @@ class Panel extends JPanel implements ActionListener {
 
     private void doDrawing(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
-        //g2D.drawString(this.scene.getTextMessage(), this.scene.getTextPositionX(), this.scene.getTextPositionY());
-        g2D.drawImage(craft.getImage(), craft.getX(), craft.gety(), this);
+
+        ImageIcon imageIcon = new ImageIcon("assets/playerShip1_Blue.png");
+        Image image = imageIcon.getImage();
+
+        g2D.drawImage(image, scene.getCraft().getX(), scene.getCraft().getY(), this);
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         doDrawing(g);
-
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        craft.move();
+        scene.getCraft().move();
         repaint();
     }
 
     private class TAdapter extends KeyAdapter {
         @Override
         public void keyReleased(KeyEvent e) {
-            craft.keyReleased(e);
+            scene.getCraft().keyCodeReleased(e.getKeyCode());
         }
 
         @Override
         public void keyPressed(KeyEvent e) {
-            craft.keyPressed(e);
+            scene.getCraft().keyCodePressed(e.getKeyCode());
         }
     }
 
