@@ -1,71 +1,71 @@
 package galaga.client;
 
-/**
- * Created by brunodg on 18/10/15.
- */
-
 import javax.swing.ImageIcon;
 import java.awt.event.KeyEvent;
 import java.awt.Image;
 
-public class Craft{
-    private int dx, dy, x, y;
+public class Craft {
+    private int x;
+    private int y;
+
+    private int dx;
+    private int dy;
+
     private Image image;
 
     public Craft() {
-
         initCraft();
     }
 
     private void initCraft() {
-        ImageIcon ii = new ImageIcon("assets/playerShip1_Blue.png");
-        image = ii.getImage();
-        x = 40;
-        y = 60;
+        ImageIcon imageIcon = new ImageIcon("assets/playerShip1_Blue.png");
+        this.image = imageIcon.getImage();
+        this.x = 40;
+        this.y = 60;
     }
 
     public void move() {
-        x+=dx;
-        y+=dy;
+        this.x += this.dx;
+        this.y += this.dy;
     }
 
-    public int getX() { return x; }
-    public int gety() { return y; }
-    public Image getImage() { return image; }
+    public int getX() {
+        return this.x;
+    }
+
+    public int gety() {
+        return this.y;
+    }
+
+    public Image getImage() {
+        return this.image;
+    }
 
     public void keyPressed(KeyEvent e) {
-
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_LEFT){
-            dx = -1;
-        }
-        if (key == KeyEvent.VK_RIGHT) {
-            dx = 1;
-        }
-        if (key == KeyEvent.VK_UP){
-            dy = -1;
-        }
-        if (key == KeyEvent.VK_DOWN) {
-            dy = 1;
+        if (key == KeyEvent.VK_LEFT) {
+            this.dx = -1;
+        } else if (key == KeyEvent.VK_RIGHT) {
+            this.dx = 1;
+        } else if (key == KeyEvent.VK_UP) {
+            this.dy = -1;
+        } else if (key == KeyEvent.VK_DOWN) {
+            this.dy = 1;
         }
     }
 
     public void keyReleased(KeyEvent e) {
-
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_LEFT){
-            dx = 0;
-        }
-        if (key == KeyEvent.VK_RIGHT) {
-            dx = 0;
-        }
-        if (key == KeyEvent.VK_UP){
-            dy = 0;
-        }
-        if (key == KeyEvent.VK_DOWN) {
-            dy = 0;
+        if (key == KeyEvent.VK_LEFT) {
+            this.dx = 0;
+        } else if (key == KeyEvent.VK_RIGHT) {
+            this.dx = 0;
+        } else if (key == KeyEvent.VK_UP) {
+            this.dy = 0;
+        } else if (key == KeyEvent.VK_DOWN) {
+            this.dy = 0;
         }
     }
 }
