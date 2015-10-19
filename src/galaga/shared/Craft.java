@@ -4,12 +4,16 @@ import java.awt.event.KeyEvent;
 import java.io.Serializable;
 
 public class Craft implements Serializable, GameObject {
+    private int id;
+
     private int x;
     private int y;
 
     private int xSpeed;
 
-    public Craft() {
+    public Craft(int id) {
+        this.id = id;
+
         this.x = 40;
         this.y = 470;
 
@@ -48,5 +52,9 @@ public class Craft implements Serializable, GameObject {
     @Override
     public String getImagePath() {
         return "assets/playerShip1_Blue.png";
+    }
+
+    public int getId() {
+        return this.id;
     }
 }

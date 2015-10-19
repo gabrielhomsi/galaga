@@ -1,5 +1,7 @@
 package galaga.client;
 
+import galaga.shared.Craft;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,15 +13,26 @@ import java.rmi.RemoteException;
 
 class Panel extends JPanel implements ActionListener {
     private final Main main;
-    private final Image craftImage;
+
+    private int craftId;
+    private Image craftImage;
 
     public Panel(Main main) {
         this.main = main;
 
-        ImageIcon craftImageIcon = new ImageIcon(this.main.getScene().getCraft().getImagePath());
-        this.craftImage = craftImageIcon.getImage();
+        try {
+            this.craftId = this.main.getRemoteInterface().getNewCraftId();
 
-        initPanel();
+            this.main.retrieveFreshScene();
+
+            Craft craft = this.main.getScene().getCraftById(this.craftId);
+            ImageIcon craftImageIcon = new ImageIcon(craft.getImagePath());
+            this.craftImage = craftImageIcon.getImage();
+
+            this.initPanel();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     private void initPanel() {
@@ -32,7 +45,9 @@ class Panel extends JPanel implements ActionListener {
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
 
-        graphics2D.drawImage(this.craftImage, this.main.getScene().getCraft().getX(), this.main.getScene().getCraft().getY(), this);
+        Craft craft = this.main.getScene().getCraftById(this.craftId);
+
+        graphics2D.drawImage(this.craftImage, craft.getX(), craft.getY(), this);
     }
 
     @Override
@@ -44,7 +59,7 @@ class Panel extends JPanel implements ActionListener {
         @Override
         public void keyReleased(KeyEvent e) {
             try {
-                main.getRemoteInterface().keyCodeReleased(e.getKeyCode());
+                main.getRemoteInterface().keyCodeReleased(craftId, e.getKeyCode());
             } catch (RemoteException e1) {
                 e1.printStackTrace();
             }
@@ -53,7 +68,7 @@ class Panel extends JPanel implements ActionListener {
         @Override
         public void keyPressed(KeyEvent e) {
             try {
-                main.getRemoteInterface().keyCodePressed(e.getKeyCode());
+                main.getRemoteInterface().keyCodePressed(craftId, e.getKeyCode());
             } catch (RemoteException e1) {
                 e1.printStackTrace();
             }

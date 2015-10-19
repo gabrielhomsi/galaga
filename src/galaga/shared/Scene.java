@@ -4,16 +4,16 @@ import java.io.Serializable;
 import java.util.LinkedList;
 
 public class Scene implements Serializable {
+    private int lastNewCraftId;
+
     private int frameWidth = 800;
     private int frameHeight = 600;
 
-    private Craft craft;
     private LinkedList<GameObject> gameObjects;
 
     public Scene() {
-        this.craft = new Craft();
+        this.lastNewCraftId = 0;
         this.gameObjects = new LinkedList<>();
-        this.gameObjects.add(this.craft);
     }
 
     public int getFrameWidth() {
@@ -24,11 +24,28 @@ public class Scene implements Serializable {
         return this.frameHeight;
     }
 
-    public Craft getCraft() {
-        return craft;
+    public Craft getCraftById(int craftId) {
+        for (GameObject gameObject : this.gameObjects) {
+            if (gameObject instanceof Craft) {
+                Craft craft = (Craft) gameObject;
+
+                if (craftId == craft.getId()) {
+                    return craft;
+                }
+            }
+        }
+
+        return null;
     }
 
     public LinkedList<GameObject> getGameObjects() {
         return this.gameObjects;
+    }
+
+    public Craft makeNewCraft() {
+        Craft newCraft = new Craft(this.lastNewCraftId + 1);
+        this.lastNewCraftId++;
+        this.gameObjects.add(newCraft);
+        return newCraft;
     }
 }

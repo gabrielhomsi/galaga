@@ -1,5 +1,6 @@
 package galaga.server;
 
+import galaga.shared.Craft;
 import galaga.shared.GameObject;
 import galaga.shared.RemoteInterface;
 import galaga.shared.Scene;
@@ -74,13 +75,19 @@ public class Main implements RemoteInterface {
     }
 
     @Override
-    public void keyCodePressed(int keyCode) throws RemoteException {
-        this.scene.getCraft().keyCodePressed(keyCode);
+    public int getNewCraftId() throws RemoteException {
+        Craft newCraft = this.scene.makeNewCraft();
+        return newCraft.getId();
     }
 
     @Override
-    public void keyCodeReleased(int keyCode) throws RemoteException {
-        this.scene.getCraft().keyCodeReleased(keyCode);
+    public void keyCodePressed(int craftId, int keyCode) throws RemoteException {
+        this.scene.getCraftById(craftId).keyCodePressed(keyCode);
+    }
+
+    @Override
+    public void keyCodeReleased(int craftId, int keyCode) throws RemoteException {
+        this.scene.getCraftById(craftId).keyCodeReleased(keyCode);
     }
 
     public boolean getIsGameRunning() {

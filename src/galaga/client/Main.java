@@ -68,7 +68,7 @@ public class Main extends JFrame {
         }.start();
     }
 
-    private void retrieveFreshScene() {
+    protected void retrieveFreshScene() {
         try {
             this.scene = this.remoteInterface.getScene();
         } catch (RemoteException e) {
