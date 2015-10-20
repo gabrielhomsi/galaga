@@ -19,6 +19,8 @@ class Panel extends JPanel /*implements ActionListener*/ {
     private int craftId;
     private Image craftImage;
 
+    private final int objectSize = 25;
+
     public Panel(Main main) {
         this.main = main;
 
@@ -52,7 +54,7 @@ class Panel extends JPanel /*implements ActionListener*/ {
                 //System.out.println("teste");
                 ImageIcon gameObjectImageIcon = new ImageIcon(gameObject.getImagePath());
                 Image gameObjectImage = gameObjectImageIcon.getImage();
-                graphics2D.drawImage(gameObjectImage, gameObject.getX(), gameObject.getY(), this);
+                graphics2D.drawImage(gameObjectImage, gameObject.getX(), gameObject.getY(), objectSize, objectSize, this);
 
                 gameObject.draw(gameObject.getId());
             }
