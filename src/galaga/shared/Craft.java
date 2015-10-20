@@ -10,6 +10,7 @@ public class Craft implements Serializable, GameObject {
     private int y;
 
     private int frameWidth = 800;//Scene variable
+
     private int objectSize = 100;//120 ótimo valor
 
     private int xSpeed;
@@ -54,10 +55,25 @@ public class Craft implements Serializable, GameObject {
         }
 
     }
+//funcionando, antigo
+//    @Override
+//    public String getImagePath() {
+//        return "assets/playerShip1_Blue.png";
+//    }
+
 
     @Override
-    public String getImagePath() {
-        return "assets/playerShip1_Blue.png";
+    public String getImagePath(int type) {
+        //lista de tipos de objetos/imagens, opções abaixo são exemplos
+        switch (type){
+            case 1:
+                return "assets/playerShip1_Blue.png";
+            case 2:
+                return "assets/enemies/enemyBlack1.png";
+            default:
+                return "assets/enemies/enemyBlack2.png";
+        }
+
     }
 
     public int getId() {

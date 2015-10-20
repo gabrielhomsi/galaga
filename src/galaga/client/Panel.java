@@ -26,7 +26,7 @@ class Panel extends JPanel implements ActionListener {
             this.main.retrieveFreshScene();
 
             Craft craft = this.main.getScene().getCraftById(this.craftId);
-            ImageIcon craftImageIcon = new ImageIcon(craft.getImagePath());
+            ImageIcon craftImageIcon = new ImageIcon(craft.getImagePath(2));
             this.craftImage = craftImageIcon.getImage();
 
             this.initPanel();
