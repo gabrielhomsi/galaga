@@ -13,7 +13,7 @@ import java.rmi.RemoteException;
 import java.util.LinkedList;
 
 
-class Panel extends JPanel implements ActionListener {
+class Panel extends JPanel /*implements ActionListener*/ {
     private final Main main;
     LinkedList<GameObject> gameObjects;
     private int craftId;
@@ -47,10 +47,16 @@ class Panel extends JPanel implements ActionListener {
         Graphics2D graphics2D = (Graphics2D) graphics;
 
         for (GameObject gameObject : this.main.getScene().getGameObjects()) {
-            ImageIcon gameObjectImageIcon = new ImageIcon(gameObject.getImagePath());
-            Image gameObjectImage = gameObjectImageIcon.getImage();
+            //System.out.printf("bool: " + gameObject.isDrawn(gameObject.getId()));
+            if(!gameObject.isDrawn(gameObject.getId())){
+                //System.out.println("teste");
+                ImageIcon gameObjectImageIcon = new ImageIcon(gameObject.getImagePath());
+                Image gameObjectImage = gameObjectImageIcon.getImage();
+                graphics2D.drawImage(gameObjectImage, gameObject.getX(), gameObject.getY(), this);
 
-            graphics2D.drawImage(gameObjectImage, gameObject.getX(), gameObject.getY(), this);
+                gameObject.draw(gameObject.getId());
+            }
+
         }
     }
 
@@ -60,11 +66,11 @@ class Panel extends JPanel implements ActionListener {
         this.setFocusable(true);
         this.setBackground(Color.WHITE);
     }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        this.repaint();
-    }
+//
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//        this.repaint();
+//    }
 
     private class TAdapter extends KeyAdapter {
         @Override

@@ -101,6 +101,16 @@ public class Main implements RemoteInterface {
         this.scene.getCraftById(craftId).keyCodeReleased(keyCode);
     }
 
+    @Override
+    public boolean isDrawn(int craftId) throws RemoteException{
+       return this.scene.getCraftById(craftId).isDrawn(craftId);
+    }
+
+    @Override
+    public void draw(int craftId){
+        this.draw(craftId);
+    }
+
     public boolean getIsGameRunning() {
         return isGameRunning;
     }

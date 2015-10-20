@@ -9,4 +9,10 @@ public interface GameObject {
     int getX();
 
     int getY();
+
+    boolean isDrawn(int craftId);
+
+    void draw(int craftId);
+
+    int getId();
 }

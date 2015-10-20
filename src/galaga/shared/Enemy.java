@@ -6,6 +6,10 @@ public class Enemy implements Serializable, GameObject {
     private int x;
     private int y;
 
+    private int id;
+
+    private boolean isDrawn = false;
+
     private int frameWidth = 800;//Scene variable
 
     private int objectSize = 100;//120 ótimo valor
@@ -14,7 +18,7 @@ public class Enemy implements Serializable, GameObject {
 
     public Enemy() {
         this.x = 40;
-        this.y = 470;
+        this.y = 100;
 
         this.xSpeed = 0;
     }
@@ -38,5 +42,17 @@ public class Enemy implements Serializable, GameObject {
     @Override
     public String getImagePath() {
         return "assets/enemies/enemyBlack1.png";
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public boolean isDrawn(int craftId){
+        return isDrawn;
+    }
+
+    public void draw(int craftId){
+        this.isDrawn = true;
     }
 }

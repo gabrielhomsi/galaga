@@ -6,6 +6,8 @@ import java.io.Serializable;
 public class Craft implements Serializable, GameObject {
     private int id;
 
+    private boolean isDrawn = false;
+
     private int x;
     private int y;
 
@@ -63,5 +65,13 @@ public class Craft implements Serializable, GameObject {
 
     public int getId() {
         return this.id;
+    }
+
+    public boolean isDrawn(int craftId){
+        return isDrawn;
+    }
+
+    public void draw(int craftId){
+        this.isDrawn = true;
     }
 }

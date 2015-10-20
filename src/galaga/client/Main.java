@@ -74,7 +74,7 @@ public class Main extends JFrame {
                     //teste
                     if (count > 100) {
                         count = 0;
-                        printGameObjects();
+                        //printGameObjects();
                     }
 
                 }
