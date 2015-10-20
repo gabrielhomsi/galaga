@@ -1,5 +1,7 @@
 package galaga.server;
 
+import galaga.shared.Enemy;
+
 public class EnemyType2 extends Enemy {
 
     public EnemyType2() {//bicho que suga

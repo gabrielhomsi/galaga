@@ -1,6 +1,7 @@
 package galaga.client;
 
 import galaga.shared.Craft;
+import galaga.shared.GameObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,11 +10,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.rmi.RemoteException;
+import java.util.LinkedList;
 
 
 class Panel extends JPanel implements ActionListener {
     private final Main main;
-
+    LinkedList<GameObject> gameObjects;
     private int craftId;
     private Image craftImage;
 
@@ -26,28 +28,37 @@ class Panel extends JPanel implements ActionListener {
             this.main.retrieveFreshScene();
 
             Craft craft = this.main.getScene().getCraftById(this.craftId);
-            ImageIcon craftImageIcon = new ImageIcon(craft.getImagePath(2));
+            ImageIcon craftImageIcon = new ImageIcon(craft.getImagePath());
             this.craftImage = craftImageIcon.getImage();
 
+            System.out.printf("ID:" + this.craftId);
+            System.out.printf("Image:" + this.craftImage);
+
             this.initPanel();
+
+
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-    }
-
-    private void initPanel() {
-        this.addKeyListener(new TAdapter());
-        this.setFocusable(true);
-        this.setBackground(Color.WHITE);
     }
 
     @Override
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
 
-        Craft craft = this.main.getScene().getCraftById(this.craftId);
+        for (GameObject gameObject : this.main.getScene().getGameObjects()) {
+            ImageIcon gameObjectImageIcon = new ImageIcon(gameObject.getImagePath());
+            Image gameObjectImage = gameObjectImageIcon.getImage();
 
-        graphics2D.drawImage(this.craftImage, craft.getX(), craft.getY(), this);
+            graphics2D.drawImage(gameObjectImage, gameObject.getX(), gameObject.getY(), this);
+        }
+    }
+
+
+    private void initPanel() {
+        this.addKeyListener(new TAdapter());
+        this.setFocusable(true);
+        this.setBackground(Color.WHITE);
     }
 
     @Override

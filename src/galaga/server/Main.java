@@ -1,9 +1,6 @@
 package galaga.server;
 
-import galaga.shared.Craft;
-import galaga.shared.GameObject;
-import galaga.shared.RemoteInterface;
-import galaga.shared.Scene;
+import galaga.shared.*;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -12,10 +9,8 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.LinkedList;
 
 public class Main implements RemoteInterface {
-    private boolean isGameRunning = false;
-
     long timeToNewWave = 6000;
-
+    private boolean isGameRunning = false;
     private Scene scene;
 
     public Main() {
@@ -61,7 +56,7 @@ public class Main implements RemoteInterface {
                         start = System.currentTimeMillis();
                     }
 
-                    if(now - startWave > timeToNewWave){
+                    if (now - startWave > timeToNewWave) {
                         startWave += timeToNewWave;
                         System.out.println("New Wave after 60secs!");
                         createEnemy();
@@ -73,7 +68,8 @@ public class Main implements RemoteInterface {
     }
 
     private void createEnemy() {
-        new Enemy(this);
+        Enemy enemy = new Enemy();
+        this.scene.getGameObjects().add(enemy);
     }
 
     public void update(double dt) {

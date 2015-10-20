@@ -1,5 +1,7 @@
 package galaga.server;
 
+import galaga.shared.Enemy;
+
 public class EnemyType1 extends Enemy {
 
     public EnemyType1() {//Inimigo vermelho, segue player

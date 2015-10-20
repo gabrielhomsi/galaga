@@ -1,5 +1,6 @@
 package galaga.client;
 
+import galaga.shared.GameObject;
 import galaga.shared.RemoteInterface;
 import galaga.shared.Scene;
 
@@ -7,6 +8,7 @@ import javax.swing.*;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.LinkedList;
 
 public class Main extends JFrame {
     private RemoteInterface remoteInterface;
@@ -55,6 +57,9 @@ public class Main extends JFrame {
 
                 long start = System.currentTimeMillis();
 
+                //teste
+                int count = 0;
+                //fim Teste
                 while (main.getIsGameRunning()) {
                     long now = System.currentTimeMillis();
 
@@ -62,7 +67,16 @@ public class Main extends JFrame {
                         main.retrieveFreshScene();
                         main.repaint();
                         start = System.currentTimeMillis();
+
+                        //teste
+                        count++;
                     }
+                    //teste
+                    if (count > 100) {
+                        count = 0;
+                        printGameObjects();
+                    }
+
                 }
             }
         }.start();
@@ -84,6 +98,18 @@ public class Main extends JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void printGameObjects() {
+        LinkedList<GameObject> gameObjects = this.scene.getGameObjects();
+        System.out.println("N objects: " + gameObjects.size());
+        for (int i = 0; i < gameObjects.size(); i++) {
+            System.out.println(gameObjects.get(i));
+        }
+
+        Panel p = new Panel(this);
+        //p.paintAllGameObjects();
+
     }
 
 

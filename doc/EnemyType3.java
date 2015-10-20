@@ -1,5 +1,7 @@
 package galaga.server;
 
+import galaga.shared.Enemy;
+
 public class EnemyType3 extends Enemy {
 
     public EnemyType3() {//bicho azul, captura

@@ -1,9 +1,12 @@
 package galaga.shared;
 
 public interface GameObject {
+    //    int id = Craft.id;
     void update(double dt);
 
-    //String getImagePath();//antigo, funcionando
-    String getImagePath(int type);//novo, selecionar n image paths
+    String getImagePath();//novo, selecionar n image paths
 
+    int getX();
+
+    int getY();
 }

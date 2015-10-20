@@ -1,11 +1,8 @@
 package galaga.shared;
 
-import java.awt.event.KeyEvent;
 import java.io.Serializable;
 
-public class Craft implements Serializable, GameObject {
-    private int id;
-
+public class Enemy implements Serializable, GameObject {
     private int x;
     private int y;
 
@@ -15,9 +12,7 @@ public class Craft implements Serializable, GameObject {
 
     private int xSpeed;
 
-    public Craft(int id) {
-        this.id = id;
-
+    public Enemy() {
         this.x = 40;
         this.y = 470;
 
@@ -32,22 +27,6 @@ public class Craft implements Serializable, GameObject {
         return this.y;
     }
 
-    public void keyCodePressed(int keyCode) {
-        if (keyCode == KeyEvent.VK_LEFT) {
-            this.xSpeed = -200;
-        } else if (keyCode == KeyEvent.VK_RIGHT) {
-            this.xSpeed = 200;
-        }
-    }
-
-    public void keyCodeReleased(int keyCode) {
-        if (keyCode == KeyEvent.VK_LEFT) {
-            this.xSpeed = 0;
-        } else if (keyCode == KeyEvent.VK_RIGHT) {
-            this.xSpeed = 0;
-        }
-    }
-
     @Override
     public void update(double dt) {
         if (((this.x + (int) (this.xSpeed * dt)) > 0) && ((this.x + (int) (this.xSpeed * dt)) < (frameWidth - objectSize))) {
@@ -58,10 +37,6 @@ public class Craft implements Serializable, GameObject {
 
     @Override
     public String getImagePath() {
-        return "assets/playerShip1_Blue.png";
-    }
-
-    public int getId() {
-        return this.id;
+        return "assets/enemies/enemyBlack1.png";
     }
 }
