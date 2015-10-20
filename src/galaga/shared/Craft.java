@@ -9,6 +9,9 @@ public class Craft implements Serializable, GameObject {
     private int x;
     private int y;
 
+    private int frameWidth = 800;//Scene variable
+    private int objectSize = 100;//120 ótimo valor
+
     private int xSpeed;
 
     public Craft(int id) {
@@ -30,9 +33,9 @@ public class Craft implements Serializable, GameObject {
 
     public void keyCodePressed(int keyCode) {
         if (keyCode == KeyEvent.VK_LEFT) {
-            this.xSpeed = -100;
+            this.xSpeed = -200;
         } else if (keyCode == KeyEvent.VK_RIGHT) {
-            this.xSpeed = 100;
+            this.xSpeed = 200;
         }
     }
 
@@ -46,7 +49,10 @@ public class Craft implements Serializable, GameObject {
 
     @Override
     public void update(double dt) {
-        this.x += (int) (this.xSpeed * dt);
+        if(((this.x + (int) (this.xSpeed * dt)) > 0) && ((this.x + (int) (this.xSpeed * dt)) < (frameWidth - objectSize))){
+            this.x += (int) (this.xSpeed * dt);
+        }
+
     }
 
     @Override
