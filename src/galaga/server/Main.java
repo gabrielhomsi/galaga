@@ -14,6 +14,8 @@ import java.util.LinkedList;
 public class Main implements RemoteInterface {
     private boolean isGameRunning = false;
 
+    long timeToNewWave = 60000;
+
     private Scene scene;
 
     public Main() {
@@ -46,6 +48,8 @@ public class Main implements RemoteInterface {
 
                 long start = System.currentTimeMillis();
 
+                long startWave = start;
+
                 while (main.getIsGameRunning()) {
                     long now = System.currentTimeMillis();
 
@@ -56,6 +60,12 @@ public class Main implements RemoteInterface {
 
                         start = System.currentTimeMillis();
                     }
+
+                    if(now - startWave > timeToNewWave){
+                        startWave += timeToNewWave;
+                        System.out.println("New Wave after 60secs!");
+                    }
+
                 }
             }
         }.start();
