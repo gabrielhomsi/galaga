@@ -13,15 +13,15 @@ public class Craft implements Serializable, GameObject {
 
     private int frameWidth = 800;//Scene variable
 
-    private int objectSize = 100;//120 ótimo valor
+    private int objectSize = 30;//120 ótimo valor
 
     private int xSpeed;
 
     public Craft(int id) {
         this.id = id;
 
-        this.x = 40;
-        this.y = 470;
+        this.x = 0;
+        this.y = 530;
 
         this.xSpeed = 0;
     }
@@ -55,8 +55,19 @@ public class Craft implements Serializable, GameObject {
         if (((this.x + (int) (this.xSpeed * dt)) > 0) && ((this.x + (int) (this.xSpeed * dt)) < (frameWidth - objectSize))) {
             this.x += (int) (this.xSpeed * dt);
         }
-
     }
+
+    //Enemy move, não necessário
+    @Override
+    public void updateX(double dt) {    }
+
+    @Override
+    public void updateY(double dt) {    }
+
+//    @Override
+//    public int getClosestPlayerId(int positionX, int positionY){
+//        return 0;
+//    }
 
     @Override
     public String getImagePath() {

@@ -7,11 +7,14 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.LinkedList;
+import java.util.Random;
 
 public class Main implements RemoteInterface {
-    long timeToNewWave = 6000;
+    long timeToNewWave = 1000;
     private boolean isGameRunning = false;
     private Scene scene;
+
+
 
     public Main() {
         this.scene = new Scene();
@@ -45,6 +48,7 @@ public class Main implements RemoteInterface {
 
                 long startWave = start;
 
+                createEnemy();
                 while (main.getIsGameRunning()) {
                     long now = System.currentTimeMillis();
 
@@ -68,7 +72,12 @@ public class Main implements RemoteInterface {
     }
 
     private void createEnemy() {
-        Enemy enemy = new Enemy();
+        Random random = new Random();
+        int positionX = random.nextInt(this.scene.getFrameWidth() - 70);
+        int positionY = random.nextInt(this.scene.getFrameHeight() - 70);
+
+
+        Enemy enemy = new Enemy(positionX, positionY, this.scene.getFrameWidth(), this.scene.getFrameHeight());
         this.scene.getGameObjects().add(enemy);
     }
 

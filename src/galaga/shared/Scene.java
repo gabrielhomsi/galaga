@@ -48,4 +48,31 @@ public class Scene implements Serializable {
         this.gameObjects.add(newCraft);
         return newCraft;
     }
+
+
+    public int getDistanceBetween2Points(int pointAX, int pointAY, int pointBX, int pointBY) {
+        int distance;
+        distance = (int) Math.hypot((pointAX - pointBX), (pointAY - pointBY));
+        return distance;
+    }
+
+    public int getClosestPlayerId(int positionX, int positionY) {
+        int closestPlayer = 0;//jogador mais pr?ximo
+        int distance = Integer.MAX_VALUE;//Distancia setada para o "infinito"
+        int aux;
+
+        for (GameObject gameObject : this.gameObjects){
+            if(gameObject.getClass().isInstance(Craft.class)){
+                System.out.printf("Player");
+                aux = getDistanceBetween2Points(positionX, positionY, gameObject.getX(), gameObject.getY());
+                if(aux < distance){
+                    closestPlayer = gameObject.getId();
+                }
+            } else{
+                System.out.println("Enemy");
+            }
+        }
+
+        return closestPlayer;
+    }
 }
