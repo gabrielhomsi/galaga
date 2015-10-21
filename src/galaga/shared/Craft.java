@@ -13,7 +13,7 @@ public class Craft implements Serializable, GameObject {
 
     private int frameWidth = 800;//Scene variable
 
-    private int objectSize = 30;//120 ótimo valor
+    private int objectSize = 30;//120 ï¿½timo valor
 
     private int xSpeed;
 
@@ -57,12 +57,14 @@ public class Craft implements Serializable, GameObject {
         }
     }
 
-    //Enemy move, não necessário
+    //Enemy move, nï¿½o necessï¿½rio
     @Override
-    public void updateX(double dt) {    }
+    public void updateX(double dt) {
+    }
 
     @Override
-    public void updateY(double dt) {    }
+    public void updateY(double dt) {
+    }
 
 //    @Override
 //    public int getClosestPlayerId(int positionX, int positionY){
@@ -78,11 +80,11 @@ public class Craft implements Serializable, GameObject {
         return this.id;
     }
 
-    public boolean isDrawn(int craftId){
+    public boolean isDrawn(int craftId) {
         return isDrawn;
     }
 
-    public void draw(int craftId){
+    public void draw(int craftId) {
         this.isDrawn = true;
     }
 }

@@ -6,6 +6,7 @@ public interface GameObject {
 
     //EnemyMove
     void updateX(double dt);
+
     void updateY(double dt);
 //    int getClosestPlayerId(int positionX, int positionY);
 

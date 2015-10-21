@@ -61,14 +61,14 @@ public class Scene implements Serializable {
         int distance = Integer.MAX_VALUE;//Distancia setada para o "infinito"
         int aux;
 
-        for (GameObject gameObject : this.gameObjects){
-            if(gameObject.getClass().isInstance(Craft.class)){
+        for (GameObject gameObject : this.gameObjects) {
+            if (gameObject.getClass().isInstance(Craft.class)) {
                 System.out.printf("Player");
                 aux = getDistanceBetween2Points(positionX, positionY, gameObject.getX(), gameObject.getY());
-                if(aux < distance){
+                if (aux < distance) {
                     closestPlayer = gameObject.getId();
                 }
-            } else{
+            } else {
                 System.out.println("Enemy");
             }
         }

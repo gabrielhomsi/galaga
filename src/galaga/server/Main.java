@@ -8,15 +8,13 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
 
 public class Main implements RemoteInterface {
     long timeToNewWave = 1000;
+    ArrayList<LinkedList<GameObject>> enemyMatrix = new ArrayList<LinkedList<GameObject>>(10);
     private boolean isGameRunning = false;
     private Scene scene;
-
-
 
     public Main() {
         this.scene = new Scene();
@@ -79,9 +77,8 @@ public class Main implements RemoteInterface {
 //        int positionX = random.nextInt(this.scene.getFrameWidth() - 70);
 //        int positionY = random.nextInt(this.scene.getFrameHeight() - 70);
 
-        int positionX = (this.scene.getFrameWidth()/4) + i*30 ;
-        int positionY = index*30;
-
+        int positionX = (this.scene.getFrameWidth() / 4) + i * 30;
+        int positionY = index * 30;
 
 
         Enemy enemy = new Enemy(positionX, positionY, this.scene.getFrameWidth(), this.scene.getFrameHeight());
@@ -89,15 +86,13 @@ public class Main implements RemoteInterface {
 
         this.enemyMatrix.get(index).add(enemy);
     }
-
-    ArrayList<LinkedList<GameObject>> enemyMatrix = new ArrayList<LinkedList<GameObject>>(10);
     //GameObject[][] enemyMatrix = new GameObject[10][10];
 
-    private void newWave(){
+    private void newWave() {
         int index = 0;
         boolean rowEmpty = false;
         System.out.println("WAVE");
-        if(this.enemyMatrix.isEmpty()){
+        if (this.enemyMatrix.isEmpty()) {
             System.out.println("VAZIO");
             for (int j = 0; j < 10; j++) {
                 this.enemyMatrix.add(new LinkedList<GameObject>());
@@ -108,11 +103,11 @@ public class Main implements RemoteInterface {
                 }
             }
 
-        } else{
-            for (LinkedList<GameObject> enemyRow : this.enemyMatrix){
+        } else {
+            for (LinkedList<GameObject> enemyRow : this.enemyMatrix) {
 //                System.out.println("FOra 1");
 //                System.out.println(enemyRow.size());
-                if(enemyRow.isEmpty()){
+                if (enemyRow.isEmpty()) {
                     rowEmpty = true;
                     for (int i = 0; i < 10; i++) {
                         createEnemy(index, i);
@@ -124,16 +119,16 @@ public class Main implements RemoteInterface {
             }
         }
 
-       index=0;
-       if(!rowEmpty){
-           for (LinkedList<GameObject> enemyRow : enemyMatrix){
-               for (int i = 0; i < 10 - enemyRow.size(); i++) {//preenche posiçoes vazias das linhas
-                   createEnemy(index, i);
-                   System.out.println("'Buraco' preenchido");
-               }
-               index++;
-           }
-       }
+        index = 0;
+        if (!rowEmpty) {
+            for (LinkedList<GameObject> enemyRow : enemyMatrix) {
+                for (int i = 0; i < 10 - enemyRow.size(); i++) {//preenche posiï¿½oes vazias das linhas
+                    createEnemy(index, i);
+                    System.out.println("'Buraco' preenchido");
+                }
+                index++;
+            }
+        }
 
         //createEnemy();
     }
@@ -168,12 +163,12 @@ public class Main implements RemoteInterface {
     }
 
     @Override
-    public boolean isDrawn(int craftId) throws RemoteException{
-       return this.scene.getCraftById(craftId).isDrawn(craftId);
+    public boolean isDrawn(int craftId) throws RemoteException {
+        return this.scene.getCraftById(craftId).isDrawn(craftId);
     }
 
     @Override
-    public void draw(int craftId){
+    public void draw(int craftId) {
         this.draw(craftId);
     }
 

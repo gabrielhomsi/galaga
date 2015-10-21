@@ -5,8 +5,6 @@ import galaga.shared.GameObject;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.rmi.RemoteException;
@@ -15,11 +13,10 @@ import java.util.LinkedList;
 
 class Panel extends JPanel /*implements ActionListener*/ {
     private final Main main;
+    private final int objectSize = 25;
     LinkedList<GameObject> gameObjects;
     private int craftId;
     private Image craftImage;
-
-    private final int objectSize = 25;
 
     public Panel(Main main) {
         this.main = main;
@@ -50,7 +47,7 @@ class Panel extends JPanel /*implements ActionListener*/ {
 
         for (GameObject gameObject : this.main.getScene().getGameObjects()) {
             //System.out.printf("bool: " + gameObject.isDrawn(gameObject.getId()));
-            if(!gameObject.isDrawn(gameObject.getId())){
+            if (!gameObject.isDrawn(gameObject.getId())) {
                 //System.out.println("teste");
                 ImageIcon gameObjectImageIcon = new ImageIcon(gameObject.getImagePath());
                 Image gameObjectImage = gameObjectImageIcon.getImage();
@@ -68,7 +65,7 @@ class Panel extends JPanel /*implements ActionListener*/ {
         this.setFocusable(true);
         this.setBackground(Color.WHITE);
     }
-//apagado por ser desnecessário
+//apagado por ser desnecessï¿½rio
 //    @Override
 //    public void actionPerformed(ActionEvent e) {
 //        this.repaint();
