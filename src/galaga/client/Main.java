@@ -1,14 +1,10 @@
 package galaga.client;
 
-import galaga.shared.GameObject;
 import galaga.shared.RemoteInterface;
 import galaga.shared.Scene;
 
 import javax.swing.*;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.util.LinkedList;
 
 public class Main extends JFrame {
     private RemoteInterface remoteInterface;
@@ -16,30 +12,21 @@ public class Main extends JFrame {
     private Scene scene;
 
     public Main() {
-        try {
-            this.initializeRemoteInterface();
-            this.retrieveFreshScene();
-            this.buildPanel();
-            new GameLoop(this).start();
-        } catch (Exception e) {
-            System.err.println("Client exception: " + e.toString());
-            e.printStackTrace();
-        }
+        this.remoteInterface = new RemoteInterfaceManager().getRemoteInterface();
+        this.retrieveFreshScene();
+        this.configure();
+        new GameLoop(this).start();
     }
 
     public static void main(String[] args) {
-        Main main = new Main();
-    }
-
-    protected RemoteInterface getRemoteInterface() {
-        return this.remoteInterface;
+        new Main();
     }
 
     protected Scene getScene() {
         return this.scene;
     }
 
-    private void buildPanel() {
+    private void configure() {
         this.add(new Panel(this));
         this.setTitle("Galaga");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,28 +42,6 @@ public class Main extends JFrame {
             e.printStackTrace();
         }
     }
-
-    private void initializeRemoteInterface() {
-        try {
-            String host = "127.0.0.1";
-            Registry registry = LocateRegistry.getRegistry(host);
-            this.remoteInterface = (RemoteInterface) registry.lookup("RemoteInterface");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void printGameObjects() {
-        LinkedList<GameObject> gameObjects = this.scene.getGameObjects();
-        System.out.println("N objects: " + gameObjects.size());
-        for (int i = 0; i < gameObjects.size(); i++) {
-            System.out.println(gameObjects.get(i));
-        }
-
-        Panel p = new Panel(this);
-        //p.paintAllGameObjects();
-    }
-
 
     public boolean getIsGameRunning() {
         return isGameRunning;
