@@ -20,7 +20,7 @@ public class Main extends JFrame {
             this.initializeRemoteInterface();
             this.retrieveFreshScene();
             this.buildPanel();
-            this.startGameLoop();
+            new GameLoop(this).start();
         } catch (Exception e) {
             System.err.println("Client exception: " + e.toString());
             e.printStackTrace();
@@ -46,40 +46,6 @@ public class Main extends JFrame {
         this.pack();
         this.setSize(scene.getFrameWidth(), scene.getFrameHeight());
         this.setVisible(true);
-    }
-
-    private void startGameLoop() {
-        Main main = this;
-
-        new Thread("RefreshScreen") {
-            public void run() {
-                main.setIsGameRunning(true);
-
-                long start = System.currentTimeMillis();
-
-                //teste
-                int count = 0;
-                //fim Teste
-                while (main.getIsGameRunning()) {
-                    long now = System.currentTimeMillis();
-
-                    if (now - start >= 33) {
-                        main.retrieveFreshScene();
-                        main.repaint();
-                        start = System.currentTimeMillis();
-
-                        //teste
-                        count++;
-                    }
-                    //teste
-                    if (count > 100) {
-                        count = 0;
-                        //printGameObjects();
-                    }
-
-                }
-            }
-        }.start();
     }
 
     protected void retrieveFreshScene() {
