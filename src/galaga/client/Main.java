@@ -109,7 +109,6 @@ public class Main extends JFrame {
 
         Panel p = new Panel(this);
         //p.paintAllGameObjects();
-
     }
 
 

@@ -68,7 +68,7 @@ class Panel extends JPanel /*implements ActionListener*/ {
         this.setFocusable(true);
         this.setBackground(Color.WHITE);
     }
-//
+//apagado por ser desnecessário
 //    @Override
 //    public void actionPerformed(ActionEvent e) {
 //        this.repaint();

@@ -13,7 +13,7 @@ public class Enemy implements Serializable, GameObject {
     private int screenWidth;//Scene variable
     private int screenHeight;//Scene variable
 
-    private int objectSize = 100;//120 ótimo valor
+    private int objectSize = 0;//120 ótimo valor
 
     private int xSpeed;
     private int ySpeed;
@@ -39,21 +39,24 @@ public class Enemy implements Serializable, GameObject {
 
     @Override
     public void update(double dt) {
-
+        updateX(dt);
+        updateY(dt);
     }
 
     @Override
          public void updateX(double dt/*time*/) {
-        if (((this.x + (int) (this.xSpeed * dt)) > 0) && ((this.x + (int) (this.xSpeed * dt)) < (screenWidth - objectSize))) {
+       // if (((this.x + (int) (this.xSpeed * dt)) > 0) && ((this.x + (int) (this.xSpeed * dt)) < (screenWidth - objectSize))) {
             this.x += (int) (this.xSpeed * dt);
-        }
+        //}
+        portal();
     }
 
     @Override
     public void updateY(double dt/*time*/) {
-        if (((this.y + (int) (this.ySpeed * dt)) > 0) && ((this.y + (int) (this.ySpeed * dt)) < (screenWidth - objectSize))) {
+        //if (((this.y + (int) (this.ySpeed * dt)) > 0) && ((this.y + (int) (this.ySpeed * dt)) < (screenWidth - objectSize))) {
             this.y += (int) (this.ySpeed * dt);
-        }
+        //}
+        portal();
     }
 
     @Override
