@@ -42,12 +42,20 @@ public class Enemy implements Serializable, GameObject {
     public void update(double dt) {
         updateX(dt);
         updateY(dt);
+
     }
 
+    int switcher = 0;
     @Override
          public void updateX(double dt/*time*/) {
        // if (((this.x + (int) (this.xSpeed * dt)) > 0) && ((this.x + (int) (this.xSpeed * dt)) < (screenWidth - objectSize))) {
-            this.x += (int) (this.xSpeed * dt * Math.sin(randomNumber(360))) ;
+        if(switcher < 20){
+            this.x += (int) /*(this.xSpeed * dt) + */(this.xSpeed * dt) * switcher/10;
+        } else{
+            this.x += (int) /*(this.xSpeed * dt) + */(this.xSpeed * dt);
+            switcher *= -1;
+        }
+        switcher++;
         //}
         portal();
     }
@@ -55,7 +63,12 @@ public class Enemy implements Serializable, GameObject {
     @Override
     public void updateY(double dt/*time*/) {
         //if (((this.y + (int) (this.ySpeed * dt)) > 0) && ((this.y + (int) (this.ySpeed * dt)) < (screenWidth - objectSize))) {
-            this.y += (int) (this.ySpeed * dt * Math.cos(randomNumber(360)));
+        if(Math.abs(switcher) < 10){
+            this.y += (int) (this.ySpeed * dt);// + (this.ySpeed * dt * Math.cos(randomNumber(180)));
+        } else{
+            this.y += (int) (this.ySpeed * dt * Math.cos(45));// + (this.ySpeed * dt * Math.cos(randomNumber(180)));
+        }
+
         //}
         portal();
     }
