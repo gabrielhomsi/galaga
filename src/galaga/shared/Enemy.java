@@ -1,6 +1,7 @@
 package galaga.shared;
 
 import java.io.Serializable;
+import java.util.Random;
 
 public class Enemy implements Serializable, GameObject {
     private int x;
@@ -46,7 +47,7 @@ public class Enemy implements Serializable, GameObject {
     @Override
          public void updateX(double dt/*time*/) {
        // if (((this.x + (int) (this.xSpeed * dt)) > 0) && ((this.x + (int) (this.xSpeed * dt)) < (screenWidth - objectSize))) {
-            this.x += (int) (this.xSpeed * dt);
+            this.x += (int) (this.xSpeed * dt * Math.sin(randomNumber(360))) ;
         //}
         portal();
     }
@@ -54,9 +55,14 @@ public class Enemy implements Serializable, GameObject {
     @Override
     public void updateY(double dt/*time*/) {
         //if (((this.y + (int) (this.ySpeed * dt)) > 0) && ((this.y + (int) (this.ySpeed * dt)) < (screenWidth - objectSize))) {
-            this.y += (int) (this.ySpeed * dt);
+            this.y += (int) (this.ySpeed * dt * Math.cos(randomNumber(360)));
         //}
         portal();
+    }
+
+    public int randomNumber(int bound){
+        Random random = new Random();
+        return random.nextInt(bound);
     }
 
     @Override
