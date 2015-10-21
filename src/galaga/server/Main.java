@@ -11,7 +11,6 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class Main implements RemoteInterface {
-    long timeToNewWave = 1000;
     ArrayList<LinkedList<GameObject>> enemyMatrix = new ArrayList<LinkedList<GameObject>>(10);
     private boolean isGameRunning = false;
     private Scene scene;
@@ -19,7 +18,7 @@ public class Main implements RemoteInterface {
     public Main() {
         this.scene = new Scene();
 
-        this.startGameLoop();
+        new GameLoop(this).start();
     }
 
     public static void main(String[] args) throws Exception {
@@ -35,41 +34,6 @@ public class Main implements RemoteInterface {
             System.err.println("Server exception: " + e.toString());
             e.printStackTrace();
         }
-    }
-
-    private void startGameLoop() {
-        Main main = this;
-
-        new Thread("RefreshScreen") {
-            public void run() {
-                main.setIsGameRunning(true);
-
-                long start = System.currentTimeMillis();
-
-                long startWave = start;
-
-                //createEnemy();
-                while (main.getIsGameRunning()) {
-                    long now = System.currentTimeMillis();
-
-                    if (now - start >= 33) {
-                        double dt = (now - start) / 1000.0;
-
-                        main.update(dt);
-
-                        start = System.currentTimeMillis();
-                    }
-
-                    if (now - startWave > timeToNewWave) {
-                        startWave += timeToNewWave;
-                        System.out.println("New Wave after 60secs!");
-                        //createEnemy();
-                        newWave();
-                    }
-
-                }
-            }
-        }.start();
     }
 
     private void createEnemy(int index, int i) {
@@ -88,7 +52,7 @@ public class Main implements RemoteInterface {
     }
     //GameObject[][] enemyMatrix = new GameObject[10][10];
 
-    private void newWave() {
+    protected void newWave() {
         int index = 0;
         boolean rowEmpty = false;
         System.out.println("WAVE");
