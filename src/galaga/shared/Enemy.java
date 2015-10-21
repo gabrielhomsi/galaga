@@ -40,8 +40,8 @@ public class Enemy implements Serializable, GameObject {
 
     @Override
     public void update(double dt) {
-        updateX(dt);
-        updateY(dt);
+//        updateX(dt);
+//        updateY(dt);
 
     }
 
