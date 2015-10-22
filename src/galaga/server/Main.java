@@ -33,6 +33,7 @@ public class Main implements RemoteInterface {
             gameObject.update(dt);
         }
 
+//        System.out.println("Server/Main dt " + dt + "ns");
         this.currentStage.notifyTime(dt);
 
         if (this.currentStage.canGoToNextStage(this)) {

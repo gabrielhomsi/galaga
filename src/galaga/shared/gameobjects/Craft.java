@@ -47,14 +47,14 @@ public class Craft implements GameObject {
         }
     }
 
-    //Enemy move, n�o necess�rio
-    @Override
-    public void updateX(double dt) {
-    }
-
-    @Override
-    public void updateY(double dt) {
-    }
+//    //Enemy move, n�o necess�rio
+//    @Override
+//    public void updateX(double dt) {
+//    }
+//
+//    @Override
+//    public void updateY(double dt) {
+//    }
 
     @Override
     public String getImagePath() {

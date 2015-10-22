@@ -11,6 +11,10 @@ import java.util.LinkedList;
 public class GameStage implements Stage {
     private LinkedList<GameObject> gameObjects;
     private WaveManager waveManager;
+    //corrigi a divisão por 1000.0 no GameLoop
+    private long timeToNewWave = 1;//ms
+
+    private double timePassed = 0.0;
 
     public GameStage(int numberOfConnections) {
         this.gameObjects = new LinkedList<>();
@@ -32,14 +36,18 @@ public class GameStage implements Stage {
         return 600;
     }
 
+
+
     @Override
     public void notifyTime(double dt) {
-        //            if ((t1 - startWave) > this.timeToNewWave) {
-        //                startWave += this.timeToNewWave;
-        //                System.out.println("New Wave after 60secs!");
-        //                //createEnemy();
-        //                this.main.newWave();
-        //            }
+        System.out.println("GameStage dt " + dt + "ns");
+//        System.out.println("notifyTime: " + dt);
+        this.timePassed += dt;
+        if(this.timePassed > this.timeToNewWave){
+            timePassed -= this.timeToNewWave;
+            System.out.printf("New Wave after " + timeToNewWave + "secs");
+            this.waveManager.newWave();
+        }
     }
 
     @Override
@@ -70,7 +78,7 @@ public class GameStage implements Stage {
         return this.gameObjects;
     }
 
-    public int getClosestPlayerConnectionId(Point position) {
+    public Craft getClosestCraftByConnectionId(Point position) {
         Craft closestPlayer = null;
         int distance = Integer.MAX_VALUE;//Distancia setada para o "infinito"
 
@@ -90,9 +98,9 @@ public class GameStage implements Stage {
         }
 
         if (closestPlayer != null) {
-            return closestPlayer.getConnectionId();
+            return closestPlayer;
         } else {
-            return -1;
+            return null;
         }
     }
 }

@@ -36,7 +36,7 @@ public class WaveManager implements Serializable {
     }
     //GameObject[][] enemyMatrix = new GameObject[10][10];
 
-    protected void newWave() {
+    public void newWave() {
         int index = 0;
         boolean rowEmpty = false;
         System.out.println("WAVE");
@@ -50,7 +50,6 @@ public class WaveManager implements Serializable {
                     System.out.println("Enemy Row Created");
                 }
             }
-
         } else {
             for (LinkedList<GameObject> enemyRow : this.enemyMatrix) {
 //                System.out.println("FOra 1");
@@ -77,7 +76,6 @@ public class WaveManager implements Serializable {
                 index++;
             }
         }
-
         //createEnemy();
     }
 }
