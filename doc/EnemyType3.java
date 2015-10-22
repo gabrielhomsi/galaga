@@ -1,6 +1,6 @@
 package galaga.server;
 
-import galaga.shared.Enemy;
+import galaga.shared.gameobjects.Enemy;
 
 public class EnemyType3 extends Enemy {
 

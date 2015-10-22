@@ -1,27 +1,51 @@
-package galaga.shared;
+package galaga.shared.stages;
+
+import galaga.server.Main;
+import galaga.shared.WaveManager;
+import galaga.shared.gameobjects.Craft;
+import galaga.shared.gameobjects.GameObject;
 
 import java.io.Serializable;
 import java.util.LinkedList;
 
-public class Scene implements Serializable {
+public class GameStage implements Stage {
     private int lastNewCraftId;
 
-    private int frameWidth = 800;
-    private int frameHeight = 600;
-
     private LinkedList<GameObject> gameObjects;
+    private WaveManager waveManager;
 
-    public Scene() {
+    public GameStage() {
         this.lastNewCraftId = 0;
         this.gameObjects = new LinkedList<>();
+        this.waveManager = new WaveManager(this);
     }
 
     public int getFrameWidth() {
-        return this.frameWidth;
+        return 800;
     }
 
     public int getFrameHeight() {
-        return this.frameHeight;
+        return 600;
+    }
+
+    @Override
+    public void notifyTime(double dt) {
+        //            if ((t1 - startWave) > this.timeToNewWave) {
+        //                startWave += this.timeToNewWave;
+        //                System.out.println("New Wave after 60secs!");
+        //                //createEnemy();
+        //                this.main.newWave();
+        //            }
+    }
+
+    @Override
+    public boolean canGoToNextStage(Main main) {
+        return false;
+    }
+
+    @Override
+    public Stage getNextStage() {
+        return null;
     }
 
     public Craft getCraftById(int craftId) {

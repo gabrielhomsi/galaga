@@ -3,7 +3,7 @@ package galaga.server;
 //import java.util.Arrays;
 
 import galaga.shared.RemoteInterface;
-import galaga.shared.Scene;
+import galaga.shared.stages.GameStage;
 
 import java.lang.Integer;
 import java.rmi.RemoteException;
@@ -118,7 +118,7 @@ public class Stage implements RemoteInterface {
     }
 
     @Override
-    public Scene getScene() throws RemoteException {
+    public GameStage getScene() throws RemoteException {
         return null;
     }
 }

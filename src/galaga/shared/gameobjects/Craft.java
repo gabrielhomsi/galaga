@@ -1,4 +1,4 @@
-package galaga.shared;
+package galaga.shared.gameobjects;
 
 import java.awt.event.KeyEvent;
 import java.io.Serializable;

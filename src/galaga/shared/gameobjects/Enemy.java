@@ -1,4 +1,4 @@
-package galaga.shared;
+package galaga.shared.gameobjects;
 
 import java.io.Serializable;
 import java.util.Random;

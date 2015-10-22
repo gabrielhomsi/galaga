@@ -1,4 +1,4 @@
-package galaga.shared;
+package galaga.shared.gameobjects;
 
 public interface GameObject {
     //Craft move

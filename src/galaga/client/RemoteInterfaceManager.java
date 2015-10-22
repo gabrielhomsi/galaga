@@ -13,6 +13,7 @@ public class RemoteInterfaceManager {
             return (RemoteInterface) registry.lookup("RemoteInterface");
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(-1);
         }
 
         return null;

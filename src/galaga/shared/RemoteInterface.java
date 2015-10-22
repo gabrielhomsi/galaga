@@ -1,12 +1,14 @@
 package galaga.shared;
 
+import galaga.shared.stages.Stage;
+
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface RemoteInterface extends Remote {
-    Scene getScene() throws RemoteException;
+    Stage getCurrentStage() throws RemoteException;
 
-    int getNewCraftId() throws RemoteException;
+    int getNewConnectionId() throws RemoteException;
 
     void keyCodePressed(int playerId, int keyCode) throws RemoteException;
 

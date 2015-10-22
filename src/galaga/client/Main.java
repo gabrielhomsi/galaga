@@ -1,7 +1,7 @@
 package galaga.client;
 
 import galaga.shared.RemoteInterface;
-import galaga.shared.Scene;
+import galaga.shared.stages.Stage;
 
 import javax.swing.*;
 import java.rmi.RemoteException;
@@ -9,11 +9,20 @@ import java.rmi.RemoteException;
 public class Main extends JFrame {
     private RemoteInterface remoteInterface;
     private boolean isGameRunning = false;
-    private Scene scene;
+    private Stage currentStage;
+    private int connectionId;
 
     public Main() {
         this.remoteInterface = new RemoteInterfaceManager().getRemoteInterface();
-        this.retrieveFreshScene();
+
+        try {
+            this.connectionId = this.remoteInterface.getNewConnectionId();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            System.exit(-1);
+        }
+
+        this.retrieveFreshStage();
         this.configure();
         new GameLoop(this).start();
     }
@@ -22,8 +31,8 @@ public class Main extends JFrame {
         new Main();
     }
 
-    protected Scene getScene() {
-        return this.scene;
+    protected Stage getCurrentStage() {
+        return this.currentStage;
     }
 
     private void configure() {
@@ -31,15 +40,16 @@ public class Main extends JFrame {
         this.setTitle("Galaga");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
-        this.setSize(scene.getFrameWidth(), scene.getFrameHeight());
+        this.setSize(currentStage.getFrameWidth(), currentStage.getFrameHeight());
         this.setVisible(true);
     }
 
-    protected void retrieveFreshScene() {
+    protected void retrieveFreshStage() {
         try {
-            this.scene = this.remoteInterface.getScene();
+            this.currentStage = this.remoteInterface.getCurrentStage();
         } catch (RemoteException e) {
             e.printStackTrace();
+            System.exit(-1);
         }
     }
 
@@ -49,5 +59,13 @@ public class Main extends JFrame {
 
     public void setIsGameRunning(boolean isGameRunning) {
         this.isGameRunning = isGameRunning;
+    }
+
+    public RemoteInterface getRemoteInterface() {
+        return remoteInterface;
+    }
+
+    public int getConnectionId() {
+        return connectionId;
     }
 }

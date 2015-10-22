@@ -1,6 +1,8 @@
 package galaga.client;
 
 public class GameLoop extends Thread {
+    private static final int MILLISECONDS_PER_ITERATION = 33;
+
     private Main main;
 
     public GameLoop(Main main) {
@@ -12,24 +14,14 @@ public class GameLoop extends Thread {
 
         long t0 = System.currentTimeMillis();
 
-        //teste
-        int count = 0;
-        //fim Teste
         while (this.main.getIsGameRunning()) {
             long t1 = System.currentTimeMillis();
 
-            if (t1 - t0 >= 33) {
-                this.main.retrieveFreshScene();
+            if (t1 - t0 >= MILLISECONDS_PER_ITERATION) {
+                this.main.retrieveFreshStage();
                 this.main.repaint();
-                t0 = System.currentTimeMillis();
 
-                //teste
-                count++;
-            }
-            //teste
-            if (count > 100) {
-                count = 0;
-                //printGameObjects();
+                t0 = System.currentTimeMillis();
             }
         }
     }

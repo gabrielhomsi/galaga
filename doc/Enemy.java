@@ -1,6 +1,6 @@
 package galaga.server;
 
-import galaga.shared.Scene;
+import galaga.shared.stages.GameStage;
 
 public class Enemy {
     int life;
@@ -28,7 +28,7 @@ public class Enemy {
 
     }
 
-    Scene scene;
+    GameStage scene;
     int screenWidth = scene.getFrameWidth();
     int screenHeight = scene.getTextPositionY();
 
