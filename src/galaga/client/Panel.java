@@ -4,6 +4,7 @@ import galaga.shared.gameobjects.GameObject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.LinkedList;
 
 
 class Panel extends JPanel /*implements ActionListener*/ {
@@ -20,14 +21,16 @@ class Panel extends JPanel /*implements ActionListener*/ {
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
 
-        for (GameObject gameObject : this.main.getCurrentStage().getGameObjects()) {
-            if (!gameObject.isDrawn(gameObject.getId())) {
+        LinkedList<GameObject> gameObjects = this.main.getCurrentStage().getGameObjects();
+
+        for (GameObject gameObject : gameObjects) {
+            if (!gameObject.isDrawn(gameObject.getConnectionId())) {
                 ImageIcon gameObjectImageIcon = new ImageIcon(gameObject.getImagePath());
                 Image gameObjectImage = gameObjectImageIcon.getImage();
 
                 graphics2D.drawImage(gameObjectImage, gameObject.getX(), gameObject.getY(), this.objectSize, this.objectSize, this);
 
-                gameObject.draw(gameObject.getId());
+                gameObject.draw(gameObject.getConnectionId());
             }
 
         }

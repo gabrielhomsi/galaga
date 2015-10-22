@@ -17,5 +17,5 @@ public interface Stage extends Serializable {
 
     boolean canGoToNextStage(Main main);
 
-    Stage getNextStage();
+    Stage getNextStage(Main main);
 }

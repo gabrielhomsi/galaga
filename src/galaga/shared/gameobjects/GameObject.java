@@ -1,6 +1,8 @@
 package galaga.shared.gameobjects;
 
-public interface GameObject {
+import java.io.Serializable;
+
+public interface GameObject extends Serializable {
     //Craft move
     void update(double dt);
 
@@ -21,5 +23,5 @@ public interface GameObject {
 
     void draw(int craftId);
 
-    int getId();
+    int getConnectionId();
 }

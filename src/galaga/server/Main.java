@@ -36,7 +36,7 @@ public class Main implements RemoteInterface {
         this.currentStage.notifyTime(dt);
 
         if (this.currentStage.canGoToNextStage(this)) {
-            this.currentStage = this.currentStage.getNextStage();
+            this.currentStage = this.currentStage.getNextStage(this);
         }
     }
 
@@ -47,26 +47,28 @@ public class Main implements RemoteInterface {
 
     @Override
     public int getNewConnectionId() throws RemoteException {
+        int newConnectionId = this.numberOfConnections;
+
         this.numberOfConnections++;
 
-        return this.numberOfConnections;
+        return newConnectionId;
     }
 
     @Override
-    public void keyCodePressed(int craftId, int keyCode) throws RemoteException {
+    public void keyCodePressed(int connectionId, int keyCode) throws RemoteException {
         if (this.currentStage instanceof GameStage) {
             GameStage currentStage = (GameStage) this.currentStage;
 
-            currentStage.getCraftById(craftId).keyCodePressed(keyCode);
+            currentStage.getCraftByConnectionId(connectionId).keyCodePressed(keyCode);
         }
     }
 
     @Override
-    public void keyCodeReleased(int craftId, int keyCode) throws RemoteException {
+    public void keyCodeReleased(int connectionId, int keyCode) throws RemoteException {
         if (this.currentStage instanceof GameStage) {
             GameStage currentStage = (GameStage) this.currentStage;
 
-            currentStage.getCraftById(craftId).keyCodeReleased(keyCode);
+            currentStage.getCraftByConnectionId(connectionId).keyCodeReleased(keyCode);
         }
     }
 
@@ -75,7 +77,7 @@ public class Main implements RemoteInterface {
         if (this.currentStage instanceof GameStage) {
             GameStage currentStage = (GameStage) this.currentStage;
 
-            return currentStage.getCraftById(craftId).isDrawn(craftId);
+            return currentStage.getCraftByConnectionId(craftId).isDrawn(craftId);
         }
 
         return false;

@@ -5,11 +5,12 @@ import galaga.shared.gameobjects.Enemy;
 import galaga.shared.gameobjects.GameObject;
 import galaga.shared.stages.GameStage;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
 
-public class WaveManager {
+public class WaveManager implements Serializable {
     private final GameStage currentStage;
     private ArrayList<LinkedList<GameObject>> enemyMatrix = new ArrayList<>(10);
 

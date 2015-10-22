@@ -1,9 +1,8 @@
 package galaga.shared.gameobjects;
 
-import java.io.Serializable;
 import java.util.Random;
 
-public class Enemy implements Serializable, GameObject {
+public class Enemy implements GameObject {
     int switcher = 0;
     private int x;
     private int y;
@@ -78,7 +77,7 @@ public class Enemy implements Serializable, GameObject {
         return "assets/enemies/enemyBlack1.png";
     }
 
-    public int getId() {
+    public int getConnectionId() {
         return this.id;
     }
 

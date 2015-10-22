@@ -3,7 +3,6 @@ package galaga.shared.stages;
 import galaga.server.Main;
 import galaga.shared.gameobjects.GameObject;
 
-import java.io.Serializable;
 import java.util.LinkedList;
 
 public class MenuStage implements Stage {
@@ -35,7 +34,7 @@ public class MenuStage implements Stage {
     }
 
     @Override
-    public Stage getNextStage() {
-        return new GameStage();
+    public Stage getNextStage(Main main) {
+        return new GameStage(main.getNumberOfConnections());
     }
 }

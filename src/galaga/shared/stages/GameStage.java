@@ -5,18 +5,21 @@ import galaga.shared.WaveManager;
 import galaga.shared.gameobjects.Craft;
 import galaga.shared.gameobjects.GameObject;
 
-import java.io.Serializable;
 import java.util.LinkedList;
 
 public class GameStage implements Stage {
-    private int lastNewCraftId;
-
     private LinkedList<GameObject> gameObjects;
     private WaveManager waveManager;
 
-    public GameStage() {
-        this.lastNewCraftId = 0;
+    public GameStage(int numberOfConnections) {
         this.gameObjects = new LinkedList<>();
+
+        for (int connectionId = 0; connectionId < numberOfConnections; connectionId++) {
+            Craft craft = new Craft(connectionId);
+
+            this.gameObjects.add(craft);
+        }
+
         this.waveManager = new WaveManager(this);
     }
 
@@ -44,16 +47,16 @@ public class GameStage implements Stage {
     }
 
     @Override
-    public Stage getNextStage() {
+    public Stage getNextStage(Main main) {
         return null;
     }
 
-    public Craft getCraftById(int craftId) {
+    public Craft getCraftByConnectionId(int connectionId) {
         for (GameObject gameObject : this.gameObjects) {
             if (gameObject instanceof Craft) {
                 Craft craft = (Craft) gameObject;
 
-                if (craftId == craft.getId()) {
+                if (connectionId == craft.getConnectionId()) {
                     return craft;
                 }
             }
@@ -65,14 +68,6 @@ public class GameStage implements Stage {
     public LinkedList<GameObject> getGameObjects() {
         return this.gameObjects;
     }
-
-    public Craft makeNewCraft() {
-        Craft newCraft = new Craft(this.lastNewCraftId + 1);
-        this.lastNewCraftId++;
-        this.gameObjects.add(newCraft);
-        return newCraft;
-    }
-
 
     public int getDistanceBetween2Points(int pointAX, int pointAY, int pointBX, int pointBY) {
         int distance;
@@ -90,7 +85,7 @@ public class GameStage implements Stage {
                 System.out.printf("Player");
                 aux = getDistanceBetween2Points(positionX, positionY, gameObject.getX(), gameObject.getY());
                 if (aux < distance) {
-                    closestPlayer = gameObject.getId();
+                    closestPlayer = gameObject.getConnectionId();
                 }
             } else {
                 System.out.println("Enemy");

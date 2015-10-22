@@ -1,10 +1,9 @@
 package galaga.shared.gameobjects;
 
 import java.awt.event.KeyEvent;
-import java.io.Serializable;
 
-public class Craft implements Serializable, GameObject {
-    private int id;
+public class Craft implements GameObject {
+    private int connectionId;
 
     private boolean isDrawn = false;
 
@@ -17,8 +16,8 @@ public class Craft implements Serializable, GameObject {
 
     private int xSpeed;
 
-    public Craft(int id) {
-        this.id = id;
+    public Craft(int connectionId) {
+        this.connectionId = connectionId;
 
         this.x = 0;
         this.y = 530;
@@ -76,8 +75,8 @@ public class Craft implements Serializable, GameObject {
         return "assets/playerShip1_Blue.png";
     }
 
-    public int getId() {
-        return this.id;
+    public int getConnectionId() {
+        return this.connectionId;
     }
 
     public boolean isDrawn(int craftId) {
