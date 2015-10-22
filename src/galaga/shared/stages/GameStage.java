@@ -7,14 +7,18 @@ import galaga.shared.gameobjects.GameObject;
 
 import java.awt.*;
 import java.util.LinkedList;
+import java.util.Random;
 
 public class GameStage implements Stage {
     private LinkedList<GameObject> gameObjects;
     private WaveManager waveManager;
     //corrigi a divisão por 1000.0 no GameLoop
     private long timeToNewWave = 1;//ms
-
+    //tempo passado
     private double timePassed = 0.0;
+    //teste waveManager.destroy()
+    private double timePassed2 = 0.0;
+    private boolean canDestroy = false;
 
     public GameStage(int numberOfConnections) {
         this.gameObjects = new LinkedList<>();
@@ -40,14 +44,22 @@ public class GameStage implements Stage {
 
     @Override
     public void notifyTime(double dt) {
-        System.out.println("GameStage dt " + dt + "ns");
+//        System.out.println("GameStage dt " + dt + "ns");
 //        System.out.println("notifyTime: " + dt);
         this.timePassed += dt;
+        this.timePassed2 += dt;
         if(this.timePassed > this.timeToNewWave){
             timePassed -= this.timeToNewWave;
             System.out.printf("New Wave after " + timeToNewWave + "secs");
             this.waveManager.newWave();
+            this.canDestroy = !this.canDestroy;
         }
+        if(this.timePassed2 > (this.timeToNewWave * 0.2)){
+            System.out.println("Destroy");
+            Random random = new Random();
+            this.waveManager.destroy(random.nextInt(90));
+        }
+
     }
 
     @Override

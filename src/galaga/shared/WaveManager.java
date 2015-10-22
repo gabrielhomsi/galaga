@@ -78,4 +78,21 @@ public class WaveManager implements Serializable {
         }
         //createEnemy();
     }
+
+    public void destroy(int index){
+
+        index+=9;//eliminando os players
+        System.out.println("Destroyed " + index);
+
+        try{
+            this.currentStage.getGameObjects().remove(index);
+
+            this.enemyMatrix.get(index/10).remove();
+        } catch (/*IndexOutOfBoundsException*/Exception e){
+            System.out.println("Elemento nao existe");
+        }
+
+
+    }
+
 }
