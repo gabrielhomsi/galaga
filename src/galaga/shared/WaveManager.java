@@ -5,6 +5,7 @@ import galaga.shared.gameobjects.Enemy;
 import galaga.shared.gameobjects.GameObject;
 import galaga.shared.stages.GameStage;
 
+import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -26,8 +27,9 @@ public class WaveManager implements Serializable {
         int positionX = (this.currentStage.getFrameWidth() / 4) + i * 30;
         int positionY = index * 30;
 
+        Point position = new Point(positionX, positionY);
 
-        Enemy enemy = new Enemy(positionX, positionY, this.currentStage.getFrameWidth(), this.currentStage.getFrameHeight());
+        Enemy enemy = new Enemy(position, this.currentStage.getFrameWidth(), this.currentStage.getFrameHeight());
         this.currentStage.getGameObjects().add(enemy);
 
         this.enemyMatrix.get(index).add(enemy);

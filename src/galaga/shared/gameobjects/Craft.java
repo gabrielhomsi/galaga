@@ -1,36 +1,27 @@
 package galaga.shared.gameobjects;
 
 import java.awt.event.KeyEvent;
+import java.awt.Point;
 
 public class Craft implements GameObject {
     private int connectionId;
-
-    private boolean isDrawn = false;
-
-    private int x;
-    private int y;
-
-    private int frameWidth = 800;//Scene variable
-
-    private int objectSize = 30;//120 �timo valor
+    private int frameWidth;
+    private Point position;
 
     private int xSpeed;
 
-    public Craft(int connectionId) {
+    private int objectSize = 30;//120 �timo valor
+
+    public Craft(int connectionId, int frameWidth) {
         this.connectionId = connectionId;
-
-        this.x = 0;
-        this.y = 530;
-
+        this.frameWidth = frameWidth;
+        this.position = new Point(0, 530);
         this.xSpeed = 0;
     }
 
-    public int getX() {
-        return this.x;
-    }
-
-    public int getY() {
-        return this.y;
+    @Override
+    public Point getPosition() {
+        return this.position;
     }
 
     public void keyCodePressed(int keyCode) {
@@ -51,8 +42,8 @@ public class Craft implements GameObject {
 
     @Override
     public void update(double dt) {
-        if (((this.x + (int) (this.xSpeed * dt)) > 0) && ((this.x + (int) (this.xSpeed * dt)) < (frameWidth - objectSize))) {
-            this.x += (int) (this.xSpeed * dt);
+        if (((this.position.x + (int) (this.xSpeed * dt)) > 0) && ((this.position.x + (int) (this.xSpeed * dt)) < (frameWidth - objectSize))) {
+            this.position.x += (int) (this.xSpeed * dt);
         }
     }
 
@@ -65,11 +56,6 @@ public class Craft implements GameObject {
     public void updateY(double dt) {
     }
 
-//    @Override
-//    public int getClosestPlayerId(int positionX, int positionY){
-//        return 0;
-//    }
-
     @Override
     public String getImagePath() {
         return "assets/playerShip1_Blue.png";
@@ -77,13 +63,5 @@ public class Craft implements GameObject {
 
     public int getConnectionId() {
         return this.connectionId;
-    }
-
-    public boolean isDrawn(int craftId) {
-        return isDrawn;
-    }
-
-    public void draw(int craftId) {
-        this.isDrawn = true;
     }
 }

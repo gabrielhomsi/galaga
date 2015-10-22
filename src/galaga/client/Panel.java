@@ -24,15 +24,12 @@ class Panel extends JPanel /*implements ActionListener*/ {
         LinkedList<GameObject> gameObjects = this.main.getCurrentStage().getGameObjects();
 
         for (GameObject gameObject : gameObjects) {
-            if (!gameObject.isDrawn(gameObject.getConnectionId())) {
-                ImageIcon gameObjectImageIcon = new ImageIcon(gameObject.getImagePath());
-                Image gameObjectImage = gameObjectImageIcon.getImage();
+            ImageIcon imageIcon = new ImageIcon(gameObject.getImagePath());
+            Image image = imageIcon.getImage();
 
-                graphics2D.drawImage(gameObjectImage, gameObject.getX(), gameObject.getY(), this.objectSize, this.objectSize, this);
+            Point position = gameObject.getPosition();
 
-                gameObject.draw(gameObject.getConnectionId());
-            }
-
+            graphics2D.drawImage(image, position.x, position.y, this.objectSize, this.objectSize, this);
         }
     }
 

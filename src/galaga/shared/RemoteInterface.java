@@ -13,8 +13,4 @@ public interface RemoteInterface extends Remote {
     void keyCodePressed(int connectionId, int keyCode) throws RemoteException;
 
     void keyCodeReleased(int connectionId, int keyCode) throws RemoteException;
-
-    boolean isDrawn(int craftId) throws RemoteException;
-
-    void draw(int craftId) throws RemoteException;
 }

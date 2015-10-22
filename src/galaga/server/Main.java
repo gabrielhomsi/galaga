@@ -72,22 +72,6 @@ public class Main implements RemoteInterface {
         }
     }
 
-    @Override
-    public boolean isDrawn(int craftId) throws RemoteException {
-        if (this.currentStage instanceof GameStage) {
-            GameStage currentStage = (GameStage) this.currentStage;
-
-            return currentStage.getCraftByConnectionId(craftId).isDrawn(craftId);
-        }
-
-        return false;
-    }
-
-    @Override
-    public void draw(int craftId) {
-        this.draw(craftId);
-    }
-
     public boolean getIsGameRunning() {
         return this.isGameRunning;
     }

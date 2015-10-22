@@ -1,5 +1,6 @@
 package galaga.shared.gameobjects;
 
+import java.awt.*;
 import java.io.Serializable;
 
 public interface GameObject extends Serializable {
@@ -10,18 +11,10 @@ public interface GameObject extends Serializable {
     void updateX(double dt);
 
     void updateY(double dt);
-//    int getClosestPlayerId(int positionX, int positionY);
+//    int getClosestPlayerConnectionId(int positionX, int positionY);
 
 
     String getImagePath();//novo, selecionar n image paths
 
-    int getX();
-
-    int getY();
-
-    boolean isDrawn(int craftId);
-
-    void draw(int craftId);
-
-    int getConnectionId();
+    Point getPosition();
 }

@@ -5,6 +5,7 @@ import galaga.shared.WaveManager;
 import galaga.shared.gameobjects.Craft;
 import galaga.shared.gameobjects.GameObject;
 
+import java.awt.*;
 import java.util.LinkedList;
 
 public class GameStage implements Stage {
@@ -15,7 +16,7 @@ public class GameStage implements Stage {
         this.gameObjects = new LinkedList<>();
 
         for (int connectionId = 0; connectionId < numberOfConnections; connectionId++) {
-            Craft craft = new Craft(connectionId);
+            Craft craft = new Craft(connectionId, this.getFrameWidth());
 
             this.gameObjects.add(craft);
         }
@@ -69,29 +70,29 @@ public class GameStage implements Stage {
         return this.gameObjects;
     }
 
-    public int getDistanceBetween2Points(int pointAX, int pointAY, int pointBX, int pointBY) {
-        int distance;
-        distance = (int) Math.hypot((pointAX - pointBX), (pointAY - pointBY));
-        return distance;
-    }
-
-    public int getClosestPlayerId(int positionX, int positionY) {
-        int closestPlayer = 0;//jogador mais pr?ximo
+    public int getClosestPlayerConnectionId(Point position) {
+        Craft closestPlayer = null;
         int distance = Integer.MAX_VALUE;//Distancia setada para o "infinito"
-        int aux;
 
         for (GameObject gameObject : this.gameObjects) {
-            if (gameObject.getClass().isInstance(Craft.class)) {
+            if (gameObject instanceof Craft) {
                 System.out.printf("Player");
-                aux = getDistanceBetween2Points(positionX, positionY, gameObject.getX(), gameObject.getY());
+
+                Point position1 = gameObject.getPosition();
+                int aux = (int) position.distance(position1);
+
                 if (aux < distance) {
-                    closestPlayer = gameObject.getConnectionId();
+                    closestPlayer = (Craft) gameObject;
                 }
             } else {
                 System.out.println("Enemy");
             }
         }
 
-        return closestPlayer;
+        if (closestPlayer != null) {
+            return closestPlayer.getConnectionId();
+        } else {
+            return -1;
+        }
     }
 }
