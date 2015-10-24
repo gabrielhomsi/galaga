@@ -11,7 +11,7 @@ import java.util.LinkedList;
 public class GameStage implements Stage {
     private LinkedList<GameObject> gameObjects;
     private WaveManager waveManager;
-    //corrigi a divisão por 1000.0 no GameLoop
+    //corrigi a divisao por 1000.0 no GameLoop
     private long timeToNewWave = 1;//ms
 
     private double timePassed = 0.0;

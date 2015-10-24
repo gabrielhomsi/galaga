@@ -8,3 +8,8 @@
 - Se quiser executar tudo novamente, é necessário reinicar o rmiregistry. Basta abortar sua execução (no terminal do Linux usa-se a combinação Ctrl-C para tal).
 - Lembre-se também de fechar o Server no IntelliJ.
 
+# Compilando no terminal
+
+- Certifique-se que o *Apache Ant* está instalado na sua máquina
+- Dentro do diretório raiz do repositório, rode o comando `ant`
+

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_galaga" default="compile.module.galaga">
+  <dirname property="module.galaga.basedir" file="${ant.file.module_galaga}"/>
+  
+  <property name="module.jdk.home.galaga" value="${jdk.home.1.8}"/>
+  <property name="module.jdk.bin.galaga" value="${jdk.bin.1.8}"/>
+  <property name="module.jdk.classpath.galaga" value="jdk.classpath.1.8"/>
+  
+  <property name="compiler.args.galaga" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="galaga.output.dir" value="${module.galaga.basedir}/out/production/galaga"/>
+  <property name="galaga.testoutput.dir" value="${module.galaga.basedir}/out/test/galaga"/>
+  
+  <path id="galaga.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="galaga.module.production.classpath">
+    <path refid="${module.jdk.classpath.galaga}"/>
+  </path>
+  
+  <path id="galaga.runtime.production.module.classpath">
+    <pathelement location="${galaga.output.dir}"/>
+  </path>
+  
+  <path id="galaga.module.classpath">
+    <path refid="${module.jdk.classpath.galaga}"/>
+    <pathelement location="${galaga.output.dir}"/>
+  </path>
+  
+  <path id="galaga.runtime.module.classpath">
+    <pathelement location="${galaga.testoutput.dir}"/>
+    <pathelement location="${galaga.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.galaga">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.galaga">
+    <patternset refid="excluded.from.module.galaga"/>
+  </patternset>
+  
+  <path id="galaga.module.sourcepath">
+    <dirset dir="${module.galaga.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.galaga" depends="compile.module.galaga.production,compile.module.galaga.tests" description="Compile module galaga"/>
+  
+  <target name="compile.module.galaga.production" description="Compile module galaga; production classes">
+    <mkdir dir="${galaga.output.dir}"/>
+    <javac destdir="${galaga.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.galaga}/javac">
+      <compilerarg line="${compiler.args.galaga}"/>
+      <bootclasspath refid="galaga.module.bootclasspath"/>
+      <classpath refid="galaga.module.production.classpath"/>
+      <src refid="galaga.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.galaga"/>
+    </javac>
+    
+    <copy todir="${galaga.output.dir}">
+      <fileset dir="${module.galaga.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.galaga.tests" depends="compile.module.galaga.production" description="compile module galaga; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.galaga" description="cleanup module">
+    <delete dir="${galaga.output.dir}"/>
+    <delete dir="${galaga.testoutput.dir}"/>
+  </target>
+</project>
