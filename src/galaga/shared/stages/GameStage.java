@@ -12,7 +12,7 @@ import java.util.Random;
 public class GameStage implements Stage {
     private LinkedList<GameObject> gameObjects;
     private WaveManager waveManager;
-    //corrigi a divisão por 1000.0 no GameLoop
+    //corrigi a divisao por 1000.0 no GameLoop
     private long timeToNewWave = 1;//ms
     //tempo passado
     private double timePassed = 0.0;
