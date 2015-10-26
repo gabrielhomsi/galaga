@@ -105,7 +105,7 @@ public class WaveManager implements Serializable {
         } catch (/*IndexOutOfBoundsException*/Exception e){
             System.out.println("Elemento nao existe");
         }
-
+    //alter
 
     }
 
