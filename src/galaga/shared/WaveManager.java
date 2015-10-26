@@ -70,7 +70,7 @@ public class WaveManager implements Serializable {
         index = 0;
         if (!rowEmpty) {
             for (LinkedList<GameObject> enemyRow : enemyMatrix) {
-                for (int i = 0; i < 10 - enemyRow.size(); i++) {//preenche posi�oes vazias das linhas
+                for (int i = 0; i < 10 - enemyRow.size(); i++) {//preenche posicoes vazias das linhas
                     createEnemy(index, i);
                     System.out.println("'Buraco' preenchido");
                 }

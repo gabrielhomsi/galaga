@@ -25,7 +25,7 @@ public class GameLoop extends Thread {
             if ((t1 - t0) >= MILLISECONDS_PER_ITERATION) {
                 //aprox. 30 iter/sec
                 double dt = (t1 - t0) / 1000.0;//SECONDS
-                //aprox. 0.03 iter/sec ---> 33 secs para cada atualização
+                //aprox. 0.03 iter/sec ---> 33 secs para cada atualizacao
 //                System.out.println("GameLoop dt " + dt + "s");
                 this.main.update(dt);
 
