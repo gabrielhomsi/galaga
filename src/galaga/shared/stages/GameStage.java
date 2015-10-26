@@ -12,13 +12,6 @@ import java.util.Random;
 public class GameStage implements Stage {
     private LinkedList<GameObject> gameObjects;
     private WaveManager waveManager;
-    //corrigi a divisão por 1000.0 no GameLoop
-    private long timeToNewWave = 1;//ms
-    //tempo passado
-    private double timePassed = 0.0;
-    //teste waveManager.destroy()
-    private double timePassed2 = 0.0;
-    private boolean canDestroy = false;
 
     public GameStage(int numberOfConnections) {
         this.gameObjects = new LinkedList<>();
@@ -44,22 +37,7 @@ public class GameStage implements Stage {
 
     @Override
     public void notifyTime(double dt) {
-//        System.out.println("GameStage dt " + dt + "ns");
-//        System.out.println("notifyTime: " + dt);
-        this.timePassed += dt;
-        this.timePassed2 += dt;
-        if(this.timePassed > this.timeToNewWave){
-            timePassed -= this.timeToNewWave;
-            System.out.printf("New Wave after " + timeToNewWave + "secs");
-            this.waveManager.newWave();
-            this.canDestroy = !this.canDestroy;
-        }
-        if(this.timePassed2 > (this.timeToNewWave * 0.2)){
-            System.out.println("Destroy");
-            Random random = new Random();
-            this.waveManager.destroy(random.nextInt(90));
-        }
-
+        this.waveManager.notifyTime(dt);
     }
 
     @Override
@@ -90,27 +68,32 @@ public class GameStage implements Stage {
         return this.gameObjects;
     }
 
-    public Craft getClosestCraftByConnectionId(Point position) {
-        Craft closestPlayer = null;
-        int distance = Integer.MAX_VALUE;//Distancia setada para o "infinito"
+    public Craft getClosestCraftByConnectionId(Point enemyPosition) {
+        Craft closestCraft = null;
 
         for (GameObject gameObject : this.gameObjects) {
             if (gameObject instanceof Craft) {
                 System.out.printf("Player");
 
-                Point position1 = gameObject.getPosition();
-                int aux = (int) position.distance(position1);
+                Craft currentCraft = (Craft) gameObject;
 
-                if (aux < distance) {
-                    closestPlayer = (Craft) gameObject;
+                if (closestCraft == null) {
+                    closestCraft = currentCraft;
+                } else {
+                    int distanceClosestCraft = (int) enemyPosition.distance(closestCraft.getPosition());
+                    int distanceCurrentCraft = (int) enemyPosition.distance(currentCraft.getPosition());
+
+                    if (distanceCurrentCraft < distanceClosestCraft) {
+                        closestCraft = currentCraft;
+                    }
                 }
             } else {
                 System.out.println("Enemy");
             }
         }
 
-        if (closestPlayer != null) {
-            return closestPlayer;
+        if (closestCraft != null) {
+            return closestCraft;
         } else {
             return null;
         }

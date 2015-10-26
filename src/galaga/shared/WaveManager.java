@@ -12,18 +12,19 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class WaveManager implements Serializable {
+    private static final int TIME_TO_NEW_WAVE = 1;
+
     private final GameStage currentStage;
     private ArrayList<LinkedList<GameObject>> enemyMatrix = new ArrayList<>(10);
+    private double timePassed = 0;
+    private double timePassed2 = 0;
+    private boolean canDestroy = false;
 
     public WaveManager(GameStage gameStage) {
         this.currentStage = gameStage;
     }
 
     private void createEnemy(int index, int i) {
-        Random random = new Random();
-//        int positionX = random.nextInt(this.scene.getFrameWidth() - 70);
-//        int positionY = random.nextInt(this.scene.getFrameHeight() - 70);
-
         int positionX = (this.currentStage.getFrameWidth() / 4) + i * 30;
         int positionY = index * 30;
 
@@ -36,7 +37,7 @@ public class WaveManager implements Serializable {
     }
     //GameObject[][] enemyMatrix = new GameObject[10][10];
 
-    public void newWave() {
+    private void newWave() {
         int index = 0;
         boolean rowEmpty = false;
         System.out.println("WAVE");
@@ -81,13 +82,26 @@ public class WaveManager implements Serializable {
 
     public void destroy(int index){
 
-        index+=9;//eliminando os players
+        index+=2;//eliminando os players
         System.out.println("Destroyed " + index);
 
         try{
-            this.currentStage.getGameObjects().remove(index);
+            //debuggando
+            //Dando erro
+            //this.currentStage.getGameObjects().remove(index);
+//            this.currentStage.getGameObjects().remove(this.currentStage.getGameObjects().get(index));
+            System.out.println(this.currentStage.getGameObjects().get(index));
+            if(this.currentStage.getGameObjects().get(index) != null){
+               // this.currentStage.getGameObjects().remove(index);
+                //this.enemyMatrix.get(index / 10).remove();
+            }
 
-            this.enemyMatrix.get(index/10).remove();
+            System.out.println(this.currentStage.getGameObjects().get(index).getPosition());
+//            System.out.println(this.currentStage.getGameObjects().get(index).toString());
+            //dando erro
+            //Fim do debugging
+
+
         } catch (/*IndexOutOfBoundsException*/Exception e){
             System.out.println("Elemento nao existe");
         }
@@ -95,4 +109,19 @@ public class WaveManager implements Serializable {
 
     }
 
+    public void notifyTime(double dt) {
+        this.timePassed += dt;
+        this.timePassed2 += dt;
+
+        if (this.timePassed > TIME_TO_NEW_WAVE){
+            this.timePassed -= TIME_TO_NEW_WAVE;
+            this.newWave();
+            this.canDestroy = !this.canDestroy;
+        }
+
+        if (this.timePassed2 > (TIME_TO_NEW_WAVE * 0.2)){
+            Random random = new Random();
+            this.destroy(random.nextInt(90));
+        }
+    }
 }

@@ -29,6 +29,8 @@ public class Craft implements GameObject {
             this.xSpeed = -200;
         } else if (keyCode == KeyEvent.VK_RIGHT) {
             this.xSpeed = 200;
+        } else if (keyCode == KeyEvent.VK_SPACE) {
+            // Tiros aqui (keyPressed)
         }
     }
 
@@ -37,6 +39,8 @@ public class Craft implements GameObject {
             this.xSpeed = 0;
         } else if (keyCode == KeyEvent.VK_RIGHT) {
             this.xSpeed = 0;
+        } else if (keyCode == KeyEvent.VK_SPACE) {
+            // Tiros aqui (keyReleased)
         }
     }
 

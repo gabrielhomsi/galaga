@@ -23,7 +23,9 @@ public class Main implements RemoteInterface {
     }
 
     public static void main(String[] args) throws Exception {
-        new Main();
+        Main main = new Main();
+
+        main.getNewConnectionId();
     }
 
     public void update(double dt) {
