@@ -19,6 +19,12 @@ public class Craft implements GameObject {
         this.xSpeed = 0;
     }
 
+    //seta um ponto de destino, implementado pela Classe Enemy
+    @Override
+    public void setRushPoint(Craft player) {
+
+    }
+
     @Override
     public Point getPosition() {
         return this.position;

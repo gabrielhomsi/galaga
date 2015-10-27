@@ -35,6 +35,8 @@ public class WaveManager implements Serializable {
         System.out.println("Time to Move enemy[ " + index + ", " + i + "]:" + timeToMove);
 
         Enemy enemy = new Enemy(position, this.currentStage.getFrameWidth(), this.currentStage.getFrameHeight(), timeToMove);
+        //Setando Rally Point
+        enemy.setRushPoint(this.currentStage.getClosestCraftByConnectionId(enemy.getPosition()));
         this.currentStage.getGameObjects().add(enemy);
 
         this.enemyMatrix.get(index).add(enemy);

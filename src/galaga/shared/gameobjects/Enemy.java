@@ -18,6 +18,8 @@ public class Enemy implements GameObject {
     private double timeToMove;
     private double timePassed = 0;
 
+    private Point rushPoint = null;
+
 
     public Enemy(Point position, int screenWidth, int screenHeight, /*int rowNumber*/double timeToMove) {
         this.position = position;
@@ -32,6 +34,12 @@ public class Enemy implements GameObject {
     @Override
     public Point getPosition() {
         return this.position;
+    }
+
+
+    @Override
+    public void setRushPoint(Craft player) {
+        this.rushPoint = player.getPosition();
     }
 
     @Override

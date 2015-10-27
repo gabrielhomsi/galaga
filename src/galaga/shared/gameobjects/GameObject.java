@@ -7,6 +7,8 @@ public interface GameObject extends Serializable {
     //Craft move
     void update(double dt);
 
+    void setRushPoint(Craft player);
+
     //EnemyMove
     //void updateX(double dt);
 
