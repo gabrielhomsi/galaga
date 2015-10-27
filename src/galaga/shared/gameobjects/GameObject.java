@@ -15,6 +15,7 @@ public interface GameObject extends Serializable {
     // void updateY(double dt);
 //    int getClosestPlayerConnectionId(int positionX, int positionY);
 
+    public String getBulletImagePath();
 
     String getImagePath();//novo, selecionar n image paths
 

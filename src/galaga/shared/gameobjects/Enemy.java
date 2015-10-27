@@ -4,6 +4,11 @@ import java.awt.*;
 import java.util.Random;
 
 public class Enemy implements GameObject {
+    //Ricardo----------------------------------------
+    private boolean live = true;
+    //Ricardo----------------------------------------
+
+
     int switcher = 0;
     //teste
     boolean startMove = false;//delay para começar o movimento
@@ -56,12 +61,17 @@ public class Enemy implements GameObject {
 
     @Override
     public void setRushPoint(Craft player) {
+        //Ricardo----------------------------------------
+        //if(live == false) return;
+        //Ricardo----------------------------------------
         this.rushPoint = player.getPosition();
     }
 
     @Override
     public void update(double dt) {
-
+        //Ricardo----------------------------------------
+        //if(live == false) return;
+        //Ricardo----------------------------------------
         if(startMove){
             System.out.println(this.timePassed + ", passed/dt ," + dt);
             this.timePassed += dt;
@@ -150,5 +160,20 @@ public class Enemy implements GameObject {
 //        }
     }
 
+    //Ricardo----------------------------------------
+    @Override
+    public String getBulletImagePath() {
+        return "assets/lasers/laserBlue.png";
+    }
+    public boolean isAlive() {
+        return this.live;
+    }
 
+    public void Die() {
+        this.live = false;
+        this.position.x = -1;
+        this.position.y = -1;
+    }
+
+    //Ricardo----------------------------------------
 }

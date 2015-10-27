@@ -8,6 +8,11 @@ import galaga.shared.gameobjects.GameObject;
 import java.awt.*;
 import java.util.LinkedList;
 
+//Ricardo------------------------------------
+import galaga.shared.gameobjects.Enemy;
+//Ricardo------------------------------------
+
+
 public class GameStage implements Stage {
     private LinkedList<GameObject> gameObjects;
     private WaveManager waveManager;
@@ -63,6 +68,9 @@ public class GameStage implements Stage {
     }
 
     public LinkedList<GameObject> getGameObjects() {
+        //Ricardo--------------------
+        //checkColision();
+        //Ricardo--------------------
         return this.gameObjects;
     }
 
@@ -96,4 +104,30 @@ public class GameStage implements Stage {
             return null;
         }
     }
+
+    //Ricardo---------------------------------
+    private void checkColision() {
+        if (this.gameObjects == null) return;
+        for (GameObject gObjectC : this.gameObjects) {
+            if (gObjectC instanceof Craft) {
+                int i = 0;
+                for (int[] b : ((Craft) gObjectC).getBullets()) {
+                    for (GameObject gObjectE : this.gameObjects) {
+                        if (gObjectE instanceof Enemy) {
+                            if (Math.abs(b[0] - gObjectE.getPosition().x) <= 15) {
+                                if (Math.abs(b[1] - gObjectE.getPosition().y) <= 15) {
+                                    ((Enemy) gObjectE).Die();
+                                    ((Craft) gObjectC).deSpawnBullet(i);
+                                    System.out.println("inimigo Down");
+                                }
+                            }
+                        }
+                    }
+                    i++;
+                }
+            }
+        }
+    }
+    //Ricardo-----------------------------------
+
 }
