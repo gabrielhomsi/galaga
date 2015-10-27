@@ -73,12 +73,12 @@ public class Enemy implements GameObject {
         //if(live == false) return;
         //Ricardo----------------------------------------
         if(startMove){
-            System.out.println(this.timePassed + ", passed/dt ," + dt);
+            //System.out.println(this.timePassed + ", passed/dt ," + dt);
             this.timePassed += dt;
-            System.out.println("passed/to move: " + this.timePassed + " / " + this.timeToMove);
+            //System.out.println("passed/to move: " + this.timePassed + " / " + this.timeToMove);
             if ((this.timePassed >= this.timeToMove) && (this.timePassed <= this.timeToMove + 2)) {
-                updateX(dt);
-                updateY(dt);
+                //updateX(dt);
+                //updateY(dt);
             } else if (this.timePassed > this.timeToMove + 2) {
                 this.timePassed = 0;
             }

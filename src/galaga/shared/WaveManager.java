@@ -13,7 +13,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class WaveManager implements Serializable {
-    private static final int TIME_TO_NEW_WAVE = 1;
+    private static final int TIME_TO_NEW_WAVE = 5;
 
     private final GameStage currentStage;
     private double timePassed = 0;
@@ -38,7 +38,7 @@ public class WaveManager implements Serializable {
         Enemy enemy = new Enemy(position, this.currentStage.getFrameWidth(), this.currentStage.getFrameHeight(), timeToMove);
 
         //Setando Rally Point
-        enemy.setRushPoint(this.currentStage.getClosestCraftByConnectionId(enemy.getPosition()));
+        enemy.setRushPoint(/*this.currentStage.getClosestCraftByConnectionId(enemy.getPosition())*/this.currentStage.getCraftByConnectionId(0));
         this.currentStage.getGameObjects().add(enemy);
     }
 
@@ -82,13 +82,13 @@ public class WaveManager implements Serializable {
             this.canDestroy = !this.canDestroy;
         }
 
-        if (this.timePassed2 > (TIME_TO_NEW_WAVE * 0.2)) {
-            int numberOfGameObjects = this.currentStage.getGameObjects().size();
-
-            Random random = new Random();
-            int indexToRemove = random.nextInt(numberOfGameObjects);
-
-            this.destroyEnemy(indexToRemove);
-        }
+//        if (this.timePassed2 > (TIME_TO_NEW_WAVE * 0.2)) {
+//            int numberOfGameObjects = this.currentStage.getGameObjects().size();
+//
+//            Random random = new Random();
+//            int indexToRemove = random.nextInt(numberOfGameObjects);
+//
+//            this.destroyEnemy(indexToRemove);
+//        }
     }
 }

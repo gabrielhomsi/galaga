@@ -1,5 +1,8 @@
 package galaga.server;
 
+import galaga.shared.stages.GameStage;
+import galaga.shared.stages.Stage;
+
 public class GameLoop extends Thread {
     private static final int MILLISECONDS_PER_ITERATION = 33;
 
@@ -26,6 +29,16 @@ public class GameLoop extends Thread {
                 //aprox. 0.03 iter/sec ---> 33 secs para cada atualizacao
 //                System.out.println("GameLoop dt " + dt + "s");
                 this.main.update(dt);
+
+                try{
+                    Stage stage = this.main.getCurrentStage();
+                    if(stage instanceof GameStage) {
+                        ((GameStage) stage).checkColision();
+                    }
+                } catch(Exception e){
+                    e.printStackTrace();
+                    System.out.println("Deu RUim");
+                }
 
                 t0 = System.currentTimeMillis();
             }

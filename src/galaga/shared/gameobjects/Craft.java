@@ -14,7 +14,8 @@ public class Craft implements GameObject {
     //Ricardo
     //evitar multiplos tiros serem criados juntos
     private boolean quickPush;
-    private LinkedList<int[]> shots;
+//    private LinkedList<int[]> shots;
+    private LinkedList<Point> shots;
     private int bulletSpeed;
     //Riacardo
     //-----------------------------------------------
@@ -28,9 +29,6 @@ public class Craft implements GameObject {
     private int objectSize = 30;//120 �timo valor
 
 
-
-
-
     public Craft(int connectionId, int frameWidth) {
         this.connectionId = connectionId;
         this.frameWidth = frameWidth;
@@ -38,7 +36,8 @@ public class Craft implements GameObject {
         this.xSpeed = 0;
         //Ricardo-------------------------------------
         this.bulletSpeed = 5;
-        this.shots = new LinkedList<int[]>();
+//        this.shots = new LinkedList<int[]>();
+        this.shots = new LinkedList<Point>();
         //Ricardo-------------------------------------
     }
 
@@ -87,11 +86,24 @@ public class Craft implements GameObject {
         if (((this.position.x + (int) (this.xSpeed * dt)) > 0) && ((this.position.x + (int) (this.xSpeed * dt)) < (frameWidth - objectSize))) {
             this.position.x += (int) (this.xSpeed * dt);
         }
-        for(int[] s : shots){
-            if(s[0] != -1) {
-                s[1] -= this.bulletSpeed;
+//        for(int[] s : shots){
+//            if(s[0] != -1) {
+//                s[1] -= this.bulletSpeed;
+//            }
+//        }
+        int indexToDestroy = 0;
+        for(Point shot : shots){
+            if(shot.x != -1) {
+                shot.y -= this.bulletSpeed;
+                if(shot.y < -10){
+                    //Elimina stackOverflow Exception
+                    shots.remove(indexToDestroy);
+                    System.out.println("Bullet destroyed");
+                }
             }
+            indexToDestroy++;
         }
+
     }
 
     @Override
@@ -112,17 +124,17 @@ public class Craft implements GameObject {
 
     //Ricardo-------------------------------------
     private void spawnBullet(){
-        int a[] = new int[2];
-        a[0] = this.getPosition().x;
-        a[1] = this.getPosition().y;
-        shots.push(a);
+        Point playerActualPosition = new Point();
+        playerActualPosition.x = this.getPosition().x;
+        playerActualPosition.y = this.getPosition().y;
+        shots.push(playerActualPosition);
     }
 
     public void deSpawnBullet(int i){
-        shots.get(i)[0] = -1;
+        shots.get(i).x = -1;
     }
 
-    public LinkedList<int[]> getBullets(){
+    public LinkedList<Point> getBullets(){
         return shots;
     }
     //Ricardo-------------------------------------

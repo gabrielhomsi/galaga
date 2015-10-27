@@ -40,8 +40,20 @@ public class GameStage implements Stage {
 
     @Override
     public void notifyTime(double dt) {
+//        contador++;
+//        if(contador > 20){
+//            checkColisionTime();
+//            contador=0;
+//        }
+
         this.waveManager.notifyTime(dt);
     }
+
+//    private int contador = 0;
+//
+//    private void checkColisionTime(){
+//        checkColision();
+//    }
 
     @Override
     public boolean canGoToNextStage(Main main) {
@@ -69,12 +81,12 @@ public class GameStage implements Stage {
 
     public LinkedList<GameObject> getGameObjects() {
         //Ricardo--------------------
-        //checkColision();
+//        checkColision();
         //Ricardo--------------------
         return this.gameObjects;
     }
 
-    public Craft getClosestCraftByConnectionId(Point enemyPosition) {
+    private Craft getClosestCraftByConnectionId(Point enemyPosition) {
         Craft closestCraft = null;
 
         for (GameObject gameObject : this.gameObjects) {
@@ -106,21 +118,27 @@ public class GameStage implements Stage {
     }
 
     //Ricardo---------------------------------
-    private void checkColision() {
+    public void checkColision() {
         if (this.gameObjects == null) return;
         for (GameObject gObjectC : this.gameObjects) {
             if (gObjectC instanceof Craft) {
                 int i = 0;
-                for (int[] b : ((Craft) gObjectC).getBullets()) {
+                for (Point bullet : ((Craft) gObjectC).getBullets()) {
+                    int j = 0;
+                    //System.out.println("bullet[" + bullet.x + ", " + bullet.y + "]");
                     for (GameObject gObjectE : this.gameObjects) {
                         if (gObjectE instanceof Enemy) {
-                            if (Math.abs(b[0] - gObjectE.getPosition().x) <= 15) {
-                                if (Math.abs(b[1] - gObjectE.getPosition().y) <= 15) {
-                                    ((Enemy) gObjectE).Die();
+                            //System.out.println("Enemy[" + gObjectE.getPosition().x + ", " + gObjectE.getPosition().y + "]");
+                            if (Math.abs(bullet.x - gObjectE.getPosition().x) <= /*15*/15) {
+                                if (Math.abs(bullet.y - gObjectE.getPosition().y) <= /*15*/15) {
+//                                    ((Enemy) gObjectE).Die();
+                                    ((Craft) gObjectC).getBullets().remove(i);//destroy bala ao colidir
+                                    this.waveManager.destroyEnemy(j);
                                     ((Craft) gObjectC).deSpawnBullet(i);
                                     System.out.println("inimigo Down");
                                 }
                             }
+                            j++;
                         }
                     }
                     i++;
