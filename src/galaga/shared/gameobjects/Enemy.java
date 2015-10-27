@@ -19,12 +19,29 @@ public class Enemy implements GameObject {
     private double timePassed = 0;
 
     private Point rushPoint = null;
+    private String imagePath;
 
 
     public Enemy(Point position, int screenWidth, int screenHeight, /*int rowNumber*/double timeToMove) {
         this.position = position;
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
+
+        int rnd = new Random().nextInt() % 6;
+
+        if (rnd == 0) {
+            this.imagePath = "assets/enemies/enemyBlack1.png";
+        } else if (rnd == 1) {
+            this.imagePath = "assets/enemies/enemyBlack2.png";
+        } else if (rnd == 2) {
+            this.imagePath = "assets/enemies/ufoBlue.png";
+        } else if (rnd == 3) {
+            this.imagePath = "assets/enemies/ufoGreen.png";
+        } else if (rnd == 4) {
+            this.imagePath = "assets/enemies/ufoRed.png";
+        } else if (rnd == 5) {
+            this.imagePath = "assets/enemies/ufoYellow.png";
+        }
 
         this.xSpeed = 100;
         this.ySpeed = 100;
@@ -101,7 +118,7 @@ public class Enemy implements GameObject {
 
     @Override
     public String getImagePath() {
-        return "assets/enemies/enemyBlack1.png";
+        return this.imagePath;
     }
 
     //Enemy "AI"

@@ -48,8 +48,8 @@ public class Main extends JFrame {
         try {
             this.currentStage = this.remoteInterface.getCurrentStage();
         } catch (RemoteException e) {
-            e.printStackTrace();
-            System.exit(-1);
+//            e.printStackTrace();
+//            System.exit(-1);
         }
     }
 
