@@ -15,13 +15,18 @@ public class Enemy implements GameObject {
     private int ySpeed;
     private Point position;
 
-    public Enemy(Point position, int screenWidth, int screenHeight /*int rowNumber*/) {
+    private double timeToMove;
+    private double timePassed = 0;
+
+
+    public Enemy(Point position, int screenWidth, int screenHeight, /*int rowNumber*/double timeToMove) {
         this.position = position;
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
 
         this.xSpeed = 100;
         this.ySpeed = 100;
+        this.timeToMove = timeToMove;
     }
 
     @Override
@@ -33,8 +38,16 @@ public class Enemy implements GameObject {
     public void update(double dt) {
 
         if(startMove){
-            updateX(dt);
-            updateY(dt);
+            System.out.println(this.timePassed + ", passed/dt ," + dt);
+            this.timePassed += dt;
+            System.out.println("passed/to move: " + this.timePassed + " / " + this.timeToMove);
+            if ((this.timePassed >= this.timeToMove) && (this.timePassed <= this.timeToMove + 2)) {
+                updateX(dt);
+                updateY(dt);
+            } else if (this.timePassed > this.timeToMove + 2) {
+                this.timePassed = 0;
+            }
+
         } else{
             switcher++;
             if(switcher > 30){
@@ -50,9 +63,9 @@ public class Enemy implements GameObject {
     public void updateX(double dt/*time*/) {
         // if (((this.x + (int) (this.xSpeed * dt)) > 0) && ((this.x + (int) (this.xSpeed * dt)) < (screenWidth - objectSize))) {
         if (switcher < 20) {
-            this.position.x += (int) /*(this.xSpeed * dt) + */(this.xSpeed * dt) * switcher / 10;
+            this.position.x += (int) /*(this.xSpeed * dt) + */(this.xSpeed * dt) * switcher / 3;
         } else {
-            this.position.x += (int) /*(this.xSpeed * dt) + */(this.xSpeed * dt);
+//            this.position.x += (int) /*(this.xSpeed * dt) + */(this.xSpeed * dt);
             switcher *= -1;
         }
         switcher++;
