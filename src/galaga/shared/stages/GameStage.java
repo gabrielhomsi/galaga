@@ -7,7 +7,6 @@ import galaga.shared.gameobjects.GameObject;
 
 import java.awt.*;
 import java.util.LinkedList;
-import java.util.Random;
 
 public class GameStage implements Stage {
     private LinkedList<GameObject> gameObjects;
@@ -32,7 +31,6 @@ public class GameStage implements Stage {
     public int getFrameHeight() {
         return 600;
     }
-
 
 
     @Override

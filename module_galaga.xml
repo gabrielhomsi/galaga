@@ -2,9 +2,6 @@
 <project name="module_galaga" default="compile.module.galaga">
   <dirname property="module.galaga.basedir" file="${ant.file.module_galaga}"/>
   
-  <property name="module.jdk.home.galaga" value="${jdk.home.1.8}"/>
-  <property name="module.jdk.bin.galaga" value="${jdk.bin.1.8}"/>
-  <property name="module.jdk.classpath.galaga" value="jdk.classpath.1.8"/>
   
   <property name="compiler.args.galaga" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
   
@@ -15,16 +12,13 @@
     <!-- Paths to be included in compilation bootclasspath -->
   </path>
   
-  <path id="galaga.module.production.classpath">
-    <path refid="${module.jdk.classpath.galaga}"/>
-  </path>
+  <path id="galaga.module.production.classpath"/>
   
   <path id="galaga.runtime.production.module.classpath">
     <pathelement location="${galaga.output.dir}"/>
   </path>
   
   <path id="galaga.module.classpath">
-    <path refid="${module.jdk.classpath.galaga}"/>
     <pathelement location="${galaga.output.dir}"/>
   </path>
   
@@ -53,7 +47,7 @@
   
   <target name="compile.module.galaga.production" description="Compile module galaga; production classes">
     <mkdir dir="${galaga.output.dir}"/>
-    <javac destdir="${galaga.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.galaga}/javac">
+    <javac destdir="${galaga.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
       <compilerarg line="${compiler.args.galaga}"/>
       <bootclasspath refid="galaga.module.bootclasspath"/>
       <classpath refid="galaga.module.production.classpath"/>

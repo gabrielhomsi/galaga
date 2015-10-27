@@ -1,7 +1,7 @@
 package galaga.shared.gameobjects;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.Point;
 
 public class Craft implements GameObject {
     private int connectionId;
