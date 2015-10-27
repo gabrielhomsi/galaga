@@ -8,11 +8,13 @@ import java.util.LinkedList;
 
 
 class Panel extends JPanel /*implements ActionListener*/ {
-    private final Main main;
     private final int objectSize = 25;
+    private Main main;
+    private ImageCache imageCache;
 
     public Panel(Main main) {
         this.main = main;
+        this.imageCache = new ImageCache();
 
         this.configure();
     }
@@ -24,8 +26,7 @@ class Panel extends JPanel /*implements ActionListener*/ {
         LinkedList<GameObject> gameObjects = this.main.getCurrentStage().getGameObjects();
 
         for (GameObject gameObject : gameObjects) {
-            ImageIcon imageIcon = new ImageIcon(gameObject.getImagePath());
-            Image image = imageIcon.getImage();
+            Image image = this.imageCache.getImage(gameObject.getImagePath());
 
             Point position = gameObject.getPosition();
 
