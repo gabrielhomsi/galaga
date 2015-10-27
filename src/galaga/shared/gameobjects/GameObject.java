@@ -10,7 +10,7 @@ public interface GameObject extends Serializable {
     //EnemyMove
     //void updateX(double dt);
 
-   // void updateY(double dt);
+    // void updateY(double dt);
 //    int getClosestPlayerConnectionId(int positionX, int positionY);
 
 

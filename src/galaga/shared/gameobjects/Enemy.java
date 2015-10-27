@@ -32,21 +32,21 @@ public class Enemy implements GameObject {
     @Override
     public void update(double dt) {
 
-        if(startMove){
+        if (startMove) {
             updateX(dt);
             updateY(dt);
-        } else{
+        } else {
             switcher++;
-            if(switcher > 30){
+            if (switcher > 30) {
                 startMove = !startMove;
-                switcher=0;
+                switcher = 0;
             }
         }
 
 
     }
 
-   // @Override
+    // @Override
     public void updateX(double dt/*time*/) {
         // if (((this.x + (int) (this.xSpeed * dt)) > 0) && ((this.x + (int) (this.xSpeed * dt)) < (screenWidth - objectSize))) {
         if (switcher < 20) {

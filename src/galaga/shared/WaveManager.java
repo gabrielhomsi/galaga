@@ -80,19 +80,19 @@ public class WaveManager implements Serializable {
         //createEnemy();
     }
 
-    public void destroy(int index){
+    public void destroy(int index) {
 
-        index+=2;//eliminando os players
+        index += 2;//eliminando os players
         System.out.println("Destroyed " + index);
 
-        try{
+        try {
             //debuggando
             //Dando erro
             //this.currentStage.getGameObjects().remove(index);
 //            this.currentStage.getGameObjects().remove(this.currentStage.getGameObjects().get(index));
             System.out.println(this.currentStage.getGameObjects().get(index));
-            if(this.currentStage.getGameObjects().get(index) != null){
-               // this.currentStage.getGameObjects().remove(index);
+            if (this.currentStage.getGameObjects().get(index) != null) {
+                // this.currentStage.getGameObjects().remove(index);
                 //this.enemyMatrix.get(index / 10).remove();
             }
 
@@ -102,10 +102,10 @@ public class WaveManager implements Serializable {
             //Fim do debugging
 
 
-        } catch (/*IndexOutOfBoundsException*/Exception e){
+        } catch (/*IndexOutOfBoundsException*/Exception e) {
             System.out.println("Elemento nao existe");
         }
-    //alter
+        //alter
 
     }
 
@@ -113,13 +113,13 @@ public class WaveManager implements Serializable {
         this.timePassed += dt;
         this.timePassed2 += dt;
 
-        if (this.timePassed > TIME_TO_NEW_WAVE){
+        if (this.timePassed > TIME_TO_NEW_WAVE) {
             this.timePassed -= TIME_TO_NEW_WAVE;
             this.newWave();
             this.canDestroy = !this.canDestroy;
         }
 
-        if (this.timePassed2 > (TIME_TO_NEW_WAVE * 0.2)){
+        if (this.timePassed2 > (TIME_TO_NEW_WAVE * 0.2)) {
             Random random = new Random();
             this.destroy(random.nextInt(90));
         }

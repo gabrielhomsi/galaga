@@ -1,7 +1,5 @@
 package galaga.server;
 
-import galaga.shared.WaveManager;
-
 public class GameLoop extends Thread {
     private static final int MILLISECONDS_PER_ITERATION = 33;
 
@@ -17,7 +15,7 @@ public class GameLoop extends Thread {
         this.main.setIsGameRunning(true);
 
         long t0 = System.currentTimeMillis();
-       // time = t0;
+        // time = t0;
 
         while (this.main.getIsGameRunning()) {
             long t1 = System.currentTimeMillis();
@@ -34,7 +32,7 @@ public class GameLoop extends Thread {
 
             //if((t1 - time) >= timeToNewWave){
 
-           // }
+            // }
         }
     }
 }
