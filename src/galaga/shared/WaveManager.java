@@ -30,7 +30,11 @@ public class WaveManager implements Serializable {
 
         Point position = new Point(positionX, positionY);
 
-        Enemy enemy = new Enemy(position, this.currentStage.getFrameWidth(), this.currentStage.getFrameHeight());
+        Random random = new Random();//tempo para mover
+        double timeToMove = (random.nextInt(20) + 1) * 0.3;
+        System.out.println("Time to Move enemy[ " + index + ", " + i + "]:" + timeToMove);
+
+        Enemy enemy = new Enemy(position, this.currentStage.getFrameWidth(), this.currentStage.getFrameHeight(), timeToMove);
         this.currentStage.getGameObjects().add(enemy);
 
         this.enemyMatrix.get(index).add(enemy);
@@ -121,7 +125,7 @@ public class WaveManager implements Serializable {
 
         if (this.timePassed2 > (TIME_TO_NEW_WAVE * 0.2)) {
             Random random = new Random();
-            this.destroy(random.nextInt(90));
+            //this.destroy(random.nextInt(90));
         }
     }
 }
