@@ -4,15 +4,12 @@ import java.awt.*;
 import java.util.Random;
 
 public class Enemy implements GameObject {
-    //Ricardo----------------------------------------
-    private boolean live = true;
-    //Ricardo----------------------------------------
-
-
     int switcher = 0;
+    //Ricardo----------------------------------------
     //teste
     boolean startMove = false;//delay para começar o movimento
-
+    //Ricardo----------------------------------------
+    private boolean live = true;
     private int screenWidth;//Scene variable
     private int screenHeight;//Scene variable
     private int objectSize = 0;//120 �timo valor
@@ -77,8 +74,8 @@ public class Enemy implements GameObject {
             this.timePassed += dt;
             //System.out.println("passed/to move: " + this.timePassed + " / " + this.timeToMove);
             if ((this.timePassed >= this.timeToMove) && (this.timePassed <= this.timeToMove + 2)) {
-                //updateX(dt);
-                //updateY(dt);
+                updateX(dt);
+                updateY(dt);
             } else if (this.timePassed > this.timeToMove + 2) {
                 this.timePassed = 0;
             }

@@ -19,6 +19,7 @@ public class Craft implements GameObject {
     private int bulletSpeed;
     //Riacardo
     //-----------------------------------------------
+    private LinkedList<Bullet> bullets;
 
     private int connectionId;
     private int frameWidth;
@@ -39,6 +40,7 @@ public class Craft implements GameObject {
 //        this.shots = new LinkedList<int[]>();
         this.shots = new LinkedList<Point>();
         //Ricardo-------------------------------------
+        this.bullets = new LinkedList<Bullet>();
     }
 
     //seta um ponto de destino, implementado pela Classe Enemy

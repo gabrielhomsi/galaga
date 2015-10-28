@@ -31,7 +31,7 @@ public class WaveManager implements Serializable {
         Point position = new Point(positionX, positionY);
 
         Random random = new Random(); // tempo para mover
-        double timeToMove = (random.nextInt(20) + 1) * 0.3;
+        double timeToMove = (random.nextInt(30) + 1) * 0.3;
 
         //System.out.println("Time to Move enemy[ " + index + "]:" + timeToMove);
 
