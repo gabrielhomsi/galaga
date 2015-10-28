@@ -44,6 +44,10 @@ class Panel extends JPanel /*implements ActionListener*/ {
     @Override
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
+        //background
+        Image background = this.imageCache.getImage("assets/Backgrounds/purple.png");
+        graphics2D.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), this);
+
         LinkedList<GameObject> gameObjects = this.main.getCurrentStage().getGameObjects();
         for (GameObject gameObject : gameObjects) {
 
@@ -149,6 +153,7 @@ class Panel extends JPanel /*implements ActionListener*/ {
                 return "assets/UI/numeral9.png";
         }
     }
+
 
     private void configure() {
         this.addKeyListener(new KeyListener(this.main));
