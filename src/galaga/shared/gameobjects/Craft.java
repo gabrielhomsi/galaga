@@ -22,6 +22,7 @@ public class Craft implements GameObject {
     private LinkedList<Bullet> bullets;
 
     private int score;
+    private int lives;
 
     private int connectionId;
     private int frameWidth;
@@ -33,6 +34,7 @@ public class Craft implements GameObject {
 
     public Craft(int connectionId, int frameWidth) {
         this.score = 0;
+        this.lives = 3;
 
         this.connectionId = connectionId;
         this.frameWidth = frameWidth;
@@ -44,6 +46,14 @@ public class Craft implements GameObject {
         this.shots = new LinkedList<Point>();
         //Ricardo-------------------------------------
         this.bullets = new LinkedList<Bullet>();
+    }
+
+    public int getLivesNumber() {
+        return this.lives;
+    }
+
+    public void lifeUp() {
+        this.lives++;
     }
 
     public void addScore(int score) {

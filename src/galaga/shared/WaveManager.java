@@ -71,7 +71,11 @@ public class WaveManager implements Serializable {
             if (gameObject != null && !(gameObject instanceof Craft)) {
                 System.out.println("Destroying gameObject with index = " + index);
 
+
                 score = ((Enemy) this.currentStage.getGameObjects().get(index)).getEnemyType() * 100;
+                if (score > 999999999) {
+                    score = 999999999;
+                }
                 this.currentStage.getGameObjects().remove(index);
             }
         } catch (Exception e) {
