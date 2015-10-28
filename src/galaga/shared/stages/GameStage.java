@@ -6,6 +6,7 @@ import galaga.shared.gameobjects.Craft;
 import galaga.shared.gameobjects.GameObject;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 //Ricardo------------------------------------
@@ -16,6 +17,8 @@ import galaga.shared.gameobjects.Enemy;
 public class GameStage implements Stage {
     private LinkedList<GameObject> gameObjects;
     private WaveManager waveManager;
+    private boolean canDestroy = true;
+    private int contador = 0;
 
     public GameStage(int numberOfConnections) {
         this.gameObjects = new LinkedList<>();
@@ -37,19 +40,18 @@ public class GameStage implements Stage {
         return 600;
     }
 
-
     @Override
     public void notifyTime(double dt) {
-//        contador++;
-//        if(contador > 20){
-//            checkColisionTime();
-//            contador=0;
-//        }
+        contador++;
+        if (contador > 20) {
+            if (canDestroy) {
+                checkColision();
+            }
+            contador = 0;
+        }
 
         this.waveManager.notifyTime(dt);
     }
-
-//    private int contador = 0;
 //
 //    private void checkColisionTime(){
 //        checkColision();
@@ -117,25 +119,45 @@ public class GameStage implements Stage {
         }
     }
 
+    //mudar esse loop quando der tempo, dá para simplificar
+    //acho que Adiciona a lista mais de uma vez um inimigo
     //Ricardo---------------------------------
     public void checkColision() {
         if (this.gameObjects == null) return;
+        this.canDestroy = false;//nao permite chamar novamente a funçao até terminar isto
+
+        LinkedList<Integer> enemiesToDestroy = new LinkedList<Integer>();
+        LinkedList<Integer> bulletsToDestroy = new LinkedList<Integer>();
+        LinkedList<Integer> playerList = new LinkedList<Integer>();
+        //Posicao 0 enemy indice
+        //posicao 1 bullet indice
+        //posicao 2 player number
+
         for (GameObject gObjectC : this.gameObjects) {
             if (gObjectC instanceof Craft) {
                 int i = 0;
                 for (Point bullet : ((Craft) gObjectC).getBullets()) {
                     int j = 0;
+                    boolean hit = false;//hit acertou inimigo
                     //System.out.println("bullet[" + bullet.x + ", " + bullet.y + "]");
                     for (GameObject gObjectE : this.gameObjects) {
-                        if (gObjectE instanceof Enemy) {
-                            //System.out.println("Enemy[" + gObjectE.getPosition().x + ", " + gObjectE.getPosition().y + "]");
-                            if (Math.abs(bullet.x - gObjectE.getPosition().x) <= /*15*/15) {
-                                if (Math.abs(bullet.y - gObjectE.getPosition().y) <= /*15*/15) {
+                        if (!hit) {
+                            if (gObjectE instanceof Enemy) {
+                                //System.out.println("Enemy[" + gObjectE.getPosition().x + ", " + gObjectE.getPosition().y + "]");
+                                if (Math.abs(bullet.x - gObjectE.getPosition().x) <= /*15*/15) {
+                                    if (Math.abs(bullet.y - gObjectE.getPosition().y) <= /*15*/15) {
+//                                    listToDestroy.add(new LinkedList<Integer>());
 //                                    ((Enemy) gObjectE).Die();
-                                    ((Craft) gObjectC).getBullets().remove(i);//destroy bala ao colidir
-                                    this.waveManager.destroyEnemy(j);
-                                    ((Craft) gObjectC).deSpawnBullet(i);
-                                    System.out.println("inimigo Down");
+//                                        ((Craft) gObjectC).getBullets().remove(i);//destroy bala ao colidir
+//                                        this.waveManager.destroyEnemy(j);
+                                        enemiesToDestroy.add(j);
+                                        bulletsToDestroy.add(i);
+                                        playerList.add(((Craft) gObjectC).getConnectionId());
+
+                                        //((Craft) gObjectC).deSpawnBullet(i);
+                                        System.out.println(" Add inimigo to deletion");
+                                        hit = true;
+                                    }
                                 }
                             }
                             j++;
@@ -145,7 +167,24 @@ public class GameStage implements Stage {
                 }
             }
         }
+
+        deletingLoop(enemiesToDestroy, bulletsToDestroy, playerList);
+
     }
     //Ricardo-----------------------------------
+
+    private void deletingLoop(LinkedList<Integer> enemyToDelete, LinkedList<Integer> bulletToDelete, LinkedList<Integer> player) {
+        //Destroy inimigos
+        for (int i = 0; i < enemyToDelete.size(); i++) {
+            this.waveManager.destroyEnemy(enemyToDelete.get(i));
+        }
+
+        //destroy balas
+        for (int i = 0; i < bulletToDelete.size(); i++) {
+            this.getCraftByConnectionId(player.get(i)).getBullets().remove(bulletToDelete.get(i));//destroy bala ao colidir
+        }
+
+        this.canDestroy = true;
+    }
 
 }

@@ -30,15 +30,15 @@ public class GameLoop extends Thread {
 //                System.out.println("GameLoop dt " + dt + "s");
                 this.main.update(dt);
 
-                try{
-                    Stage stage = this.main.getCurrentStage();
-                    if(stage instanceof GameStage) {
-                        ((GameStage) stage).checkColision();
-                    }
-                } catch(Exception e){
-                    e.printStackTrace();
-                    System.out.println("Deu RUim");
-                }
+//                try{
+//                    Stage stage = this.main.getCurrentStage();
+//                    if(stage instanceof GameStage) {
+//                        ((GameStage) stage).checkColision();
+//                    }
+//                } catch(Exception e){
+//                    e.printStackTrace();
+//                    System.out.println("Deu RUim");
+//                }
 
                 t0 = System.currentTimeMillis();
             }

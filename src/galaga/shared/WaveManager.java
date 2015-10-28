@@ -63,13 +63,20 @@ public class WaveManager implements Serializable {
     }
 
     public void destroyEnemy(int index) {
-        GameObject gameObject = this.currentStage.getGameObjects().get(index);
+        //throws IndexOutOfBoundsException
+        try {
+            GameObject gameObject = this.currentStage.getGameObjects().get(index);
 
-        if (gameObject != null && !(gameObject instanceof Craft)) {
-            System.out.println("Destroying gameObject with index = " + index);
+            if (gameObject != null && !(gameObject instanceof Craft)) {
+                System.out.println("Destroying gameObject with index = " + index);
 
-            this.currentStage.getGameObjects().remove(index);
+                this.currentStage.getGameObjects().remove(index);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Acessou posicao invalida");
         }
+
     }
 
     public void notifyTime(double dt) {
