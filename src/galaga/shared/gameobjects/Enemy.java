@@ -79,6 +79,28 @@ public class Enemy implements GameObject {
         this.rushPoint = player.getPosition();
     }
 
+    private void moveTowardPlayer(Point playerPosition, double dt){
+//        System.out.println("Player Point: " + playerPosition.x + " , " + playerPosition.y);
+        Point positionDifference = new Point();
+        positionDifference.x = this.position.x - playerPosition.x;
+//        positionDifference.y = Math.abs(this.position.y - playerPosition.y);
+//        if(positionDifference.y > 0){
+//            this.position.y += this.ySpeed * (int)Math.sin(45);
+//        } else {
+//            System.out.println("Erro no Y");
+//        }
+
+        if(positionDifference.x > 0){
+            //this.position.x -= this.xSpeed ;//* (int)Math.cos(45);
+            this.position.x -= (int) /*(this.xSpeed * dt) + */(this.xSpeed * dt) * 3 / 3;
+            System.out.println("Pos.x " + this.position.x);
+        } else {
+            //this.position.x += this.xSpeed ;//* (int)Math.cos(45);
+            this.position.x += (int) /*(this.xSpeed * dt) + */(this.xSpeed * dt) * 3 / 3;
+        }
+
+    }
+
     @Override
     public void update(double dt) {
         //Ricardo----------------------------------------
@@ -91,6 +113,12 @@ public class Enemy implements GameObject {
             if ((this.timePassed >= this.timeToMove) && (this.timePassed <= this.timeToMove + 2)) {
                 updateX(dt);
                 updateY(dt);
+                if(rushPoint != null){
+//                    System.out.println("Rally Point: " + rushPoint.x + " , " + rushPoint.y);
+                    moveTowardPlayer(rushPoint, dt);
+                }
+
+
             } else if (this.timePassed > this.timeToMove + 2) {
                 this.timePassed = 0;
             }

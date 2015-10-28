@@ -39,7 +39,7 @@ public class WaveManager implements Serializable {
         Enemy enemy = new Enemy(position, this.currentStage.getFrameWidth(), this.currentStage.getFrameHeight(), timeToMove);
 
         //Setando Rally Point
-        enemy.setRushPoint(/*this.currentStage.getClosestCraftByConnectionId(enemy.getPosition())*/this.currentStage.getCraftByConnectionId(0));
+        enemy.setRushPoint(/*this.currentStage.getClosestCraftByConnectionId(enemy.getPosition())*/this.currentStage.getCraftByConnectionId(1));
         this.currentStage.getGameObjects().add(enemy);
     }
 

@@ -3,7 +3,7 @@ package galaga.shared.gameobjects;
 import java.awt.*;
 import java.io.Serializable;
 
-public class Bullet implements Projectile {
+public class Bullet implements Serializable {
     private Point position;
     private int speed = 5;
 
@@ -11,7 +11,6 @@ public class Bullet implements Projectile {
         this.position = position;
     }
 
-    @Override
     public String getBulletImagePath() {
         return "assets/lasers/laserBlue.png";
     }
