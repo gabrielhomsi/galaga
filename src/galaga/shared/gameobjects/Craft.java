@@ -58,6 +58,8 @@ public class Craft implements GameObject {
         this.lives++;
     }
 
+    public void lifeDown(){this.lives--;}
+
     public void addScore(int score) {
         this.score += score;
         System.out.println("Player " + this.connectionId + " Score: " + getScore());
@@ -161,7 +163,11 @@ public class Craft implements GameObject {
 
     @Override
     public String getImagePath() {
-        return "assets/playerShip1_Blue.png";
+        if(this.connectionId %2 == 0){
+            return "assets/playerShip1_Blue.png";
+        } else{
+            return "assets/playerShip2_Green.png";
+        }
     }
 
     //ricardo--------------------------------------------------
