@@ -23,6 +23,7 @@ public class Enemy implements GameObject {
     private Point rushPoint = null;
     private String imagePath;
 
+    private int type;
 
     public Enemy(Point position, int screenWidth, int screenHeight, /*int rowNumber*/double timeToMove) {
         this.position = position;
@@ -32,22 +33,36 @@ public class Enemy implements GameObject {
         int rnd = new Random().nextInt() % 6;
 
         if (rnd == 0) {
+            setEnemyType(0);
             this.imagePath = "assets/enemies/enemyBlack1.png";
         } else if (rnd == 1) {
+            setEnemyType(1);
             this.imagePath = "assets/enemies/enemyBlack2.png";
         } else if (rnd == 2) {
+            setEnemyType(2);
             this.imagePath = "assets/enemies/ufoBlue.png";
         } else if (rnd == 3) {
+            setEnemyType(3);
             this.imagePath = "assets/enemies/ufoGreen.png";
         } else if (rnd == 4) {
+            setEnemyType(4);
             this.imagePath = "assets/enemies/ufoRed.png";
         } else if (rnd == 5) {
+            setEnemyType(5);
             this.imagePath = "assets/enemies/ufoYellow.png";
         }
 
         this.xSpeed = 100;
         this.ySpeed = 100;
         this.timeToMove = timeToMove;
+    }
+
+    public int getEnemyType() {
+        return this.type;
+    }
+
+    public void setEnemyType(int type) {
+        this.type = type;
     }
 
     @Override

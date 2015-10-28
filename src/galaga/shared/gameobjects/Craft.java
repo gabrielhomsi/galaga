@@ -21,6 +21,8 @@ public class Craft implements GameObject {
     //-----------------------------------------------
     private LinkedList<Bullet> bullets;
 
+    private int score;
+
     private int connectionId;
     private int frameWidth;
     private Point position;
@@ -29,8 +31,9 @@ public class Craft implements GameObject {
 
     private int objectSize = 30;//120 �timo valor
 
-
     public Craft(int connectionId, int frameWidth) {
+        this.score = 0;
+
         this.connectionId = connectionId;
         this.frameWidth = frameWidth;
         this.position = new Point(0, 530);
@@ -41,6 +44,15 @@ public class Craft implements GameObject {
         this.shots = new LinkedList<Point>();
         //Ricardo-------------------------------------
         this.bullets = new LinkedList<Bullet>();
+    }
+
+    public void addScore(int score) {
+        this.score += score;
+        System.out.println("Player " + this.connectionId + " Score: " + getScore());
+    }
+
+    public int getScore() {
+        return this.score;
     }
 
     //seta um ponto de destino, implementado pela Classe Enemy
@@ -131,10 +143,10 @@ public class Craft implements GameObject {
         playerActualPosition.y = this.getPosition().y;
         shots.push(playerActualPosition);
     }
-
-    public void deSpawnBullet(int i){
-        shots.get(i).x = -1;
-    }
+//
+//    public void deSpawnBullet(int i){
+//        shots.get(i).x = -1;
+//    }
 
     public LinkedList<Point> getBullets(){
         return shots;

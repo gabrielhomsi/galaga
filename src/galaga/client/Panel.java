@@ -62,9 +62,15 @@ class Panel extends JPanel /*implements ActionListener*/ {
 
                 graphics2D.drawImage(image, position.x, position.y, this.objectSize, this.objectSize, this);
 
+                int playerId = ((Craft) gameObject).getConnectionId() + 1;
+
+                graphics2D.drawString("Player " + playerId, (10 + (playerId) * 60), 20);
+                graphics2D.drawString("Score:", (10 + (playerId) * 60), 40);
+                graphics2D.drawString(((Craft) gameObject).getScore() + "", (10 + (playerId) * 60), 60);
+
                 LinkedList<Point> shots = ((Craft) gameObject).getBullets();
                 for(Point shot : shots){
-                    Image i = this.imageCache.getImage(((Craft) gameObject).getBulletImagePath());
+                    Image i = this.imageCache.getImage(gameObject.getBulletImagePath());
                     Point p = new Point();
                     p.x = shot.x;
                     p.y = shot.y;

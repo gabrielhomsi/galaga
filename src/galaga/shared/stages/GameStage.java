@@ -6,7 +6,6 @@ import galaga.shared.gameobjects.Craft;
 import galaga.shared.gameobjects.GameObject;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 //Ricardo------------------------------------
@@ -168,21 +167,41 @@ public class GameStage implements Stage {
             }
         }
 
-        deletingLoop(enemiesToDestroy, bulletsToDestroy, playerList);
+        if (enemiesToDestroy.size() == bulletsToDestroy.size() && enemiesToDestroy.size() == playerList.size()) {
+            deletingLoop(enemiesToDestroy, bulletsToDestroy, playerList, playerList.size());
+        } else {
+            System.out.println("Algo deu muito errado");
+        }
+
 
     }
     //Ricardo-----------------------------------
 
-    private void deletingLoop(LinkedList<Integer> enemyToDelete, LinkedList<Integer> bulletToDelete, LinkedList<Integer> player) {
-        //Destroy inimigos
-        for (int i = 0; i < enemyToDelete.size(); i++) {
-            this.waveManager.destroyEnemy(enemyToDelete.get(i));
+    private void deletingLoop(LinkedList<Integer> enemyToDelete, LinkedList<Integer> bulletToDelete, LinkedList<Integer> playerList, int size) {
+//        //Destroy inimigos
+//        for (int i = 0; i < enemyToDelete.size(); i++) {
+//            this.waveManager.destroyEnemy(enemyToDelete.get(i));
+//        }
+//
+//        //destroy balas
+//        for (int i = 0; i < bulletToDelete.size(); i++) {
+//            this.getCraftByConnectionId(player.get(i)).getBullets().remove(bulletToDelete.get(i));//destroy bala ao colidir
+//        }
+        for (int i = 0; i < size; i++) {
+
+            //destroy balas
+            System.out.println("Craft ID: " + playerList.get(i));
+            Craft player = this.getCraftByConnectionId(playerList.get(i));
+            player.getBullets().remove(bulletToDelete.get(i));//destroy bala ao colidir
+
+            //Destroy inimigos
+            int score = this.waveManager.destroyEnemy(enemyToDelete.get(i));
+
+            //Add Score
+            player.addScore(score);
+
         }
 
-        //destroy balas
-        for (int i = 0; i < bulletToDelete.size(); i++) {
-            this.getCraftByConnectionId(player.get(i)).getBullets().remove(bulletToDelete.get(i));//destroy bala ao colidir
-        }
 
         this.canDestroy = true;
     }
