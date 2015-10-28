@@ -26,7 +26,8 @@ public class WaveManager implements Serializable {
 
     private void createEnemy(int index) {
         int positionX = (this.currentStage.getFrameWidth() / 4) + (index % 10) * 30;
-        int positionY = (index / 10) * 30;
+//        int positionY = (index / 10) * 30;
+        int positionY = ((index / 10)+3) * 30;
 
         Point position = new Point(positionX, positionY);
 
@@ -50,7 +51,8 @@ public class WaveManager implements Serializable {
         if (gameObjects.size() == 2) {
             System.out.println("Nenhum inimigo na tela. Criando 100 inimigos...");
 
-            for (int i = 0; i < 100; i++) {
+//            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 50; i++) {
                 this.createEnemy(i);
             }
         } else {

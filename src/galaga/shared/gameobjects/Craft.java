@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 //-------------------------------------
 //ricardo
+import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.LinkedList;
 //ricardo
 
@@ -115,17 +117,44 @@ public class Craft implements GameObject {
 //                s[1] -= this.bulletSpeed;
 //            }
 //        }
-        int indexToDestroy = 0;
-        for(Point shot : shots){
-            if(shot.x != -1) {
-                shot.y -= this.bulletSpeed;
-                if(shot.y < -10){
-                    //Elimina stackOverflow Exception
-                    shots.remove(indexToDestroy);
-                    System.out.println("Bullet destroyed");
+        try{
+            int indexToDestroy = 0;
+            for(Point shot : shots){
+                if(shot.x != -1) {
+                    shot.y -= this.bulletSpeed;
+                    if(shot.y < -10){
+                        //Elimina stackOverflow Exception
+//                    shots.remove(indexToDestroy);
+                        destroyBullet(indexToDestroy);//Nao apagar aqui, por em array para o gameStageDeletar
+                        //this.bulletsToDestroy.add(indexToDestroy);
+                        System.out.println("Bullet destroyed");
+                    }
                 }
+                indexToDestroy++;
             }
-            indexToDestroy++;
+        } catch (ConcurrentModificationException e){
+            e.printStackTrace();
+            System.out.printf("Sendo alterado ao mesmo tempo em outra classe - GameStage");
+        }
+
+    }
+//
+//    private ArrayList<Integer> bulletsToDestroy = new ArrayList<Integer>();
+//
+//    public ArrayList<Integer> getBulletsToDestroy(){
+//        return this.bulletsToDestroy;
+//    }
+//
+//    public void setBulletsToDestroyEmpty(){
+//        this.bulletsToDestroy.clear();
+//    }
+
+    public void destroyBullet(int index){
+        try{
+            shots.remove(index);
+        } catch (Exception e){
+            e.printStackTrace();
+            System.out.println("ArrayOutOfBounds");
         }
 
     }

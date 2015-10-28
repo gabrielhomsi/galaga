@@ -161,10 +161,12 @@ public class Enemy implements GameObject {
             this.position.x = 0;
         }
 
-        if (this.position.y < 0) {
+//        if (this.position.y < 0) {
+        if (this.position.y < 90) {
             this.position.y = screenHeight;
         } else if (this.position.y > screenHeight) {
-            this.position.y = 0;
+//            this.position.y = 0;
+            this.position.y = 90;
         }
 
 //        if(!somePlayer.alive){
