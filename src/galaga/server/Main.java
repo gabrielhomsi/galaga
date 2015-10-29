@@ -62,7 +62,7 @@ public class Main implements RemoteInterface {
         if (this.currentStage instanceof GameStage) {
             GameStage currentStage = (GameStage) this.currentStage;
 
-            currentStage.getCraftByConnectionId(connectionId).keyCodePressed(keyCode);
+            currentStage.getCraftByConnectionId(connectionId).keyCodePressed(keyCode, currentStage);
         }
     }
 
@@ -71,7 +71,7 @@ public class Main implements RemoteInterface {
         if (this.currentStage instanceof GameStage) {
             GameStage currentStage = (GameStage) this.currentStage;
 
-            currentStage.getCraftByConnectionId(connectionId).keyCodeReleased(keyCode);
+            currentStage.getCraftByConnectionId(connectionId).keyCodeReleased(keyCode, currentStage);
         }
     }
 

@@ -1,12 +1,12 @@
 package galaga.shared.stages;
 
 import galaga.server.Main;
+import galaga.shared.BulletManager;
 import galaga.shared.WaveManager;
 import galaga.shared.gameobjects.Craft;
 import galaga.shared.gameobjects.GameObject;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.LinkedList;
 
@@ -20,6 +20,7 @@ public class GameStage implements Stage {
     private WaveManager waveManager;
     private boolean canDestroy = true;
     private int contador = 0;
+    public BulletManager bulletManager;
 
     public GameStage(int numberOfConnections) {
         this.gameObjects = new LinkedList<>();
@@ -31,6 +32,7 @@ public class GameStage implements Stage {
         }
 
         this.waveManager = new WaveManager(this);
+        this.bulletManager = new BulletManager(this);
     }
 
     public int getFrameWidth() {

@@ -1,27 +1,20 @@
 package galaga.shared.gameobjects;
 
+import galaga.shared.stages.GameStage;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
-//-------------------------------------
-//ricardo
-import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.LinkedList;
+
+//-------------------------------------
+//ricardo
 //ricardo
 
 //-------------------------------------
 
 public class Craft implements GameObject {
-    //-----------------------------------------------
-    //Ricardo
-    //evitar multiplos tiros serem criados juntos
-    private boolean quickPush;
-//    private LinkedList<int[]> shots;
-    private LinkedList<Point> shots;
     private int bulletSpeed;
-    //Riacardo
-    //-----------------------------------------------
-    private LinkedList<Bullet> bullets;
 
     private int score;
     private int lives;
@@ -32,7 +25,7 @@ public class Craft implements GameObject {
 
     private int xSpeed;
 
-    private int objectSize = 30;//120 �timo valor
+    private int objectSize = 30;//120 otimo valor
 
     public Craft(int connectionId, int frameWidth) {
         this.score = 0;
@@ -42,12 +35,6 @@ public class Craft implements GameObject {
         this.frameWidth = frameWidth;
         this.position = new Point(0, 530);
         this.xSpeed = 0;
-        //Ricardo-------------------------------------
-        this.bulletSpeed = 5;
-//        this.shots = new LinkedList<int[]>();
-        this.shots = new LinkedList<Point>();
-        //Ricardo-------------------------------------
-        this.bullets = new LinkedList<Bullet>();
     }
 
     public int getLivesNumber() {
@@ -80,32 +67,23 @@ public class Craft implements GameObject {
         return this.position;
     }
 
-    public void keyCodePressed(int keyCode) {
+    public void keyCodePressed(int keyCode, GameStage currentStage) {
         if (keyCode == KeyEvent.VK_LEFT) {
             this.xSpeed = -200;
         } else if (keyCode == KeyEvent.VK_RIGHT) {
             this.xSpeed = 200;
         } else if (keyCode == KeyEvent.VK_SPACE) {
-            // Tiros aqui (keyPressed)
-            //Ricardo------------------------------
-            if(quickPush){
-                quickPush = false;
-                spawnBullet();
-            }
-            //Ricardo  ----------------------------
+            currentStage.bulletManager.beginFire(connectionId);
         }
     }
 
-    public void keyCodeReleased(int keyCode) {
+    public void keyCodeReleased(int keyCode, GameStage currentStage) {
         if (keyCode == KeyEvent.VK_LEFT) {
             this.xSpeed = 0;
         } else if (keyCode == KeyEvent.VK_RIGHT) {
             this.xSpeed = 0;
         } else if (keyCode == KeyEvent.VK_SPACE) {
-            // Tiros aqui (keyReleased)
-            //Ricardo
-            quickPush = true;
-            //Ricardo-------------------------------------
+            currentStage.bulletManager.endFire(connectionId);
         }
     }
 
@@ -181,13 +159,6 @@ public class Craft implements GameObject {
         return this.connectionId;
     }
 
-    //Ricardo-------------------------------------
-    private void spawnBullet(){
-        Point playerActualPosition = new Point();
-        playerActualPosition.x = this.getPosition().x;
-        playerActualPosition.y = this.getPosition().y;
-        shots.push(playerActualPosition);
-    }
 //
 //    public void deSpawnBullet(int i){
 //        shots.get(i).x = -1;
