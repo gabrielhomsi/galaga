@@ -16,10 +16,12 @@ import galaga.shared.gameobjects.Enemy;
 
 
 public class GameStage implements Stage {
+    int nPlayer = 0;
     private LinkedList<GameObject> gameObjects;
     private WaveManager waveManager;
     private boolean canDestroy = true;
     private int contador = 0;
+    private int[] lastScore;
 
     public GameStage(int numberOfConnections) {
         this.gameObjects = new LinkedList<>();
@@ -36,6 +38,10 @@ public class GameStage implements Stage {
     public int getFrameWidth() {
         return 800;
     }
+//
+//    private void checkColisionTime(){
+//        checkColision();
+//    }
 
     public int getFrameHeight() {
         return 600;
@@ -45,18 +51,17 @@ public class GameStage implements Stage {
     public void notifyTime(double dt) {
         contador++;
         if (contador > 20) {
-            if (canDestroy) {
-                checkColision();
-            }
+//            if (canDestroy) {
+//                checkColision();
+//            }
             contador = 0;
+        }
+        if (canDestroy) {
+            checkColision();
         }
 
         this.waveManager.notifyTime(dt);
     }
-//
-//    private void checkColisionTime(){
-//        checkColision();
-//    }
 
     @Override
     public boolean canGoToNextStage(Main main) {
@@ -89,12 +94,14 @@ public class GameStage implements Stage {
         return this.gameObjects;
     }
 
-    private Craft getClosestCraftByConnectionId(Point enemyPosition) {
+    public Craft getClosestCraftByConnectionId(Point enemyPosition) {
         Craft closestCraft = null;
+
 
         for (GameObject gameObject : this.gameObjects) {
             if (gameObject instanceof Craft) {
-                System.out.printf("Player");
+
+//                System.out.printf("Player");
 
                 Craft currentCraft = (Craft) gameObject;
 
@@ -109,7 +116,7 @@ public class GameStage implements Stage {
                     }
                 }
             } else {
-                System.out.println("Enemy");
+//                System.out.println("Enemy");
             }
         }
 
@@ -134,10 +141,13 @@ public class GameStage implements Stage {
         //posicao 1 bullet indice
         //posicao 2 player number
 
+//        nPlayer = 0;
+
         try {
             for (GameObject gObjectC : this.gameObjects) {
                 if (gObjectC instanceof Craft) {
                     int i = 0;
+//                    nPlayer++;
 //
 //                    ArrayList<Integer> bulletToDestroy = ((Craft) gObjectC).getBulletsToDestroy();
 //                    for(Integer bullet : bulletToDestroy){
@@ -155,6 +165,11 @@ public class GameStage implements Stage {
                             if (!hit) {
 //                            System.out.println("GameObjects " + j);
                                 if (gObjectE instanceof Enemy) {
+                                    if (Math.abs(gObjectC.getPosition().x - gObjectE.getPosition().x) <= /*15*/15) {
+                                        if (Math.abs(gObjectC.getPosition().y - gObjectE.getPosition().y) <= /*15*/15) {
+                                            playerCollision((Craft) gObjectC);
+                                        }
+                                    }
 //                                System.out.println("GameObjects " + j);
 //                                System.out.println("Enemy");
                                     //System.out.println("Enemy[" + gObjectE.getPosition().x + ", " + gObjectE.getPosition().y + "]");
@@ -200,11 +215,18 @@ public class GameStage implements Stage {
 
 
     }
+
     //Ricardo-----------------------------------
+
+    private void playerCollision(Craft player) {
+        player.lifeDown();
+    }
+
 
     private void destroyOnlyBullets(int bulletIndex, int playerId){
 
     }
+
 
     private void deletingLoop(LinkedList<Integer> enemyToDelete, LinkedList<Integer> bulletToDelete, LinkedList<Integer> playerList, int size) {
 //        //Destroy inimigos
@@ -216,6 +238,10 @@ public class GameStage implements Stage {
 //        for (int i = 0; i < bulletToDelete.size(); i++) {
 //            this.getCraftByConnectionId(player.get(i)).getBullets().remove(bulletToDelete.get(i));//destroy bala ao colidir
 //        }
+//        setLastScore();
+//        stopTest = true;
+
+
         for (int i = 0; i < size; i++) {
 
             //destroy balas
@@ -230,6 +256,17 @@ public class GameStage implements Stage {
             //Add Score
             player.addScore(score);
 
+            //Add vidas
+            score = player.getScore();
+
+            System.out.println("Score: " + score);
+            if (score > 1000 && score < 1200) {
+                player.lifeUp();
+                System.out.println("Vidas 1");
+            } else if (score > 50000 && score < 50200) {
+                player.lifeUp();
+                System.out.println("Vidas 2");
+            }
         }
 
 

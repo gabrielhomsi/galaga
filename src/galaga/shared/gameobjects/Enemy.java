@@ -1,5 +1,7 @@
 package galaga.shared.gameobjects;
 
+import galaga.shared.stages.GameStage;
+
 import java.awt.*;
 import java.util.Random;
 
@@ -93,7 +95,7 @@ public class Enemy implements GameObject {
         if(positionDifference.x > 0){
             //this.position.x -= this.xSpeed ;//* (int)Math.cos(45);
             this.position.x -= (int) /*(this.xSpeed * dt) + */(this.xSpeed * dt) * 3 / 3;
-            System.out.println("Pos.x " + this.position.x);
+//            System.out.println("Pos.x " + this.position.x);
         } else {
             //this.position.x += this.xSpeed ;//* (int)Math.cos(45);
             this.position.x += (int) /*(this.xSpeed * dt) + */(this.xSpeed * dt) * 3 / 3;

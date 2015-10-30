@@ -62,7 +62,7 @@ public class Craft implements GameObject {
 
     public void addScore(int score) {
         this.score += score;
-        System.out.println("Player " + this.connectionId + " Score: " + getScore());
+        // System.out.println("Player " + this.connectionId + " Score: " + getScore());
     }
 
     public int getScore() {
@@ -129,7 +129,7 @@ public class Craft implements GameObject {
 //                    shots.remove(indexToDestroy);
                         destroyBullet(indexToDestroy);//Nao apagar aqui, por em array para o gameStageDeletar
                         //this.bulletsToDestroy.add(indexToDestroy);
-                        System.out.println("Bullet destroyed");
+                        //System.out.println("Bullet destroyed");
                     }
                 }
                 indexToDestroy++;

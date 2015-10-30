@@ -39,7 +39,7 @@ public class WaveManager implements Serializable {
         Enemy enemy = new Enemy(position, this.currentStage.getFrameWidth(), this.currentStage.getFrameHeight(), timeToMove);
 
         //Setando Rally Point
-        enemy.setRushPoint(/*this.currentStage.getClosestCraftByConnectionId(enemy.getPosition())*/this.currentStage.getCraftByConnectionId(1));
+        enemy.setRushPoint(this.currentStage.getClosestCraftByConnectionId(enemy.getPosition())/*this.currentStage.getCraftByConnectionId(1)*/);
         this.currentStage.getGameObjects().add(enemy);
     }
 
@@ -64,6 +64,7 @@ public class WaveManager implements Serializable {
         }
     }
 
+
     public int destroyEnemy(int index) {
         //throws IndexOutOfBoundsException
         int score = 0;
@@ -75,6 +76,7 @@ public class WaveManager implements Serializable {
 
 
                 score = ((Enemy) this.currentStage.getGameObjects().get(index)).getEnemyType() * 100;
+
                 if (score > 999999999) {
                     score = 999999999;
                 }
@@ -95,6 +97,15 @@ public class WaveManager implements Serializable {
             this.timePassed -= TIME_TO_NEW_WAVE;
             this.newWave();
             this.canDestroy = !this.canDestroy;
+        }
+
+        LinkedList<GameObject> gameObjects = this.currentStage.getGameObjects();
+
+        for (GameObject enemy : gameObjects) {
+            if (enemy instanceof Enemy) {
+                enemy.setRushPoint(this.currentStage.getClosestCraftByConnectionId(enemy.getPosition())/*this.currentStage.getCraftByConnectionId(1)*/);
+            }
+
         }
 
 //        if (this.timePassed2 > (TIME_TO_NEW_WAVE * 0.2)) {
