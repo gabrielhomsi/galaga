@@ -37,7 +37,7 @@ public class Main extends JFrame {
 
     private void configure() {
         this.add(new Panel(this));
-        this.setTitle("Galaga");
+        this.setTitle("Galaga - The Return");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
         this.setSize(currentStage.getFrameWidth(), currentStage.getFrameHeight());
