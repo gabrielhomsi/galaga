@@ -7,17 +7,57 @@ import java.io.IOException;
 
 import javax.sound.sampled.*;
 
-/**
- * Created by brunodg on 04/11/15.
- */
 public class SoundHandler implements LineListener {
     private static final int BUFFER = 128000;
     private static SoundHandler instance = new SoundHandler();
     private HashMap soundFiles;
+    
+    //teste - Marcos
+     private File soundFile;
+    private AudioInputStream audioStream;
+    private AudioFormat audioFormat;
+    private SourceDataLine sourceLine;
+    //fim teste
 
     public static SoundHandler get() {
         return instance;
     }
+
+    /*
+    public void playSound(String filename){
+
+        try {
+            soundFile = new File(filename);
+            audioStream = AudioSystem.getAudioInputStream(soundFile);
+            audioFormat = audioStream.getFormat();
+            DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
+            sourceLine = (SourceDataLine) AudioSystem.getLine(info);
+            sourceLine.open(audioFormat);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        sourceLine.start();
+
+        int nBytesRead = 0;
+        byte[] abData = new byte[BUFFER];
+        while (nBytesRead != -1) {
+            try {
+                nBytesRead = audioStream.read(abData, 0, abData.length);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (nBytesRead >= 0) {
+                @SuppressWarnings("unused")
+                int nBytesWritten = sourceLine.write(abData, 0, nBytesRead);
+            }
+        }
+
+        sourceLine.drain();
+        sourceLine.close();
+    }
+}
+    */
 
 
     public void loadSoundFX() {
