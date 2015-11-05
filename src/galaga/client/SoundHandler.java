@@ -26,9 +26,10 @@ public class SoundHandler implements LineListener {
         File[] files = dir.listFiles();
         for (File i : files) {
             if (i.isFile()) {
-                String path = "assets/Sounds/sfx_bgm";
+                //Nao acha o caminho pq nao existe arquivo com esse caminho, falta a extensao
+                String path = "assets/Sounds/sfx_bgm";//File Not Exists - FileNotFoundException
                 File theFile = new File(path);
-                int dot = path.indexOf(".wav");
+                int dot = path.indexOf(".wav");//Isso retorna o indice da primeira aparencia da string passada por parametro
 
                 String ref = path.substring(0, dot);
                 AudioInputStream audioInputStream = null;
