@@ -96,6 +96,7 @@ public class Craft implements GameObject {
                 spawnBullet();
                 //Bruno -> Som de tiro ------------
 
+
             }
             //Ricardo  ----------------------------
         }
