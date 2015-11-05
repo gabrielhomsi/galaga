@@ -4,13 +4,10 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 //-------------------------------------
 //ricardo
+import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.LinkedList;
 //ricardo
-
-//Bruno ------
-import galaga.client.SoundHandler;
-//Bruno
 
 //-------------------------------------
 
@@ -94,9 +91,6 @@ public class Craft implements GameObject {
             if(quickPush){
                 quickPush = false;
                 spawnBullet();
-                //Bruno -> Som de tiro ------------
-
-
             }
             //Ricardo  ----------------------------
         }
@@ -193,7 +187,6 @@ public class Craft implements GameObject {
         playerActualPosition.x = this.getPosition().x;
         playerActualPosition.y = this.getPosition().y;
         shots.push(playerActualPosition);
-        // Som de Tiro
     }
 //
 //    public void deSpawnBullet(int i){

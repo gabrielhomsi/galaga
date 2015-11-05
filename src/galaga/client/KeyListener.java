@@ -25,12 +25,6 @@ public class KeyListener extends KeyAdapter {
     public void keyPressed(KeyEvent e) {
         try {
             this.main.getRemoteInterface().keyCodePressed(this.main.getConnectionId(), e.getKeyCode());
-            if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                String soundPath = "assets/Sounds/sfx_laser1.wav";
-                boolean loop = false;
-                SoundHandler.playSound(soundPath, loop);
-            }
-
         } catch (RemoteException e1) {
             e1.printStackTrace();
         }
