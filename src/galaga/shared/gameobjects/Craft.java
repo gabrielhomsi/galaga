@@ -9,7 +9,7 @@ import java.util.LinkedList;
 //ricardo
 
 //Bruno ------
-import galaga.shared.SoundHandler;
+import galaga.client.SoundHandler;
 //Bruno
 
 //-------------------------------------
@@ -193,7 +193,6 @@ public class Craft implements GameObject {
         playerActualPosition.y = this.getPosition().y;
         shots.push(playerActualPosition);
         // Som de Tiro
-        SoundHandler.get().play("laser1");
     }
 //
 //    public void deSpawnBullet(int i){

@@ -3,6 +3,8 @@ package galaga.client;
 import galaga.shared.RemoteInterface;
 import galaga.shared.stages.Stage;
 
+import galaga.client.SoundHandler;
+
 import javax.swing.*;
 import java.rmi.RemoteException;
 
@@ -42,6 +44,8 @@ public class Main extends JFrame {
         this.pack();
         this.setSize(currentStage.getFrameWidth(), currentStage.getFrameHeight());
         this.setVisible(true);
+        SoundHandler.get().loadSoundFX();
+        SoundHandler.get().play("bgm");
     }
 
     protected void retrieveFreshStage() {
@@ -53,12 +57,14 @@ public class Main extends JFrame {
         }
     }
 
+
     public boolean getIsGameRunning() {
         return isGameRunning;
     }
 
     public void setIsGameRunning(boolean isGameRunning) {
         this.isGameRunning = isGameRunning;
+        SoundHandler.get().loadSoundFX();
     }
 
     public RemoteInterface getRemoteInterface() {

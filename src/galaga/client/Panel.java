@@ -13,6 +13,9 @@ import galaga.shared.gameobjects.Enemy;
 import java.rmi.RemoteException;
 //Ricardo-------------------------------------------------
 
+import galaga.shared.stages.GameStage;
+import galaga.shared.stages.MenuStage;
+
 
 class Panel extends JPanel /*implements ActionListener*/ {
     private final int objectSize = 25;
@@ -48,68 +51,73 @@ class Panel extends JPanel /*implements ActionListener*/ {
         Image background = this.imageCache.getImage("assets/Backgrounds/purple.png");
         graphics2D.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), this);
 
-        LinkedList<GameObject> gameObjects = this.main.getCurrentStage().getGameObjects();
-        for (GameObject gameObject : gameObjects) {
+        if (this.main.getCurrentStage() instanceof MenuStage) {
+            MenuStage menu = new MenuStage();
+            menu.render(graphics);
+        }
+        else if (this.main.getCurrentStage() instanceof GameStage) {
+            LinkedList<GameObject> gameObjects = this.main.getCurrentStage().getGameObjects();
+            for (GameObject gameObject : gameObjects) {
 
 
-            if (gameObject instanceof Enemy) {
-            //    if (((Enemy) gameObject).isAlive()) {
+                if (gameObject instanceof Enemy) {
+                    //    if (((Enemy) gameObject).isAlive()) {
                     Image image = this.imageCache.getImage(gameObject.getImagePath());
 
                     Point position = gameObject.getPosition();
 
                     graphics2D.drawImage(image, position.x, position.y, this.objectSize, this.objectSize, this);
-            //    }
+                    //    }
 
-            }else if(gameObject instanceof Craft){
-                Image image = this.imageCache.getImage(gameObject.getImagePath());
-                Point position = gameObject.getPosition();
+                } else if (gameObject instanceof Craft) {
+                    Image image = this.imageCache.getImage(gameObject.getImagePath());
+                    Point position = gameObject.getPosition();
 
-                graphics2D.drawImage(image, position.x, position.y, this.objectSize, this.objectSize, this);
+                    graphics2D.drawImage(image, position.x, position.y, this.objectSize, this.objectSize, this);
 
-                int playerId = ((Craft) gameObject).getConnectionId() + 1;
+                    int playerId = ((Craft) gameObject).getConnectionId() + 1;
 
 //                graphics2D.drawString("Player " + playerId, (10 + (playerId) * 60), 20);
 //                graphics2D.drawString("Score:", (10 + (playerId) * 60), 40);
 //                graphics2D.drawString(((Craft) gameObject).getScore() + "", (10 + (playerId) * 60), 60);
 
-                Point scoreNumberInitialPosition = new Point();
-                scoreNumberInitialPosition.x = 10;
-                scoreNumberInitialPosition.y = 60;
-                int numberPosition = (playerId - 1) * 10;
+                    Point scoreNumberInitialPosition = new Point();
+                    scoreNumberInitialPosition.x = 10;
+                    scoreNumberInitialPosition.y = 60;
+                    int numberPosition = (playerId - 1) * 10;
 
-                ArrayList<String> scoreImageList = getScoreImages(((Craft) gameObject).getScore());
-                for (String imagePath : scoreImageList) {
-                    Image i = this.imageCache.getImage(imagePath);
-                    graphics2D.drawImage(i, scoreNumberInitialPosition.x + 15 * numberPosition, scoreNumberInitialPosition.y, 10, 10, this);
-                    numberPosition++;
+                    ArrayList<String> scoreImageList = getScoreImages(((Craft) gameObject).getScore());
+                    for (String imagePath : scoreImageList) {
+                        Image i = this.imageCache.getImage(imagePath);
+                        graphics2D.drawImage(i, scoreNumberInitialPosition.x + 15 * numberPosition, scoreNumberInitialPosition.y, 10, 10, this);
+                        numberPosition++;
+                    }
+
+                    numberPosition = (playerId - 1) * 10;
+                    for (int i = 0; i < ((Craft) gameObject).getLivesNumber(); i++) {
+                        Image lifeImage = this.imageCache.getImage(gameObject.getImagePath());
+                        graphics2D.drawImage(lifeImage, scoreNumberInitialPosition.x + 20 * numberPosition, scoreNumberInitialPosition.y - 50, 15, 15, this);
+                        numberPosition++;
+                    }
+
+
+                    LinkedList<Point> shots = ((Craft) gameObject).getBullets();
+                    for (Point shot : shots) {
+                        Image i = this.imageCache.getImage(gameObject.getBulletImagePath());
+                        Point p = new Point();
+                        p.x = shot.x;
+                        p.y = shot.y;
+
+                        graphics2D.drawImage(i, p.x, p.y, this.objectSize / 4, this.objectSize / 2, this);
+                    }
+
+                } else {
+                    Image image = this.imageCache.getImage(gameObject.getImagePath());
+
+                    Point position = gameObject.getPosition();
+
+                    graphics2D.drawImage(image, position.x, position.y, this.objectSize, this.objectSize, this);
                 }
-
-                numberPosition = (playerId - 1) * 10;
-                for (int i = 0; i < ((Craft) gameObject).getLivesNumber(); i++) {
-                    Image lifeImage = this.imageCache.getImage(gameObject.getImagePath());
-                    graphics2D.drawImage(lifeImage, scoreNumberInitialPosition.x + 20 * numberPosition, scoreNumberInitialPosition.y - 50, 15, 15, this);
-                    numberPosition++;
-                }
-
-
-
-                LinkedList<Point> shots = ((Craft) gameObject).getBullets();
-                for(Point shot : shots){
-                    Image i = this.imageCache.getImage(gameObject.getBulletImagePath());
-                    Point p = new Point();
-                    p.x = shot.x;
-                    p.y = shot.y;
-
-                    graphics2D.drawImage(i, p.x, p.y, this.objectSize/4, this.objectSize/2, this);
-                }
-
-            }else{
-                Image image = this.imageCache.getImage(gameObject.getImagePath());
-
-                Point position = gameObject.getPosition();
-
-                graphics2D.drawImage(image, position.x, position.y, this.objectSize, this.objectSize, this);
             }
         }
 
@@ -157,6 +165,7 @@ class Panel extends JPanel /*implements ActionListener*/ {
 
     private void configure() {
         this.addKeyListener(new KeyListener(this.main));
+        this.addMouseListener(new MouseInput());
         this.setFocusable(true);
         this.setBackground(Color.WHITE);
     }
