@@ -7,16 +7,52 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
-import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 
-public class SoundHandler {
+public class SoundHandler/* extends Thread */{
 
     private static final int BUFFER_SIZE = 128000;
     private static File soundFile;
     private static AudioInputStream audioStream;
     private static AudioFormat audioFormat;
     private static SourceDataLine sourceLine;
+    private static String soundPath = "assets/Sounds/sfx_bgm.wav";
+
+    public static void playBackgroundSound(/*String soundPath*/){
+        try {
+            soundFile = new File(soundPath);
+            audioStream = AudioSystem.getAudioInputStream(soundFile);
+            audioFormat = audioStream.getFormat();
+            DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
+            sourceLine = (SourceDataLine) AudioSystem.getLine(info);
+            sourceLine.open(audioFormat);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        while(true){
+            sourceLine.start();
+
+            int nBytesRead = 0;
+            byte[] abData = new byte[BUFFER_SIZE];
+            while (nBytesRead != -1) {//enquanto tiver dados preenchendo o buffer
+                try {
+                    nBytesRead = audioStream.read(abData, 0, abData.length);
+                    if(nBytesRead >0){
+                        sourceLine.write(abData, 0, nBytesRead);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            sourceLine.drain();
+            sourceLine.close();
+        }
+
+
+    }
 
     public static void playSound(String soundPath, boolean loop){
         try {
@@ -31,42 +67,26 @@ public class SoundHandler {
             e.printStackTrace();
         }
 
-        if(!loop){
-            sourceLine.start();
+        sourceLine.start();
 
-            int nBytesRead = 0;
-            byte[] abData = new byte[BUFFER_SIZE];
-            while (nBytesRead != -1) {//enquanto tiver dados preenchendo o buffer
-                try {
-                    nBytesRead = audioStream.read(abData, 0, abData.length);
+        int nBytesRead = 0;
+        byte[] abData = new byte[BUFFER_SIZE];
+        while (nBytesRead != -1) {//enquanto tiver dados preenchendo o buffer
+            try {
+                nBytesRead = audioStream.read(abData, 0, abData.length);
+                if(nBytesRead >0){
                     sourceLine.write(abData, 0, nBytesRead);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            sourceLine.drain();
-            sourceLine.close();
-        } else{
-            while(true){
-                sourceLine.start();
-
-                int nBytesRead = 0;
-                byte[] abData = new byte[BUFFER_SIZE];
-                while (nBytesRead != -1) {//enquanto tiver dados preenchendo o buffer
-                    try {
-                        nBytesRead = audioStream.read(abData, 0, abData.length);
-                        sourceLine.write(abData, 0, nBytesRead);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
                 }
 
-                sourceLine.drain();
-                sourceLine.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
 
+        sourceLine.drain();
+        sourceLine.close();
+
+//        playBackgroundSound();
     }
 }
 
