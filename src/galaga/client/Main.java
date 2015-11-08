@@ -53,8 +53,6 @@ public class Main extends JFrame {
         this.pack();
         this.setSize(currentStage.getFrameWidth(), currentStage.getFrameHeight());
         this.setVisible(true);
-//        SoundHandler.get().loadSoundFX();
-//        SoundHandler.get().play("bgm");
 
     }
 
@@ -74,9 +72,6 @@ public class Main extends JFrame {
 
     public void setIsGameRunning(boolean isGameRunning) {
         this.isGameRunning = isGameRunning;
-//        SoundHandler.get().loadSoundFX();
-//        String soundPath = "assets/Sounds/sfx_bgm.wav";
-//        SoundHandler.playSound(soundPath);
     }
 
     public RemoteInterface getRemoteInterface() {

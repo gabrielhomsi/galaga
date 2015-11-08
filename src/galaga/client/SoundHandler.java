@@ -3,11 +3,7 @@ package galaga.client;
 import java.io.File;
 import java.io.IOException;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.SourceDataLine;
+import javax.sound.sampled.*;
 
 public class SoundHandler/* extends Thread */{
 
@@ -54,20 +50,28 @@ public class SoundHandler/* extends Thread */{
 
     }
 
-    public static void playSound(String soundPath, boolean loop){
+    public static void playSound(String soundPath, boolean loop) {
+
+        Clip clip;
+
         try {
             soundFile = new File(soundPath);
             audioStream = AudioSystem.getAudioInputStream(soundFile);
             audioFormat = audioStream.getFormat();
-            DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
-            sourceLine = (SourceDataLine) AudioSystem.getLine(info);
-            sourceLine.open(audioFormat);
+            clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.setFramePosition(0);
+
+            clip.start();
+            //DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
+            //sourceLine = (SourceDataLine) AudioSystem.getLine(info);
+            //sourceLine.open(audioFormat);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        sourceLine.start();
+        //sourceLine.start();
 
         int nBytesRead = 0;
         byte[] abData = new byte[BUFFER_SIZE];
@@ -75,7 +79,7 @@ public class SoundHandler/* extends Thread */{
             try {
                 nBytesRead = audioStream.read(abData, 0, abData.length);
                 if(nBytesRead >0){
-                    sourceLine.write(abData, 0, nBytesRead);
+                    //sourceLine.write(abData, 0, nBytesRead);
                 }
 
             } catch (IOException e) {
@@ -83,8 +87,8 @@ public class SoundHandler/* extends Thread */{
             }
         }
 
-        sourceLine.drain();
-        sourceLine.close();
+        //sourceLine.drain();
+        //sourceLine.close();
 
 //        playBackgroundSound();
     }

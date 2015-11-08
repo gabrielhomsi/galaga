@@ -1,5 +1,7 @@
 package galaga.shared.gameobjects;
 
+import galaga.client.SoundHandler;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 //-------------------------------------
@@ -187,6 +189,7 @@ public class Craft implements GameObject {
         playerActualPosition.x = this.getPosition().x;
         playerActualPosition.y = this.getPosition().y;
         shots.push(playerActualPosition);
+        SoundHandler.playSound("assets/sounds/sfx_laser1.wav", false);
     }
 //
 //    public void deSpawnBullet(int i){
