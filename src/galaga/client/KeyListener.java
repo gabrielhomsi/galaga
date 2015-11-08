@@ -43,4 +43,11 @@ public class KeyListener extends KeyAdapter {
             e1.printStackTrace();
         }
     }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        if (e.getKeyChar() == 27) {
+            System.exit(0);
+        }
+    }
 }

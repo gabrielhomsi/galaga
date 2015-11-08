@@ -189,6 +189,7 @@ public class Craft implements GameObject {
         playerActualPosition.x = this.getPosition().x;
         playerActualPosition.y = this.getPosition().y;
         shots.push(playerActualPosition);
+        // Toca o som de tiro
         SoundHandler.playSound("assets/sounds/sfx_laser1.wav", false);
     }
 //

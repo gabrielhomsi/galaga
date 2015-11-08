@@ -37,6 +37,13 @@ public class MouseInput implements MouseListener {
             }
         }
 
+        if (mx >=450 && mx <=650) {
+            if (my >= 400 && my <= 450) {
+                //Se apertou o botão de sair
+                System.exit(0);
+            }
+        }
+
        /* public Rectangle button1 = new Rectangle(350, 300, 100, 50);
         public Rectangle button2 = new Rectangle(350, 400, 100, 50); */
     }
