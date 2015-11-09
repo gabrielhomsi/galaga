@@ -60,7 +60,14 @@ public class Craft implements GameObject {
         this.lives++;
     }
 
-    public void lifeDown(){this.lives--;}
+    public void lifeDown(){
+        this.lives--;
+        if (lives == 0) {
+//            gameOver();
+            setGameOver();
+        }
+
+    }
 
     public void addScore(int score) {
         this.score += score;
@@ -82,32 +89,50 @@ public class Craft implements GameObject {
         return this.position;
     }
 
+//    public void gameOver(graphics g) {
+//        g.drawString("GAME OVER");
+//    }
+
+    private boolean gameOver = false;
+
+    public void setGameOver(){
+        this.gameOver = true;
+    }
+
+    public boolean getGameOver(){
+        return this.gameOver;
+    }
+
     public void keyCodePressed(int keyCode) {
-        if (keyCode == KeyEvent.VK_LEFT) {
-            this.xSpeed = -200;
-        } else if (keyCode == KeyEvent.VK_RIGHT) {
-            this.xSpeed = 200;
-        } else if (keyCode == KeyEvent.VK_SPACE) {
-            // Tiros aqui (keyPressed)
-            //Ricardo------------------------------
-            if(quickPush){
-                quickPush = false;
-                spawnBullet();
+        if (!(this.gameOver)) {
+            if (keyCode == KeyEvent.VK_LEFT) {
+                this.xSpeed = -200;
+            } else if (keyCode == KeyEvent.VK_RIGHT) {
+                this.xSpeed = 200;
+            } else if (keyCode == KeyEvent.VK_SPACE) {
+                // Tiros aqui (keyPressed)
+                //Ricardo------------------------------
+                if (quickPush) {
+                    quickPush = false;
+                    spawnBullet();
+                }
+                //Ricardo  ----------------------------
             }
-            //Ricardo  ----------------------------
         }
     }
 
     public void keyCodeReleased(int keyCode) {
-        if (keyCode == KeyEvent.VK_LEFT) {
-            this.xSpeed = 0;
-        } else if (keyCode == KeyEvent.VK_RIGHT) {
-            this.xSpeed = 0;
-        } else if (keyCode == KeyEvent.VK_SPACE) {
-            // Tiros aqui (keyReleased)
-            //Ricardo
-            quickPush = true;
-            //Ricardo-------------------------------------
+        if (!(this.gameOver)) {
+            if (keyCode == KeyEvent.VK_LEFT) {
+                this.xSpeed = 0;
+            } else if (keyCode == KeyEvent.VK_RIGHT) {
+                this.xSpeed = 0;
+            } else if (keyCode == KeyEvent.VK_SPACE) {
+                // Tiros aqui (keyReleased)
+                //Ricardo
+                quickPush = true;
+                //Ricardo-------------------------------------
+            }
         }
     }
 
@@ -190,7 +215,7 @@ public class Craft implements GameObject {
         playerActualPosition.y = this.getPosition().y;
         shots.push(playerActualPosition);
         // Toca o som de tiro
-        SoundHandler.playSound("assets/sounds/sfx_laser1.wav", false);
+//        SoundHandler.playSound("assets/sounds/sfx_laser1.wav", false);
     }
 //
 //    public void deSpawnBullet(int i){

@@ -33,7 +33,7 @@ public class GameLoop extends Thread {
 //                try{
 //                    Stage stage = this.main.getCurrentStage();
 //                    if(stage instanceof GameStage) {
-//                        ((GameStage) stage).checkColision();
+//                        ((GameStage) stage).checkCollision();
 //                    }
 //                } catch(Exception e){
 //                    e.printStackTrace();

@@ -9,6 +9,7 @@ import galaga.shared.stages.GameStage;
 import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -42,6 +43,53 @@ public class WaveManager implements Serializable {
         enemy.setRushPoint(this.currentStage.getClosestCraftByConnectionId(enemy.getPosition())/*this.currentStage.getCraftByConnectionId(1)*/);
         this.currentStage.getGameObjects().add(enemy);
     }
+
+
+//    private boolean canDestroy = true;
+
+    public void checkCollisionWithPlayer(){
+        LinkedList<GameObject> objects = this.currentStage.getGameObjects();
+        int enemyToDestroy = -1;//enemyToDestroy
+        int playerToDestroy = -1;
+        int index = 0;
+        int collisions = 0;
+        for(GameObject enemy : objects){
+            canDestroy= false;
+            index++;
+
+            if(enemy instanceof Enemy){
+                Craft player = (Craft) this.currentStage.getClosestCraftByConnectionId(enemy.getPosition());
+                if(Math.abs(enemy.getPosition().x - player.getPosition().x) < 7){
+                    if(Math.abs(enemy.getPosition().y - player.getPosition().y) < 7){
+                        playerToDestroy = player.getConnectionId();
+                        enemyToDestroy =  index;
+                        collisions++;
+//                        player.lifeDown();
+//                        destroyEnemy(index);
+                    }
+                }
+            }
+        }
+
+            if ((playerToDestroy > -1) && (collisions > 0)) {
+                Craft player = (Craft) objects.get(playerToDestroy);
+                player.lifeDown();
+                index =0;
+                try{
+                    for(GameObject enemy : objects){
+                        try {
+                            destroyEnemy(enemyToDestroy);
+                            index++;
+                        }catch (ConcurrentModificationException e){
+                            System.out.println("Deu Ruim, FOda-se");
+                        }
+                    }
+                } catch (Exception e){
+                    System.out.println("Do nothing");
+                }
+
+            }
+        }
 
     private void newWave() {
         System.out.println("newWave");
@@ -105,8 +153,8 @@ public class WaveManager implements Serializable {
             if (enemy instanceof Enemy) {
                 enemy.setRushPoint(this.currentStage.getClosestCraftByConnectionId(enemy.getPosition())/*this.currentStage.getCraftByConnectionId(1)*/);
             }
-
         }
+        checkCollisionWithPlayer();
 
 //        if (this.timePassed2 > (TIME_TO_NEW_WAVE * 0.2)) {
 //            int numberOfGameObjects = this.currentStage.getGameObjects().size();

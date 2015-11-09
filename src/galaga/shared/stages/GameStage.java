@@ -6,7 +6,6 @@ import galaga.shared.gameobjects.Craft;
 import galaga.shared.gameobjects.GameObject;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.LinkedList;
 
@@ -40,7 +39,7 @@ public class GameStage implements Stage {
     }
 //
 //    private void checkColisionTime(){
-//        checkColision();
+//        checkCollision();
 //    }
 
     public int getFrameHeight() {
@@ -49,15 +48,15 @@ public class GameStage implements Stage {
 
     @Override
     public void notifyTime(double dt) {
-        contador++;
-        if (contador > 20) {
-//            if (canDestroy) {
-//                checkColision();
-//            }
-            contador = 0;
-        }
+//        contador++;
+//        if (contador > 20) {
+////            if (canDestroy) {
+////                checkCollision();
+////            }
+//            contador = 0;
+//        }
         if (canDestroy) {
-            checkColision();
+            checkCollision();
         }
 
         this.waveManager.notifyTime(dt);
@@ -89,7 +88,7 @@ public class GameStage implements Stage {
 
     public LinkedList<GameObject> getGameObjects() {
         //Ricardo--------------------
-//        checkColision();
+//        checkCollision();
         //Ricardo--------------------
         return this.gameObjects;
     }
@@ -130,7 +129,7 @@ public class GameStage implements Stage {
     //mudar esse loop quando der tempo, dá para simplificar
     //acho que Adiciona a lista mais de uma vez um inimigo
     //Ricardo---------------------------------
-    public void checkColision() {
+    public void checkCollision() {
         if (this.gameObjects == null) return;
         this.canDestroy = false;//nao permite chamar novamente a funçao até terminar isto
 

@@ -31,10 +31,14 @@ public class Main extends JFrame {
         new GameLoop(this).start();
 
 
-//        String soundPath = "assets/Sounds/sfx_bgm.wav";
+        String soundPath = "assets/Sounds/sfx_bgm.wav";
 //        boolean loop = true;
 //        new SoundHandler().start();
-        SoundHandler.playBackgroundSound();
+       // SoundHandler.playBackgroundSound();
+
+
+
+        SoundHandler.playSound(soundPath, true);
 
     }
 

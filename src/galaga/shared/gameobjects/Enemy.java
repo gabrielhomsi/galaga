@@ -213,11 +213,11 @@ public class Enemy implements GameObject {
         return this.live;
     }
 
-    public void Die() {
-        this.live = false;
-        this.position.x = -1;
-        this.position.y = -1;
-    }
+//    public void Die() {
+//        this.live = false;
+//        this.position.x = -1;
+//        this.position.y = -1;
+//    }
 
     //Ricardo----------------------------------------
 }

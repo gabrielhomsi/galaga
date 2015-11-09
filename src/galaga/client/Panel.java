@@ -62,46 +62,54 @@ class Panel extends JPanel /*implements ActionListener*/ {
             //    }
 
             }else if(gameObject instanceof Craft){
-                Image image = this.imageCache.getImage(gameObject.getImagePath());
-                Point position = gameObject.getPosition();
 
-                graphics2D.drawImage(image, position.x, position.y, this.objectSize, this.objectSize, this);
+                if(!((Craft) gameObject).getGameOver()){
+                    Image image = this.imageCache.getImage(gameObject.getImagePath());
+                    Point position = gameObject.getPosition();
 
-                int playerId = ((Craft) gameObject).getConnectionId() + 1;
+                    graphics2D.drawImage(image, position.x, position.y, this.objectSize, this.objectSize, this);
+
+                    int playerId = ((Craft) gameObject).getConnectionId() + 1;
 
 //                graphics2D.drawString("Player " + playerId, (10 + (playerId) * 60), 20);
 //                graphics2D.drawString("Score:", (10 + (playerId) * 60), 40);
 //                graphics2D.drawString(((Craft) gameObject).getScore() + "", (10 + (playerId) * 60), 60);
 
-                Point scoreNumberInitialPosition = new Point();
-                scoreNumberInitialPosition.x = 10;
-                scoreNumberInitialPosition.y = 60;
-                int numberPosition = (playerId - 1) * 10;
+                    Point scoreNumberInitialPosition = new Point();
+                    scoreNumberInitialPosition.x = 10;
+                    scoreNumberInitialPosition.y = 60;
+                    int numberPosition = (playerId - 1) * 10;
 
-                ArrayList<String> scoreImageList = getScoreImages(((Craft) gameObject).getScore());
-                for (String imagePath : scoreImageList) {
-                    Image i = this.imageCache.getImage(imagePath);
-                    graphics2D.drawImage(i, scoreNumberInitialPosition.x + 15 * numberPosition, scoreNumberInitialPosition.y, 10, 10, this);
-                    numberPosition++;
-                }
+                    ArrayList<String> scoreImageList = getScoreImages(((Craft) gameObject).getScore());
+                    for (String imagePath : scoreImageList) {
+                        Image i = this.imageCache.getImage(imagePath);
+                        graphics2D.drawImage(i, scoreNumberInitialPosition.x + 15 * numberPosition, scoreNumberInitialPosition.y, 10, 10, this);
+                        numberPosition++;
+                    }
 
-                numberPosition = (playerId - 1) * 10;
-                for (int i = 0; i < ((Craft) gameObject).getLivesNumber(); i++) {
-                    Image lifeImage = this.imageCache.getImage(gameObject.getImagePath());
-                    graphics2D.drawImage(lifeImage, scoreNumberInitialPosition.x + 20 * numberPosition, scoreNumberInitialPosition.y - 50, 15, 15, this);
-                    numberPosition++;
-                }
+                    numberPosition = (playerId - 1) * 10;
+                    for (int i = 0; i < ((Craft) gameObject).getLivesNumber(); i++) {
+                        Image lifeImage = this.imageCache.getImage(gameObject.getImagePath());
+                        graphics2D.drawImage(lifeImage, scoreNumberInitialPosition.x + 20 * numberPosition, scoreNumberInitialPosition.y - 50, 15, 15, this);
+                        numberPosition++;
+                    }
 
 
 
-                LinkedList<Point> shots = ((Craft) gameObject).getBullets();
-                for(Point shot : shots){
-                    Image i = this.imageCache.getImage(gameObject.getBulletImagePath());
-                    Point p = new Point();
-                    p.x = shot.x;
-                    p.y = shot.y;
+                    LinkedList<Point> shots = ((Craft) gameObject).getBullets();
+                    for(Point shot : shots){
+                        Image i = this.imageCache.getImage(gameObject.getBulletImagePath());
+                        Point p = new Point();
+                        p.x = shot.x;
+                        p.y = shot.y;
 
-                    graphics2D.drawImage(i, p.x, p.y, this.objectSize/4, this.objectSize/2, this);
+                        graphics2D.drawImage(i, p.x, p.y, this.objectSize/4, this.objectSize/2, this);
+                    }
+                } else {
+                    Font fntGO = new Font("arial", Font.BOLD, 68);
+                    graphics2D.setFont(fntGO);
+                    graphics2D.setColor(Color.WHITE);
+                    graphics2D.drawString("GAME OVER", 200, 300);
                 }
 
             }else{

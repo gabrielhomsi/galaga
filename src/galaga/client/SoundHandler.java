@@ -73,19 +73,19 @@ public class SoundHandler/* extends Thread */{
 
         //sourceLine.start();
 
-        int nBytesRead = 0;
-        byte[] abData = new byte[BUFFER_SIZE];
-        while (nBytesRead != -1) {//enquanto tiver dados preenchendo o buffer
-            try {
-                nBytesRead = audioStream.read(abData, 0, abData.length);
-                if(nBytesRead >0){
+       // int nBytesRead = 0;
+        //byte[] abData = new byte[BUFFER_SIZE];
+       // while (nBytesRead != -1) {//enquanto tiver dados preenchendo o buffer
+       //     try {
+       //         nBytesRead = audioStream.read(abData, 0, abData.length);
+       //         if(nBytesRead >0){
                     //sourceLine.write(abData, 0, nBytesRead);
-                }
+       //         }
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+         //   } catch (IOException e) {
+        //        e.printStackTrace();
+        //    }
+        //}
 
         //sourceLine.drain();
         //sourceLine.close();
